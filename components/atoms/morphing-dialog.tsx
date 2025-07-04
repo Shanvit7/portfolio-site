@@ -19,7 +19,7 @@ import {
 import { createPortal } from 'react-dom'
 import { cn } from '@/lib/utils'
 import { XIcon } from 'lucide-react'
-import useClickOutside from '@/hooks/useClickOutside'
+import useClickOutside from '@/hooks/use-click-outside'
 
 export type MorphingDialogContextType = {
   isOpen: boolean

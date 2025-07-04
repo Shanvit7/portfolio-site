@@ -1,8 +1,8 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
-import { Header } from './header'
-import { Footer } from './footer'
+import Header from '@/components/molecules/header'
+import Footer from '@/components/molecules/footer'
 import { ThemeProvider } from 'next-themes'
 
 export const viewport: Viewport = {
@@ -17,10 +17,10 @@ export const metadata: Metadata = {
     canonical: '/'
   },
   title: {
-    default: 'Nim - Personal website template',
-    template: '%s | Nim'
+    default: 'Shanvit S Shetty',
+    template: '%s | Shanvit S Shetty - Software Engineer'
   },
-  description:  'Nim is a free and open-source personal website template built with Next.js 15, React 19 and Motion-Primitives.',
+  description:  'Software engineer with a knack for building scalable and efficient systems.',
 };
 
 const geist = Geist({
@@ -33,12 +33,11 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 })
 
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: Readonly<{
   children: React.ReactNode
-}>) {
-  return (
+}>) => (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
@@ -59,5 +58,6 @@ export default function RootLayout({
         </ThemeProvider>
       </body>
     </html>
-  )
-}
+);
+
+export default RootLayout;

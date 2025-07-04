@@ -1,13 +1,13 @@
 'use client'
-import { TextEffect } from '@/components/ui/text-effect'
+// COMPONENTS
+import { TextEffect } from '@/components/atoms/text-effect'
 import Link from 'next/link'
 
-export function Header() {
-  return (
+const Header = () => (
     <header className="mb-8 flex items-center justify-between">
       <div>
         <Link href="/" className="font-medium text-black dark:text-white">
-          Julien Nim
+          Shanvit S Shetty
         </Link>
         <TextEffect
           as="p"
@@ -16,9 +16,10 @@ export function Header() {
           className="text-zinc-600 dark:text-zinc-500"
           delay={0.5}
         >
-          Design Engineer
+          Software Engineer
         </TextEffect>
       </div>
     </header>
-  )
-}
+);
+
+export default Header;

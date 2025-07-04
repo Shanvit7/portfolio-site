@@ -1,9 +1,11 @@
+'use client';
+// HOOKS
 import { RefObject, useEffect } from 'react'
 
-function useClickOutside<T extends HTMLElement>(
+const useClickOutside = <T extends HTMLElement>(
   ref: RefObject<T>,
   handler: (event: MouseEvent | TouchEvent) => void,
-): void {
+): void => {
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent | TouchEvent) => {
       if (!ref || !ref.current || ref.current.contains(event.target as Node)) {
@@ -23,4 +25,4 @@ function useClickOutside<T extends HTMLElement>(
   }, [ref, handler])
 }
 
-export default useClickOutside
+export default useClickOutside;
