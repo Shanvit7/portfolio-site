@@ -1,7 +1,8 @@
 {
     "build": {
       "env": {
-        "PNPM_VERSION": "9.1.0"
+        "PNPM_VERSION": "9.1.0",
+        "NODE_VERSION": "16.x" 
       }
     },
     "installCommand": "pnpm install",
