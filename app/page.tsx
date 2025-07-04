@@ -50,7 +50,7 @@ const Personal = () => (
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-          I enjoy crafting software that's fast, intuitive, and genuinely useful. My background is in building responsive web applications with modern JavaScript frameworks, and lately, I've been exploring agentic AI — experimenting with how software can act more intelligently and adaptively. I care about clean interfaces, thoughtful user flows, and building tools that solve real problems without unnecessary complexity.
+          I enjoy crafting software that's fast, intuitive, and a pleasure to use. My background is in building responsive web applications with modern JavaScript frameworks, and lately, I’ve been exploring agentic AI — tinkering with ways to make interfaces and systems more intelligent, responsive, and context-aware. I care about clear design, thoughtful user flows, and building tools that aim to solve real problems without unnecessary complexity.
           </p>
         </div>
       </motion.section>
