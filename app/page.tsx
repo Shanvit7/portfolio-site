@@ -6,6 +6,7 @@ import MagneticSocialLink from '@/components/molecules/social-link';
 import ProjectVideo from '@/components/molecules/project-video';
 import Link from 'next/link';
 import { AnimatedBackground } from '@/components/atoms/animated-background';
+// CONSTANTS
 import {
   PROJECTS,
   WORK_EXPERIENCE,
@@ -49,8 +50,7 @@ const Personal = () => (
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            Focused on creating intuitive and performant web experiences.
-            Bridging the gap between design and development.
+          I enjoy crafting software that's fast, intuitive, and genuinely useful. My background is in building responsive web applications with modern JavaScript frameworks, and lately, I've been exploring agentic AI — experimenting with how software can act more intelligently and adaptively. I care about clean interfaces, thoughtful user flows, and building tools that solve real problems without unnecessary complexity.
           </p>
         </div>
       </motion.section>

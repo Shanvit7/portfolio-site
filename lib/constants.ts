@@ -1,5 +1,5 @@
 // TYPES
-import { Project, WorkExperience, BlogPost, SocialLink } from '@/app/types/personal';
+import { Project, WorkExperience, BlogPost, SocialLink } from '@/types/personal';
 
 export const WEBSITE_URL = process.env.WEBSITE_URL as string;
 
@@ -25,27 +25,35 @@ export const PROJECTS: Project[] = [
   
 export const WORK_EXPERIENCE: WorkExperience[] = [
     {
-      company: 'Reglazed Studio',
-      title: 'CEO',
-      start: '2024',
+      company: 'Zosma AI',
+      title: 'Founding AI Engineer',
+      start: 'Apr 2025',
       end: 'Present',
-      link: 'https://ibelick.com',
+      link: 'https://zosma.ai',
       id: 'work1',
     },
     {
-      company: 'Freelance',
-      title: 'Design Engineer',
-      start: '2022',
-      end: '2024',
-      link: 'https://ibelick.com',
+      company: 'Mavonic',
+      title: 'SDE I',
+      start: 'Oct 2024',
+      end: 'Present',
+      link: 'https://mavonic.com',
       id: 'work2',
     },
     {
-      company: 'Freelance',
-      title: 'Front-end Developer',
-      start: '2017',
-      end: 'Present',
-      link: 'https://ibelick.com',
+      company: 'Iotric',
+      title: 'SDE I',
+      start: 'Feb 2023',
+      end: 'Oct 2024',
+      link: 'https://iotric.com',
+      id: 'work3',
+    },
+    {
+      company: 'Iotric',
+      title: 'SDE (Intern)',
+      start: 'Jul 2022',
+      end: 'Feb 2023',
+      link: 'https://iotric.com',
       id: 'work3',
     },
 ];
@@ -79,7 +87,7 @@ export const BLOG_POSTS: BlogPost[] = [
     },
 ];
 
-export const GITHUB_URL = process.env.GITHUB_URL as string;
+export const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL as string;
   
 export const SOCIAL_LINKS: SocialLink[] = [
     {
@@ -88,9 +96,9 @@ export const SOCIAL_LINKS: SocialLink[] = [
     },
     {
       label: 'LinkedIn',
-      link: process.env.LINKEDIN_URL as string,
+      link: process.env.NEXT_PUBLIC_LINKEDIN_URL as string,
     },
   ]
   
-  export const EMAIL = process.env.EMAIL as string;
+  export const EMAIL = process.env.NEXT_PUBLIC_EMAIL as string;
   
