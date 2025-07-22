@@ -4,81 +4,149 @@ import { Project, WorkExperience, BlogPost, SocialLink } from '@/types/personal'
 export const WEBSITE_URL = process.env.WEBSITE_URL as string;
 
 export const PROJECTS: Project[] = [
-    {
-      name: 'Searcho',
-      description:
-        'An intelligent news platform built on News API',
-      link: 'https://searcho-web.vercel.app',
-      video:
-        'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/newProfileItem/d898be8a-7037-4c71-af0c-8997239b050d.mp4?_a=DATAdtAAZAA0',
-      id: 'searcho',
-    },
-    {
-      name: 'Legitimacy (Beta)',
-      description: 'Secure PDF sharing platform',
-      link: 'https://legitimacy-mavonic.vercel.app',
-      video:
-        'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
-      id: 'legitimacy',
-    },
+  {
+    name: 'Searcho',
+    description: 'An intelligent news platform built on News API',
+    link: 'https://searcho-web.vercel.app',
+    video: 'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/newProfileItem/d898be8a-7037-4c71-af0c-8997239b050d.mp4?_a=DATAdtAAZAA0',
+    id: 'searcho',
+  },
+  {
+    name: 'Legitimacy (Beta)',
+    description: 'Secure PDF sharing platform',
+    link: 'https://legitimacy-mavonic.vercel.app',
+    video: 'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
+    id: 'legitimacy',
+  },
 ];
-  
+
 export const WORK_EXPERIENCE: WorkExperience[] = [
-    {
-      company: 'Zosma AI',
-      title: 'Founding AI Engineer',
-      start: 'Apr 2025',
-      end: 'Present',
-      link: 'https://zosma.ai',
-      id: 'work1',
-    },
-    {
-      company: 'Mavonic',
-      title: 'SDE I',
-      start: 'Oct 2024',
-      end: 'Present',
-      link: 'https://mavonic.com',
-      id: 'work2',
-    },
-    {
-      company: 'Iotric',
-      title: 'SDE I',
-      start: 'Feb 2023',
-      end: 'Oct 2024',
-      link: 'https://iotric.com',
-      id: 'work3',
-    },
-    {
-      company: 'Iotric',
-      title: 'SDE (Intern)',
-      start: 'Jul 2022',
-      end: 'Feb 2023',
-      link: 'https://iotric.com',
-      id: 'work3',
-    },
+  {
+    company: 'Zosma AI',
+    title: 'Founding AI Engineer',
+    start: 'Apr 2025',
+    end: 'Present',
+    link: 'https://zosma.ai',
+    id: 'work1',
+    description: `
+Had a chance to explore a lot of interesting projects and prototypes. Currently working on personalized shopping assistant.
+
+### Highlights:
+- Built a *whatsapp ecommerce support agent* using **Mastra** for **Foodstories**
+- Learnt a lot about **multi agentic systems** and their **patterns** 
+- Understood nuances of working with **LLMs** and their **limitations**
+    `,
+    what_i_did: [
+      'developed a whatsapp ecommerce support agent using mastra',
+      'learnt and implemented multi agentic systems',
+      'building a personalized shopping assistant',
+    ],
+  },
+  {
+    company: 'Mavonic',
+    title: 'SDE I',
+    start: 'Oct 2024',
+    end: 'Present',
+    link: 'https://mavonic.com',
+    id: 'work2',
+    description: `
+After IOTric, I joined Mavonic as an **SDE-1** and went full-stack from day one. I worked on **PropertyGuru**, a real estate platform built on **Next.js** and **Strapi**, which pulled in **10K+** daily visitors.
+
+### Highlights:
+- Handled core site, agent portal, and **CreditNow** (same stack)
+- Coordinated with project managers and DevOps team for frequent daily deployments
+- Used **Cursor** (Agentic IDE) and **v0.dev** for rapid UI iteration
+
+After PropertyGuru wrapped up, I moved to **Draftus**, a US-based student portal, continuing in a full-stack role.
+
+### Side Projects:
+- Face recognition **Python service** (used across multiple internal projects)
+- Google Meet automated **stand-up bot** using **Agno** that daily joins and pings absentees on Slack
+- Secure PDF sharing POC for an internal product idea
+`,
+    what_i_did: [
+      'made facial recognition python service used throughout multiple internal projects',
+      'built automated bot to join daily standup Meet and ping absentees on slack',
+      'worked on a website with 10k+ daily visitors',
+    ],
+  },
+  {
+    company: 'Iotric',
+    title: 'SDE I',
+    start: 'Feb 2023',
+    end: 'Oct 2024',
+    link: 'https://iotric.com',
+    id: 'work3',
+    description: `
+After graduating, I joined **Iotric** as an **SDE-1**, starting with **myIDFi**, a mortgage comparison platform built with **React**, **Material UI**, and **RTK Query**. Later, I joined **Enoobs**, Iotric's first in-house product — a social media platform built exclusively for gamers — where I led the frontend and managed two interns,collaborating across teams. The product ran for 10 months before being shelved due to low traction.
+
+### Highlights:
+- Shipped production UI for **myIDFi**; used **ChatGPT** early on to boost development and debugging
+- Led frontend for **Enoobs** using **Next.js**, coordinated with designers, and proposed new features
+- Mentored interns and worked cross-functionally across product and design
+
+### Side Projects:
+- Worked as a **backend engineer** for few projects for self-learning
+- Built a **Node** chatbot package, later made into a full-fledged product by the company
+- Built a **QIE blockchain API SDK** using **Next.js**
+
+A fast-paced, high-growth phase filled with learning and real-world impact.
+`,
+    what_i_did: [
+      'built a gamers-only social platform from scratch using next-js',
+      'developed and published chatbot node package',
+      'developed QIE blockchain API SDK using next-js',
+      'built core mortgage platform features: analytics, integrations, and email templates',
+    ],
+  },
+  {
+    company: 'Iotric',
+    title: 'SDE (Intern)',
+    start: 'Jul 2022',
+    end: 'Feb 2023',
+    link: 'https://iotric.com',
+    id: 'work4',
+    description: `
+In my final year of undergrad, I interned as a **Software Developer**, primarily working on the **frontend**—especially legacy **React** codebases using **class components** and **Redux**.
+
+### Highlights:
+- Translated **Figma** designs into functional UIs
+- Gained hands-on experience syncing frontend with backend APIs
+- Managed application state effectively with **Redux**
+- Navigated legacy codebases in the pre-ChatGPT era, relying heavily on **Stack Overflow**
+
+This internship laid the foundation for my full-time journey, teaching me the value of hands-on debugging and real-world frontend patterns.
+`,
+    what_i_did: [
+      'hands on experience with web development and its fundamentals',
+      'worked extensively on 2-3 diverse client projects',
+      'integrated Mirrorfly chat SDK for real-time communication features',
+      'maintained and updated legacy React codebases',
+    ],
+  },
 ];
-  
+
 export const BLOG_POSTS: BlogPost[] = [
-    {
-      title: "I Didn't Care About AI — Until It Got Agentic",
-      description: 'Not a hot take — just some thoughts on what pulled me toward agentic systems and why they make more sense to me than the rest of AI so far.',
-      link: '/blog/i-didnt-care-about-ai-until-it-got-agentic',
-      uid: 'blog-1',
-    },
+  {
+    title: "I Didn't Care About AI — Until It Got Agentic",
+    description: 'Not a hot take — just some thoughts on what pulled me toward agentic systems and why they make more sense to me than the rest of AI so far.',
+    link: '/blog/i-didnt-care-about-ai-until-it-got-agentic',
+    uid: 'blog-1',
+  },
 ];
 
 export const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL as string;
-  
+
 export const SOCIAL_LINKS: SocialLink[] = [
-    {
-      label: 'Github',
-      link: GITHUB_URL,
-    },
-    {
-      label: 'LinkedIn',
-      link: process.env.NEXT_PUBLIC_LINKEDIN_URL as string,
-    },
-  ]
-  
-  export const EMAIL = process.env.NEXT_PUBLIC_EMAIL as string;
+  {
+    label: 'Github',
+    link: GITHUB_URL,
+  },
+  {
+    label: 'LinkedIn',
+    link: process.env.NEXT_PUBLIC_LINKEDIN_URL as string,
+  },
+];
+
+export const EMAIL = process.env.NEXT_PUBLIC_EMAIL as string;
   
