@@ -32,7 +32,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
 Had a chance to explore a lot of interesting projects and prototypes. Currently working on personalized shopping assistant.
 
 ### Highlights:
-- Built a *whatsapp ecommerce support agent* using **Mastra** for **Foodstories**
+- Built a *whatsapp ecommerce support agent* POC using **Mastra** for [**Foodstories**](https://www.foodstories.shop)
 - Learnt a lot about **multi agentic systems** and their **patterns** 
 - Understood nuances of working with **LLMs** and their **limitations**
     `,
@@ -50,24 +50,25 @@ Had a chance to explore a lot of interesting projects and prototypes. Currently 
     link: 'https://mavonic.com',
     id: 'work2',
     description: `
-After IOTric, I joined Mavonic as an **SDE-1** and went full-stack from day one. I worked on **PropertyGuru**, a real estate platform built on **Next.js** and **Strapi**, which pulled in **10K+** daily visitors.
+After IOTric, I joined Mavonic as an **SDE-1** and went full-stack from day one. I worked on [**PropertyGuru**](https://www.propertyguru.ae), a real estate platform built on **Next.js** and **Strapi**, which pulled in **10K+** daily visitors.
 
 ### Highlights:
-- Handled core site, agent portal, and **CreditNow** (same stack)
+- Handled core site, internal agent portal, and [**CreditNow**](https://www.creditnow.ae) (same stack)
 - Coordinated with project managers and DevOps team for frequent daily deployments
 - Used **Cursor** (Agentic IDE) and **v0.dev** for rapid UI iteration
 
-After PropertyGuru wrapped up, I moved to **Draftus**, a US-based student portal, continuing in a full-stack role.
+After PropertyGuru wrapped up, I moved to [**Draftus**](https://www.draftus.com), a US-based online social talent mining application, continuing in a full-stack role.
 
 ### Side Projects:
 - Face recognition **Python service** (used across multiple internal projects)
-- Google Meet automated **stand-up bot** using **Agno** that daily joins and pings absentees on Slack
-- Secure PDF sharing POC for an internal product idea
+- Google Meet automated [**stand-up bot**](https://github.com/Shanvit7/daily-standup-bot) using **Agno** that daily joins and pings absentees on Slack
+- Secure PDF sharing [**POC**](https://legitimacy-mavonic.vercel.app) for an internal product idea
 `,
     what_i_did: [
       'made facial recognition python service used throughout multiple internal projects',
       'built automated bot to join daily standup Meet and ping absentees on slack',
       'worked on a website with 10k+ daily visitors',
+      'building SDKs to make your data secure and private',
     ],
   },
   {
@@ -78,7 +79,7 @@ After PropertyGuru wrapped up, I moved to **Draftus**, a US-based student portal
     link: 'https://iotric.com',
     id: 'work3',
     description: `
-After graduating, I joined **Iotric** as an **SDE-1**, starting with **myIDFi**, a mortgage comparison platform built with **React**, **Material UI**, and **RTK Query**. Later, I joined **Enoobs**, Iotric's first in-house product — a social media platform built exclusively for gamers — where I led the frontend and managed two interns,collaborating across teams. The product ran for 10 months before being shelved due to low traction.
+After graduating, I joined **Iotric** as an **SDE-1**, starting with [**myIDFi**](https://myidfi.com), a mortgage comparison platform built with **React**, **Material UI**, and **RTK Query**. Later, I joined [**Enoobs**](https://www.enoobs.com), Iotric's first in-house product — a social media platform built exclusively for gamers — where I led the frontend and managed two interns,collaborating across teams. The product ran for 10 months before being shelved due to low traction.
 
 ### Highlights:
 - Shipped production UI for **myIDFi**; used **ChatGPT** early on to boost development and debugging
@@ -87,15 +88,13 @@ After graduating, I joined **Iotric** as an **SDE-1**, starting with **myIDFi**,
 
 ### Side Projects:
 - Worked as a **backend engineer** for few projects for self-learning
-- Built a **Node** chatbot package, later made into a full-fledged product by the company
-- Built a **QIE blockchain API SDK** using **Next.js**
+- Built a [**Node** chatbot package](https://www.npmjs.com/package/qie-chatbot), later evolved into a [**full-fledged product**](https://botric.ai) by the company
 
 A fast-paced, high-growth phase filled with learning and real-world impact.
 `,
     what_i_did: [
       'built a gamers-only social platform from scratch using next-js',
       'developed and published chatbot node package',
-      'developed QIE blockchain API SDK using next-js',
       'built core mortgage platform features: analytics, integrations, and email templates',
     ],
   },

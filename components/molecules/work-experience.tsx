@@ -28,7 +28,7 @@ const WorkExperienceDialog: React.FC<WorkExperienceDialogProps> = ({ children, t
          {children}
         </MorphingDialogTrigger>
         <MorphingDialogContainer>
-          <MorphingDialogContent className="p-6 bg-white dark:bg-zinc-950 rounded-lg max-w-2xl">
+          <MorphingDialogContent className="p-4 sm:p-6 bg-white dark:bg-zinc-950 rounded-lg max-w-full sm:max-w-lg md:max-w-2xl max-h-[80vh] overflow-y-auto">
             <MorphingDialogTitle className="flex flex-row justify-between text-lg font-bold dark:text-zinc-100">
               {title} at {company}
               <p className="text-zinc-600 dark:text-zinc-400 text-xs">

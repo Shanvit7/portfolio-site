@@ -91,46 +91,44 @@ const Personal = () => (
         transition={TRANSITION_SECTION}
       >
         <h3 className="mb-5 text-lg font-medium">Work Experience</h3>
-        <div className="flex flex-col space-y-2">
+        <div className="grid grid-cols-1 gap-4">
           {WORK_EXPERIENCE.map(({ id, title, company, start, end, description, what_i_did, link }) => (
             <div key={id} className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30">
               <Spotlight
                 className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
                 size={64}
               />
-              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
-                <div className="relative flex w-full flex-row justify-between">
-                  <div>
+              <div className="relative h-full w-full rounded-[15px] bg-white p-3 sm:p-4 dark:bg-zinc-950">
+                <div className="flex flex-col">
+                  <div className="flex flex-row items-center justify-between gap-2">
                     <h4 className="font-normal dark:text-zinc-100">
                       {title}
                     </h4>
-                    <a href={link} target="_blank" rel="noopener noreferrer" className="text-zinc-500 dark:text-zinc-400">
+                    <a href={link} target="_blank" rel="noopener noreferrer" className="text-zinc-700 dark:text-zinc-300">
                       {company}
                     </a>
                   </div>
-                  <div className="flex flex-col items-end">
-                    <p className="text-zinc-600 dark:text-zinc-400">
+                  <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between pt-1 gap-1">
+                    <p className="text-zinc-600 text-sm dark:text-zinc-400">
                       {start} - {end}
                     </p>
-                    <p className="mt-2">
-                      <WorkExperienceDialog 
-                        title={title}
-                        company={company}
-                        start={start}
-                        end={end}
-                        description={description}
-                      >
-                        <TextLoop>
-                          {what_i_did.map((item) => (
-                            <span key={item}>{item}</span>
-                          ))}
-                        </TextLoop>
-                      </WorkExperienceDialog>
-                    </p>
+                    <WorkExperienceDialog 
+                      title={title}
+                      company={company}
+                      start={start}
+                      end={end}
+                      description={description}
+                    >
+                      <TextLoop>
+                        {what_i_did.map((item) => (
+                          <span key={item} className="break-words whitespace-normal will-change-contents">{item}</span>
+                        ))}
+                      </TextLoop>
+                    </WorkExperienceDialog>
                   </div>
                 </div>
-                </div>
               </div>
+            </div>
           ))}
         </div>
       </motion.section>
