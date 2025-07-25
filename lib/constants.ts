@@ -23,18 +23,19 @@ export const PROJECTS: Project[] = [
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: 'Zosma AI',
-    title: 'Founding AI Engineer',
+    title: 'Founding Engineer',
     start: 'Apr 2025',
     end: 'Present',
     link: 'https://zosma.ai',
     id: 'work1',
     description: `
-Had a chance to explore a lot of interesting projects and prototypes. Currently working on personalized shopping assistant.
+Had a chance to explore a lot of interesting AI-related projects and prototypes. Currently working on personalized shopping assistant.
 
 ### Highlights:
 - Built a *whatsapp ecommerce support agent* POC using **Mastra** for [**Foodstories**](https://www.foodstories.shop)
 - Learnt a lot about **multi agentic systems** and their **patterns** 
 - Understood nuances of working with **LLMs** and their **limitations**
+- A bit about Data Engineering and RAG
     `,
     what_i_did: [
       'developed a whatsapp ecommerce support agent using mastra',
@@ -57,7 +58,7 @@ After IOTric, I joined Mavonic as an **SDE-1** and went full-stack from day one.
 - Coordinated with project managers and DevOps team for frequent daily deployments
 - Used **Cursor** (Agentic IDE) and **v0.dev** for rapid UI iteration
 
-After PropertyGuru wrapped up, I moved to [**Draftus**](https://www.draftus.com), a US-based online social talent mining application, continuing in a full-stack role.
+After PropertyGuru , I worked on [**Draftus**](https://www.draftus.com), a US-based online social talent mining application (MVP), continuing in a full-stack role.
 
 ### Side Projects:
 - Face recognition **Python service** (used across multiple internal projects)

@@ -57,7 +57,7 @@ const Personal = () => (
         </div>
       </motion.section>
 
-      <motion.section
+      {/* <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
@@ -84,7 +84,7 @@ const Personal = () => (
             </div>
           ))}
         </div>
-      </motion.section>
+      </motion.section> */}
 
       <motion.section
         variants={VARIANTS_SECTION}
