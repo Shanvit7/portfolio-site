@@ -52,7 +52,8 @@ const Personal = () => (
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-          I enjoy crafting software that's fast, intuitive, and a pleasure to use. My background is in building responsive web applications with modern JavaScript frameworks, and lately, I’ve been exploring agentic AI — tinkering with ways to make interfaces and systems more intelligent, responsive, and context-aware. I care about clear design, thoughtful user flows, and building tools that aim to solve real problems without unnecessary complexity.
+          Started out building web applications, now working my way toward agentic AI—through data engineering, ML, and LLMs, toward automation-driven systems. I’ve prototyped AI tools at startups and worked across the stack, always aiming for clean, efficient, and genuinely useful products. I care about thoughtful UX, fast iteration, and solving real problems with clarity and intent.
+
           </p>
         </div>
       </motion.section>
