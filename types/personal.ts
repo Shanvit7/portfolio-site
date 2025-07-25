@@ -13,6 +13,8 @@ export type WorkExperience = {
     end: string
     link: string
     id: string
+    description: string
+    what_i_did: string[]
 };
   
 export type BlogPost = {
