@@ -11,20 +11,13 @@ export const PROJECTS: Project[] = [
     video: 'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/newProfileItem/d898be8a-7037-4c71-af0c-8997239b050d.mp4?_a=DATAdtAAZAA0',
     id: 'searcho',
   },
-  {
-    name: 'Legitimacy (Beta)',
-    description: 'Secure PDF sharing platform',
-    link: 'https://legitimacy-mavonic.vercel.app',
-    video: 'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/XSfIvT7BUWbPRXhrbLed/ee6871c9-8400-49d2-8be9-e32675eabf7e.mp4?_a=DATAdtAAZAA0',
-    id: 'legitimacy',
-  },
 ];
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: 'Zosma AI',
     title: 'Founding Engineer',
-    start: 'Apr 2025',
+    start: 'Sep 2025',
     end: 'Present',
     link: 'https://zosma.ai',
     id: 'work1',
@@ -39,15 +32,15 @@ Had a chance to explore a lot of interesting AI-related projects and prototypes.
     `,
     what_i_did: [
       'developed a whatsapp ecommerce support agent using mastra',
-      'learnt and implemented multi agentic systems',
-      'building a personalized shopping assistant',
+      'learnt and did hands-on implementation of multi agentic systems',
+      're-imagining ecommerce with AI',
     ],
   },
   {
     company: 'Mavonic',
     title: 'SDE I',
     start: 'Oct 2024',
-    end: 'Present',
+    end: 'Sep 2025',
     link: 'https://mavonic.com',
     id: 'work2',
     description: `
@@ -69,7 +62,7 @@ After PropertyGuru , I worked on [**Draftus**](https://www.draftus.com), a US-ba
       'made facial recognition python service used throughout multiple internal projects',
       'built automated bot to join daily standup Meet and ping absentees on slack',
       'worked on a website with 10k+ daily visitors',
-      'building SDKs to make your data secure and private',
+      'built SDK to make enterprise data secure and private',
     ],
   },
   {
