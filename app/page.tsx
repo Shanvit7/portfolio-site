@@ -52,8 +52,7 @@ const Personal = () => (
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-          Started out building web applications, now working my way toward agentic AI—through data engineering, ML, and LLMs, toward automation-driven systems. I’ve prototyped AI tools at startups and worked across the stack, always aiming for clean, efficient, and genuinely useful products. I care about thoughtful UX, fast iteration, and solving real problems with clarity and intent.
-
+          Started with web apps, now exploring ML, LLMs, and agentic workflows — one at a time. Enjoys prototyping, working across the stack, and building things that are clear, useful, and simple. Cares about thoughtful UX, fast iteration, and solving real problems with clarity and intent.
           </p>
         </div>
       </motion.section>

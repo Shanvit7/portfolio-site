@@ -28,7 +28,7 @@ Had a chance to explore a lot of interesting AI-related projects and prototypes.
 - Built a *whatsapp ecommerce support agent* POC using **Mastra** for [**Foodstories**](https://www.foodstories.shop)
 - Learnt a lot about **multi agentic systems** and their **patterns** 
 - Understood nuances of working with **LLMs** and their **limitations**
-- A bit about Data Engineering and RAG
+- Learning about Context Engineering and RAG
     `,
     what_i_did: [
       'developed a whatsapp ecommerce support agent using mastra',
