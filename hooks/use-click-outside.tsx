@@ -1,4 +1,4 @@
-'use client';
+'use client'
 // HOOKS
 import { RefObject, useEffect } from 'react'
 
@@ -25,4 +25,4 @@ const useClickOutside = <T extends HTMLElement>(
   }, [ref, handler])
 }
 
-export default useClickOutside;
+export default useClickOutside

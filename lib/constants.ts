@@ -1,17 +1,26 @@
 // TYPES
-import { Project, WorkExperience, BlogPost, SocialLink } from '@/types/personal';
+import { Project, WorkExperience, BlogPost, SocialLink } from '@/types/personal'
 
-export const WEBSITE_URL = process.env.WEBSITE_URL as string;
+export const WEBSITE_URL = process.env.WEBSITE_URL as string
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Searcho',
-    description: 'An intelligent news platform built on News API',
-    link: 'https://searcho-web.vercel.app',
-    video: 'https://res.cloudinary.com/read-cv/video/upload/t_v_b/v1/1/profileItems/W2azTw5BVbMXfj7F53G92hMVIn32/newProfileItem/d898be8a-7037-4c71-af0c-8997239b050d.mp4?_a=DATAdtAAZAA0',
-    id: 'searcho',
+    name: 'Email Triage SLM',
+    description:
+      'Fine-tuned small language models for email classification and structured triage outputs using LoRA on Tinker Labs',
+    link: 'https://github.com/Shanvit7/email-triage-slm',
+    image: 'github-placeholder',
+    id: 'email-triage-slm',
   },
-];
+  {
+    name: 'AskBit',
+    description:
+      'FAQ assistant using bit vector encoding for semantic search with integrated RAG via local Llama 3',
+    link: 'https://github.com/Shanvit7/askbit',
+    image: 'github-placeholder',
+    id: 'askbit',
+  },
+]
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
@@ -22,18 +31,20 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     link: 'https://zosma.ai',
     id: 'work1',
     description: `
-Had a chance to explore a lot of interesting AI-related projects and prototypes. Currently working on **personalized shopping assistant**.
+Had a chance to explore a lot of interesting AI-related projects and prototypes. Currently working on **vertical AI agents**.
 
 ### Highlights:
 - Built a *whatsapp ecommerce support agent* POC using **Mastra** for [**Foodstories**](https://www.foodstories.shop)
+- Working as a fullstack engineer on the [**Foodstories**](https://www.foodstories.shop) website built on **Next.js**, optimizing and implementing new features
+- Built an AI workflow suggesting exercises using Mastra and **TOON** for token optimization for [**Dashfit**](https://dashfit.in)
 - Learnt a lot about **multi agentic systems** and their **patterns** 
 - Understood nuances of working with **LLMs** and their **limitations**
-- Learning about Context Engineering and RAG
+- Learning about Context Engineering, RAG and Fine-tuning
     `,
     what_i_did: [
-      'developed a whatsapp ecommerce support agent using mastra',
-      'learnt and did hands-on implementation of multi agentic systems',
-      're-imagining ecommerce with AI',
+      'developed a whatsapp ecommerce support agent',
+      'learnt and did hands-on implementation of agentic workflow systems',
+      'building vertical AI agents',
     ],
   },
   {
@@ -117,18 +128,19 @@ This internship laid the foundation for my full-time journey, teaching me the va
       'maintained and updated legacy React codebases',
     ],
   },
-];
+]
 
 export const BLOG_POSTS: BlogPost[] = [
   {
     title: "I Didn't Care About AI — Until It Got Agentic",
-    description: 'Not a hot take — just some thoughts on what pulled me toward agentic systems and why they make more sense to me than the rest of AI so far.',
+    description:
+      'Not a hot take — just some thoughts on what pulled me toward agentic systems and why they make more sense to me than the rest of AI so far.',
     link: '/blog/i-didnt-care-about-ai-until-it-got-agentic',
     uid: 'blog-1',
   },
-];
+]
 
-export const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL as string;
+export const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL as string
 
 export const SOCIAL_LINKS: SocialLink[] = [
   {
@@ -139,6 +151,6 @@ export const SOCIAL_LINKS: SocialLink[] = [
     label: 'LinkedIn',
     link: process.env.NEXT_PUBLIC_LINKEDIN_URL as string,
   },
-];
+]
 
-export const EMAIL = process.env.NEXT_PUBLIC_EMAIL as string;
+export const EMAIL = process.env.NEXT_PUBLIC_EMAIL as string

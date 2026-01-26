@@ -1,7 +1,7 @@
-'use client';
+'use client'
 // CORE
-import React from 'react';
-import ReactMarkdown from 'react-markdown';
+import React from 'react'
+import ReactMarkdown from 'react-markdown'
 // COMPONENTS
 import {
   MorphingDialog,
@@ -10,37 +10,44 @@ import {
   MorphingDialogContent,
   MorphingDialogTitle,
   MorphingDialogDescription,
-} from '@/components/atoms/morphing-dialog';
+} from '@/components/atoms/morphing-dialog'
 
 // TYPES
 interface WorkExperienceDialogProps {
-  children: React.ReactNode;
-  company: string;
-  title: string;
-  start: string;
-  end: string;
-  description: string;
+  children: React.ReactNode
+  company: string
+  title: string
+  start: string
+  end: string
+  description: string
 }
 
-const WorkExperienceDialog: React.FC<WorkExperienceDialogProps> = ({ children, title, company, start, end, description }) => (
-      <MorphingDialog>
-        <MorphingDialogTrigger className="inline-block text-zinc-600 dark:text-zinc-400 text-xs cursor-pointer">
-         {children}
-        </MorphingDialogTrigger>
-        <MorphingDialogContainer>
-          <MorphingDialogContent className="p-4 sm:p-6 bg-white dark:bg-zinc-950 rounded-lg max-w-full sm:max-w-lg md:max-w-2xl max-h-[80vh] overflow-y-auto">
-            <MorphingDialogTitle className="flex flex-row justify-between text-lg font-bold dark:text-zinc-100">
-              {title} at {company}
-              <p className="text-zinc-600 dark:text-zinc-400 text-xs">
-                {start} - {end}
-              </p>
-            </MorphingDialogTitle>
-            <MorphingDialogDescription className="pt-2 text-sm prose dark:prose-invert text-zinc-600 dark:text-zinc-300">
-              <ReactMarkdown>{description}</ReactMarkdown>
-            </MorphingDialogDescription>
-          </MorphingDialogContent>
-        </MorphingDialogContainer>
-      </MorphingDialog>
-);
+const WorkExperienceDialog: React.FC<WorkExperienceDialogProps> = ({
+  children,
+  title,
+  company,
+  start,
+  end,
+  description,
+}) => (
+  <MorphingDialog>
+    <MorphingDialogTrigger className="inline-block cursor-pointer text-xs text-zinc-600 dark:text-zinc-400">
+      {children}
+    </MorphingDialogTrigger>
+    <MorphingDialogContainer>
+      <MorphingDialogContent className="max-h-[80vh] max-w-full overflow-y-auto rounded-lg bg-white p-4 sm:max-w-lg sm:p-6 md:max-w-2xl dark:bg-zinc-950">
+        <MorphingDialogTitle className="flex flex-row justify-between text-lg font-bold dark:text-zinc-100">
+          {title} at {company}
+          <p className="text-xs text-zinc-600 dark:text-zinc-400">
+            {start} - {end}
+          </p>
+        </MorphingDialogTitle>
+        <MorphingDialogDescription className="prose dark:prose-invert pt-2 text-sm text-zinc-600 dark:text-zinc-300">
+          <ReactMarkdown>{description}</ReactMarkdown>
+        </MorphingDialogDescription>
+      </MorphingDialogContent>
+    </MorphingDialogContainer>
+  </MorphingDialog>
+)
 
-export default WorkExperienceDialog; 
+export default WorkExperienceDialog
