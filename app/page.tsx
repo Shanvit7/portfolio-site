@@ -3,13 +3,18 @@
 import { motion } from 'motion/react'
 import { Spotlight } from '@/components/atoms/spotlight'
 import MagneticSocialLink from '@/components/molecules/social-link'
-import ProjectVideo from '@/components/molecules/project-video'
+import { ProjectCard } from '@/components/molecules/project-card'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNavigation,
+  CarouselIndicator,
+} from '@/components/motion-primitives/carousel'
 import WorkExperienceDialog from '@/components/molecules/work-experience'
 import Link from 'next/link'
 import { AnimatedBackground } from '@/components/atoms/animated-background'
 import { TextLoop } from '@/components/atoms/text-loop'
-// ICONS
-import { Github } from 'lucide-react'
 // CONSTANTS
 import {
   PROJECTS,
@@ -58,37 +63,21 @@ const Personal = () => (
     </motion.section>
 
     <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-      <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
-      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-        {PROJECTS.map((project) => (
-          <a
-            key={project.name}
-            href={project.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group space-y-2"
-          >
-            <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 transition-transform duration-200 ring-inset group-hover:scale-[1.02] dark:bg-zinc-950/40 dark:ring-zinc-800/50">
-              {project.video ? (
-                <ProjectVideo src={project.video} />
-              ) : project.image ? (
-                <div className="flex aspect-video w-full items-center justify-center rounded-xl bg-gradient-to-br from-purple-600 via-purple-700 to-purple-800">
-                  <Github className="h-16 w-16 text-white/90" />
-                </div>
-              ) : null}
-            </div>
-            <div className="px-1">
-              <div className="font-base group/link relative inline-block font-[450] text-zinc-900 dark:text-zinc-50">
-                {project.name}
-                <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover/link:max-w-full dark:bg-zinc-50"></span>
-              </div>
-              <p className="text-base text-zinc-600 dark:text-zinc-400">
-                {project.description}
-              </p>
-            </div>
-          </a>
-        ))}
-      </div>
+      <h3 className="mb-5 text-lg font-medium">What I'm Cooking</h3>
+      <Carousel className="w-full pb-12">
+        <CarouselContent className="-ml-4">
+          {PROJECTS.map((project) => (
+            <CarouselItem
+              key={project.id}
+              className="basis-full pl-4 sm:basis-1/2"
+            >
+              <ProjectCard project={project} />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselNavigation alwaysShow />
+        <CarouselIndicator />
+      </Carousel>
     </motion.section>
 
     <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
@@ -107,7 +96,7 @@ const Personal = () => (
           }) => (
             <div
               key={id}
-              className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+              className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-px dark:bg-zinc-600/30"
             >
               <Spotlight
                 className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
@@ -141,7 +130,7 @@ const Personal = () => (
                         {what_i_did.map((item) => (
                           <span
                             key={item}
-                            className="break-words whitespace-normal will-change-contents"
+                            className="wrap-break-word whitespace-normal will-change-contents"
                           >
                             {item}
                           </span>

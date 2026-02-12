@@ -2,6 +2,7 @@ export type Project = {
   name: string
   description: string
   link: string
+  links?: { label: string; url: string }[]
   video?: string
   image?: string
   id: string

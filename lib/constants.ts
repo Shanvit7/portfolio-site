@@ -5,6 +5,14 @@ export const WEBSITE_URL = process.env.WEBSITE_URL as string
 
 export const PROJECTS: Project[] = [
   {
+    name: 'A2A Travel Agents Demo',
+    description:
+      'Mastra receptionist agent orchestrating Agno hotel and flight booking agents via A2A protocol.',
+    link: 'https://github.com/Shanvit7/a2a-mastra-demo',
+    image: 'github-placeholder',
+    id: 'a2a-travel-demo',
+  },
+  {
     name: 'Email Triage SLM',
     description:
       'Fine-tuned small language models for email classification and structured triage outputs using LoRA on Tinker Labs',
