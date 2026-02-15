@@ -5,6 +5,14 @@ export const WEBSITE_URL = process.env.WEBSITE_URL as string
 
 export const PROJECTS: Project[] = [
   {
+    name: 'CQRS OMS Demo',
+    description:
+      'Order Management System with Bun, Hono, and Zod — CQRS and Event Sourcing with PostgreSQL and Redis.',
+    link: 'https://github.com/Shanvit7/cqrs-server-demo',
+    image: 'github-placeholder',
+    id: 'cqrs-server-demo',
+  },
+  {
     name: 'A2A Travel Agents Demo',
     description:
       'Mastra receptionist agent orchestrating Agno hotel and flight booking agents via A2A protocol.',
