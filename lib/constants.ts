@@ -158,10 +158,12 @@ export const BLOG_POSTS: BlogPost[] = [
 
 export const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL as string
 
+export const EMAIL = process.env.NEXT_PUBLIC_EMAIL as string
+
 export const SOCIAL_LINKS: SocialLink[] = [
   {
-    label: 'Github',
-    link: GITHUB_URL,
+    label: 'Email',
+    link: `mailto:${EMAIL}`,
   },
   {
     label: 'LinkedIn',
@@ -169,4 +171,21 @@ export const SOCIAL_LINKS: SocialLink[] = [
   },
 ]
 
-export const EMAIL = process.env.NEXT_PUBLIC_EMAIL as string
+export const PROFILE_LINKS: SocialLink[] = [
+  {
+    label: 'Github',
+    link: GITHUB_URL,
+  },
+  {
+    label: 'HackerRank',
+    link: process.env.NEXT_PUBLIC_HACKERRANK_URL as string,
+  },
+  {
+    label: 'LeetCode',
+    link: process.env.NEXT_PUBLIC_LEETCODE_URL as string,
+  },
+  {
+    label: 'Hugging Face',
+    link: process.env.NEXT_PUBLIC_HUGGINGFACE_URL as string,
+  },
+]

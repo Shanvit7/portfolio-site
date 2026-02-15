@@ -2,6 +2,8 @@
 // COMPONENTS
 import { TextEffect } from '@/components/atoms/text-effect'
 import Link from 'next/link'
+// CONSTANTS
+import { PROFILE_LINKS } from '@/lib/constants'
 
 const Header = () => (
   <header className="mb-8 flex items-center justify-between">
@@ -18,6 +20,19 @@ const Header = () => (
       >
         Web Dev and AI Enthusiast
       </TextEffect>
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 pt-3 pb-4 text-xs text-zinc-400 dark:text-zinc-500">
+        {PROFILE_LINKS.map(({ label, link }) => (
+          <a
+            key={label}
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="cursor-pointer hover:text-zinc-600 dark:hover:text-zinc-400"
+          >
+            {label}
+          </a>
+        ))}
+      </div>
     </div>
   </header>
 )
