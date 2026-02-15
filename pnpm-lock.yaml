@@ -46,6 +46,9 @@ importers:
       react-markdown:
         specifier: ^10.1.0
         version: 10.1.0(@types/react@19.2.9)(react@19.2.3)
+      simple-icons:
+        specifier: ^16.9.0
+        version: 16.9.0
       sugar-high:
         specifier: ^0.9.5
         version: 0.9.5
@@ -3458,6 +3461,13 @@ packages:
       }
     engines: { node: '>= 0.4' }
 
+  simple-icons@16.9.0:
+    resolution:
+      {
+        integrity: sha512-aKst2C7cLkFyaiQ/Crlwxt9xYOpGPk05XuJZ0ZTJNNCzHCKYrGWz2ebJSi5dG8CmTCxUF/BGs6A8uyJn/EQxqw==,
+      }
+    engines: { node: '>=0.12.18' }
+
   simple-swizzle@0.2.4:
     resolution:
       {
@@ -6235,6 +6245,8 @@ snapshots:
       side-channel-list: 1.0.0
       side-channel-map: 1.0.1
       side-channel-weakmap: 1.0.2
+
+  simple-icons@16.9.0: {}
 
   simple-swizzle@0.2.4:
     dependencies:

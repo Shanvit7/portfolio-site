@@ -11,6 +11,9 @@ export const PROJECTS: Project[] = [
     link: 'https://github.com/Shanvit7/a2a-mastra-demo',
     image: 'github-placeholder',
     id: 'a2a-travel-demo',
+    links: [
+      { label: 'GitHub', url: 'https://github.com/Shanvit7/a2a-mastra-demo' },
+    ],
   },
   {
     name: 'Email Triage SLM',
@@ -34,6 +37,9 @@ export const PROJECTS: Project[] = [
     link: 'https://github.com/Shanvit7/cqrs-server-demo',
     image: 'github-placeholder',
     id: 'cqrs-server-demo',
+    links: [
+      { label: 'GitHub', url: 'https://github.com/Shanvit7/cqrs-server-demo' },
+    ],
   },
   {
     name: 'AskBit',

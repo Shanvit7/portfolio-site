@@ -20,14 +20,14 @@ const Header = () => (
       >
         Web Dev and AI Enthusiast
       </TextEffect>
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 pt-3 pb-4 text-xs text-zinc-400 dark:text-zinc-500">
+      <div className="flex flex-wrap items-center gap-x-3 gap-y-1 pt-3 pb-4 text-xs text-zinc-600 dark:text-zinc-400">
         {PROFILE_LINKS.map(({ label, link }) => (
           <a
             key={label}
             href={link}
             target="_blank"
             rel="noopener noreferrer"
-            className="cursor-pointer hover:text-zinc-600 dark:hover:text-zinc-400"
+            className="cursor-pointer hover:text-zinc-800 dark:hover:text-zinc-200"
           >
             {label}
           </a>
