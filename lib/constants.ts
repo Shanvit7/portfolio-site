@@ -5,17 +5,9 @@ export const WEBSITE_URL = process.env.WEBSITE_URL as string
 
 export const PROJECTS: Project[] = [
   {
-    name: 'CQRS OMS Demo',
-    description:
-      'Order Management System with Bun, Hono, and Zod — CQRS and Event Sourcing with PostgreSQL and Redis.',
-    link: 'https://github.com/Shanvit7/cqrs-server-demo',
-    image: 'github-placeholder',
-    id: 'cqrs-server-demo',
-  },
-  {
     name: 'A2A Travel Agents Demo',
     description:
-      'Mastra receptionist agent orchestrating Agno hotel and flight booking agents via A2A protocol.',
+      'Mastra (TypeScript) receptionist agent orchestrating Agno (Python) hotel and flight booking agents via A2A protocol.',
     link: 'https://github.com/Shanvit7/a2a-mastra-demo',
     image: 'github-placeholder',
     id: 'a2a-travel-demo',
@@ -25,16 +17,38 @@ export const PROJECTS: Project[] = [
     description:
       'Fine-tuned small language models for email classification and structured triage outputs using LoRA on Tinker Labs',
     link: 'https://github.com/Shanvit7/email-triage-slm',
-    image: 'github-placeholder',
+    image: 'huggingface-placeholder',
     id: 'email-triage-slm',
+    links: [
+      { label: 'GitHub', url: 'https://github.com/Shanvit7/email-triage-slm' },
+      {
+        label: 'Hugging Face',
+        url: 'https://huggingface.co/Shanvit/email-triage-slm',
+      },
+    ],
+  },
+  {
+    name: 'CQRS OMS Demo',
+    description:
+      'Order Management System with Bun, Hono, and Zod — CQRS and Event Sourcing with PostgreSQL and Redis.',
+    link: 'https://github.com/Shanvit7/cqrs-server-demo',
+    image: 'github-placeholder',
+    id: 'cqrs-server-demo',
   },
   {
     name: 'AskBit',
     description:
       'FAQ assistant using bit vector encoding for semantic search with integrated RAG via local Llama 3',
     link: 'https://github.com/Shanvit7/askbit',
-    image: 'github-placeholder',
+    image: 'huggingface-placeholder',
     id: 'askbit',
+    links: [
+      { label: 'GitHub', url: 'https://github.com/Shanvit7/askbit' },
+      {
+        label: 'Hugging Face',
+        url: 'https://huggingface.co/Shanvit/askbit-faq-retriever',
+      },
+    ],
   },
 ]
 

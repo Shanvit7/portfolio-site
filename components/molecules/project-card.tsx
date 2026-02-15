@@ -1,6 +1,7 @@
 'use client'
 
 import { Github } from 'lucide-react'
+import { HuggingfaceLogo } from '@/components/atoms/huggingface-logo'
 import ProjectVideo from '@/components/molecules/project-video'
 import type { Project } from '@/types/personal'
 
@@ -15,6 +16,13 @@ export function ProjectCard({ project }: { project: Project }) {
         className: 'group block space-y-2',
       }
 
+  const PlaceholderIcon =
+    project.image === 'huggingface-placeholder' ? (
+      <HuggingfaceLogo className="h-16 w-16 text-white/90" />
+    ) : (
+      <Github className="h-16 w-16 text-white/90" />
+    )
+
   return (
     <CardWrapper {...cardProps}>
       <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 transition-transform duration-200 ring-inset group-hover:scale-[1.02] dark:bg-zinc-950/40 dark:ring-zinc-800/50">
@@ -22,7 +30,7 @@ export function ProjectCard({ project }: { project: Project }) {
           <ProjectVideo src={project.video} />
         ) : project.image ? (
           <div className="flex aspect-video w-full items-center justify-center rounded-xl bg-linear-to-br from-purple-600 via-purple-700 to-purple-800">
-            <Github className="h-16 w-16 text-white/90" />
+            {PlaceholderIcon}
           </div>
         ) : null}
       </div>
