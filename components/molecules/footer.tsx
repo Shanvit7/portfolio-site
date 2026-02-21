@@ -10,7 +10,7 @@ const Footer = () => (
     <div className="flex items-center justify-between">
       <a href={`${GITHUB_URL}/portfolio-site`} target="_blank">
         <TextLoop className="text-xs text-zinc-500">
-          <span>© 2025 Shanvit S Shetty.</span>
+          <span>© 2026 Shanvit S Shetty.</span>
           <span>Built with Motion Primitives, Next.js and Tailwind CSS.</span>
         </TextLoop>
       </a>
