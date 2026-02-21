@@ -1,0 +1,594 @@
+export const metadata = {
+  title: 'How I Trained an Email Triage SLM Using Tinker APIs',
+  description:
+    "A learning project exploring LoRA fine-tuning and Tinker's distributed training API. Email triage served as a concrete use case to understand the mechanics of fine-tuning small language models.",
+  alternates: {
+    canonical: '/blog/email-triage-slm-tinker-apis',
+  },
+}
+
+# How I Trained an Email Triage SLM Using Tinker APIs
+
+A learning project exploring LoRA fine-tuning and Tinker's distributed training API. Email triage served as a concrete use case to understand the mechanics of fine-tuning small language models—how LoRA works, what happens during training, and what infrastructure Tinker abstracts away.
+
+---
+
+## Why This Project
+
+After a year of building agents and prompting LLMs, I got curious about the math behind it—how do these models actually learn? That led me to machine learning. I went through [Google's Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course). I'd always wanted to train a model but lacked compute. When [Tinker](https://thinkingmachines.ai/tinker/) came along, I gave it a try and picked an SLM ([Small Language Models are the Future of Agentic AI](https://research.nvidia.com/labs/lpr/slm-agents/)). Email triage provided a clear, structured task to explore these concepts.
+
+The goal wasn't to build a production system, but to understand:
+
+- How LoRA adapters modify model behavior
+- What happens during forward and backward passes
+- How tokenization and masking affect learning
+- What Tinker handles vs. what we implement
+
+Email triage output format:
+
+```
+Step 1: Classification → \{category\}
+Step 2: Priority → \{High|Medium|Low\}
+Step 3: Suggested actions → \{actions\}
+Step 4: Drafted response → \{draft\}
+```
+
+This format made it easy to see what the model learned—format adherence, category recognition, priority mapping. A good test case for understanding fine-tuning mechanics.
+
+---
+
+## How LoRA (Low-Rank Adaptation) Works
+
+**Base Model:** `Qwen/Qwen3-4B-Instruct-2507` (4B parameters, instruction-tuned)
+
+**Why LoRA?** Full fine-tuning updates all 4B parameters, requiring significant compute and risking catastrophic forgetting—the model loses previously learned knowledge. LoRA (Low-Rank Adaptation) adds trainable adapter matrices to [attention layers](https://jalammar.github.io/illustrated-transformer/) while keeping base weights frozen, preserving general knowledge while specializing for the task. In simpler terms: instead of retraining the whole model, you add a small "plugin" that learns your task—the original model stays as-is, and the plugin handles the new behavior.
+
+**LoRA Mathematical Foundation:**
+
+The core insight: weight updates during fine-tuning have low intrinsic rank—meaning the changes we need can be captured with far fewer numbers than the full matrix. You don't need to tweak millions of parameters; a smaller set of adjustments does the job. For a weight matrix W ∈ R^(d×d), instead of learning ΔW directly, LoRA decomposes it:
+
+```
+W' = W + ΔW
+ΔW = BA where B ∈ R^(d×r), A ∈ R^(r×d)
+```
+
+This factorization exploits the low-rank property of weight updates. Think of it like tuning a radio: you don't need to rebuild the whole circuit—a few knobs (volume, bass, treble) can get you the sound you want. Same here: the model doesn't need millions of independent tweaks; a smaller set of adjustments (the B and A matrices) captures what's needed. The rank r &lt;&lt; d is that "smaller set"—it captures the essential patterns for adaptation.
+
+**Why Low-Rank Works:**
+
+During fine-tuning, weight updates don't require full rank. The model needs to adjust attention patterns, not completely restructure representations. Low-rank matrices B and A can express these pattern changes efficiently. With rank r=32 and d=4096, we reduce trainable parameters from ~16M to ~260K per matrix—about 1.6% of the original size.
+
+**Rank Selection:**
+
+Rank controls the expressiveness-capacity trade-off:
+
+- **Lower ranks (8-16):** Underfit—insufficient capacity to learn task-specific patterns
+- **Rank 32:** Common default—enough capacity for most tasks without overfitting
+- **Higher ranks (64-128):** Diminishing returns—more parameters don't improve performance proportionally, increase overfitting risk
+
+The optimal rank depends on task complexity. For structured output tasks like this, rank 32 is a reasonable starting point—enough expressiveness without excessive capacity.
+
+**LoRA Application:**
+
+LoRA adapters are applied to attention layers (query, key, value projections) and optionally feed-forward layers. During forward pass:
+
+```
+h' = (W + BA)h = Wh + BAh
+```
+
+The base model computes Wh (frozen), while LoRA computes BAh (trainable). This additive modification allows the model to specialize attention patterns without disrupting base representations.
+
+**Prompt Engineering vs LoRA: Tradeoffs**
+
+When deciding between prompt engineering and LoRA fine-tuning, several factors matter:
+
+**Prompt Engineering:**
+
+- **Pros:**
+  - No training required—immediate iteration
+  - No additional model weights—use base model as-is
+  - Easy to experiment with different instructions
+  - No compute cost for training
+- **Cons:**
+  - Format consistency unreliable—model may deviate from structure
+  - Token overhead—long prompts consume context window
+  - Limited pattern learning—can't teach complex mappings reliably
+  - Per-request cost—prompt tokens add to inference cost
+  - Generic responses—model doesn't learn domain-specific patterns
+
+**LoRA Fine-Tuning:**
+
+- **Pros:**
+  - Format consistency—model learns structure from training data
+  - Pattern learning—can teach complex mappings (category→priority, etc.)
+  - Shorter prompts—model internalizes instructions
+  - Domain specialization—learns task-specific features
+  - Better generalization—learns patterns, not just instructions
+- **Cons:**
+  - Training cost—requires compute for fine-tuning
+  - Training time—can't iterate instantly
+  - Storage—need to store adapter weights (~10-50MB)
+  - One-time setup—requires data preparation and training loop
+
+**When to Use Each:**
+
+**Prompt engineering makes sense when:**
+
+- Task is simple and can be described clearly in prompts
+- Format consistency isn't critical
+- You need immediate iteration without training
+- Task changes frequently (prompts easier to update than retraining)
+- Limited compute budget for training
+
+**LoRA fine-tuning makes sense when:**
+
+- Format consistency is critical (structured outputs)
+- Complex mappings need to be learned (category→priority, etc.)
+- Task is stable and won't change frequently
+- You have training compute available
+- Domain-specific patterns matter (email triage, code generation, etc.)
+
+**Hybrid Approach:**
+
+You can combine both: use prompt engineering for flexibility, then fine-tune with LoRA for consistency. Fine-tune on a core set of patterns, then use prompts for variations or edge cases.
+
+For this project, LoRA made sense because:
+
+- Structured output format needed consistency
+- Category-to-priority mappings were complex to prompt
+- Task was well-defined and stable
+- Training compute was available via Tinker
+
+---
+
+## Data Preparation: Supervised Learning Setup
+
+**Dataset:** `jason23322/high-accuracy-email-classifier` from HuggingFace
+
+**Transformation Process:**
+
+Raw emails with category labels are transformed into prompt-completion pairs for supervised fine-tuning. The prompt provides context and instruction, while the completion contains the desired structured output.
+
+**Prompt Construction:**
+
+- System instruction: "You are an efficient admin assistant..."
+- Task specification: "Analyze this incoming email step-by-step..."
+- Email content: The actual email text
+
+**Completion Construction:**
+
+- Structured format: Step 1-4 with consistent delimiters
+- Category mapping: Direct label → formatted category name
+- Priority logic: Category → priority level (verify_code=High, spam=Low)
+- Action generation: Context-aware suggestions based on category
+- Draft response: Category-appropriate template
+
+**Domain Knowledge Encoding:**
+
+The mapping logic encodes explicit domain knowledge:
+
+- `verify_code → High priority` (time-sensitive, urgent action)
+- `spam/promotions → Low priority` (non-essential, can be deleted)
+- `updates → Medium priority` (informational, acknowledge if needed)
+
+This teaches the model the relationship between content type and urgency, rather than learning it from scratch.
+
+**Dataset Statistics:**
+
+- 400 examples (train[:400] split)
+- 6 categories: Spam, Promotions, Verify_code, Updates, Forum, Social_media
+- Balanced distribution prevents category bias
+
+**Why This Format Works:**
+
+The structured format with explicit steps teaches the model:
+
+1. Format consistency (always Step 1-4)
+2. Category recognition (content → category)
+3. Priority mapping (category → priority)
+4. Action generation (context → actions)
+5. Response drafting (category → draft)
+
+This is more effective than free-form completions because it provides clear structure for the model to learn.
+
+---
+
+## Tokenization: Next-Token Prediction Setup
+
+**Tokenization:**
+
+Language models are trained on next-token prediction: given tokens [t₁, t₂, ..., tₙ], predict tₙ₊₁. This requires careful tokenization to separate what the model sees (input) from what it predicts (target).
+
+**Prompt-Completion Separation:**
+
+The key insight: we want the model to learn to generate completions given prompts, not modify prompts. This requires:
+
+1. **Prompt tokenization:** Tokenize with special tokens (BOS) to mark sequence start
+2. **Completion tokenization:** Tokenize without special tokens to avoid double BOS/EOS
+3. **Weight masking:** Set prompt weights to 0, completion weights to 1
+
+**Weight Masking Rationale:**
+
+Loss is computed as:
+
+```
+L = Σᵢ wᵢ × CrossEntropy(predicted_i, target_i)
+```
+
+Where wᵢ = 0 for prompt tokens, wᵢ = 1 for completion tokens. This ensures:
+
+- Model doesn't learn to modify prompts (w=0 means no gradient)
+- Model learns to generate completions (w=1 means full gradient)
+- Training focuses on completion generation, not prompt understanding
+
+**EOS Token Handling:**
+
+End-of-sequence (EOS) tokens teach stopping behavior. Without EOS:
+
+- Model continues generating indefinitely
+- No clear stopping signal
+- Repetition and hallucination increase
+
+With EOS appended to completion:
+
+- Model learns to predict EOS after completion
+- Clear stopping signal during inference
+- Prevents over-generation
+
+**Token Shifting:**
+
+For next-token prediction, we shift tokens:
+
+- Input: [t₁, t₂, ..., tₙ₋₁]
+- Target: [t₂, t₃, ..., tₙ]
+
+This aligns with the autoregressive nature: predict token i+1 given tokens 1..i.
+
+**Implementation Flow:**
+
+1. Tokenize prompt with `add_special_tokens=True` → includes BOS
+2. Tokenize completion with `add_special_tokens=False` → no BOS
+3. Append EOS to completion tokens
+4. Combine: [prompt_tokens, completion_tokens]
+5. Create weights: [0, ..., 0, 1, ..., 1] (prompt=0, completion=1)
+6. Shift for next-token prediction: input = tokens[:-1], target = tokens[1:]
+7. Shift weights accordingly: weights = weights[1:]
+
+This format ensures the model learns the prompt→completion mapping correctly.
+
+---
+
+## Training Loop: Implementation Outline
+
+**Training Flow:**
+
+1. **Epoch Loop:** Iterate through dataset multiple times (3 epochs)
+2. **Batch Processing:** Process examples in batches of 4
+3. **Data Preparation:** Convert prompt-completion pairs to Datum objects with tokenization
+4. **Forward-Backward Pass:** Compute loss and gradients
+5. **Optimizer Step:** Update LoRA adapter weights using Adam
+6. **Checkpointing:** Save adapter weights periodically
+
+**Batch Processing:**
+
+For each batch:
+
+- Load examples from dataset
+- Tokenize each prompt-completion pair
+- Create Datum objects with input tokens, target tokens, and weights
+- Send batch to Tinker for forward-backward computation
+
+**Forward-Backward Pass:**
+
+Tinker handles:
+
+- Forward pass through transformer layers
+- Loss computation (cross-entropy with weights)
+- Backpropagation through LoRA adapters only
+- Gradient computation for B and A matrices
+
+**Optimizer Step:**
+
+Adam optimizer updates LoRA weights:
+
+- Maintains running averages of gradients (momentum)
+- Adapts learning rate per parameter (adaptive)
+- Updates: `θ_new = θ_old - lr × m_t / (√v_t + ε)`
+
+**Hyperparameters:**
+
+- **Batch size:** 4 (small batches reduce memory, add gradient noise for regularization)
+- **Learning rate:** 1e-4 (conservative for fine-tuning, prevents catastrophic forgetting)
+- **Epochs:** 3 (sufficient convergence without overfitting on 400 examples)
+- **Optimizer:** Adam with weight_decay=0.0 (no L2 regularization, Tinker default)
+
+**Loss Function:** Cross-entropy with weighted masking. Only completion tokens contribute to loss, enforcing the prompt→completion mapping while preserving prompt understanding.
+
+---
+
+## Forward and Backward Pass: Deep Dive
+
+**Forward Pass Mechanics:**
+
+1. **Tokenization:** Text → token IDs via HuggingFace tokenizer (subword tokenization)
+2. **Embedding Lookup:** Token IDs → dense vectors (embedding matrix lookup, typically 4096-dim for Qwen)
+3. **Positional Encoding:** Add positional information to embeddings (sinusoidal or learned)
+4. **Transformer Layers (repeated N times):**
+   - **Multi-head attention:**
+     - Query, Key, Value projections (with LoRA: W_qkv + B_qkv A_qkv)
+     - Attention scores: QK^T / √d_k
+     - Weighted sum: Attention(Q, K, V) = softmax(QK^T / √d_k) V
+     - LoRA adapters modify attention patterns to focus on task-specific features
+   - **Feed-forward networks:**
+     - Two linear transformations with activation (with LoRA adapters)
+     - Typically: FFN(x) = ReLU(xW₁ + b₁)W₂ + b₂
+   - **Layer normalization:** Normalize activations (stabilizes training)
+   - **Residual connections:** x + sublayer(x) (enables gradient flow)
+5. **Output projection:** Final hidden states → vocabulary logits (|V| dimensions)
+6. **Loss computation:** Cross-entropy between predicted logits and target tokens, masked by weights
+
+**Backward Pass Mechanics:**
+
+1. **Loss computation:** L = Σᵢ wᵢ × CrossEntropy(logits_i, target_i)
+   - Only completion tokens contribute (wᵢ = 1)
+   - Prompt tokens ignored (wᵢ = 0)
+
+2. **Gradient computation:** Backpropagation computes ∂L/∂θ for LoRA parameters
+   - Chain rule: ∂L/∂θ = ∂L/∂output × ∂output/∂hidden × ... × ∂hidden/∂θ
+   - Only LoRA adapters (B, A matrices) receive gradients
+   - Base model weights frozen (no gradients)
+
+3. **Gradient accumulation:** Gradients averaged over batch
+   - ∇θ = (1/batch_size) × Σᵢ ∇θᵢ
+   - Reduces variance, stabilizes training
+
+4. **Optimizer step:** Adam updates LoRA adapter weights
+   - Momentum: `m_t = β₁m_{t-1} + (1-β₁)∇θ`
+   - Variance: `v_t = β₂v_{t-1} + (1-β₂)(∇θ)²`
+   - Update: θ_new = θ_old - lr × m_t / (√v_t + ε)
+
+**Why LoRA Works Theoretically:**
+
+LoRA exploits the low-rank property of weight updates. During fine-tuning, the model needs to adjust attention patterns, not completely restructure representations. The low-rank matrices B and A can express these pattern changes efficiently:
+
+- **Attention modification:** LoRA adapters change how the model attends to different parts of the input
+- **Feature specialization:** Instead of generic attention, the model learns to focus on task-specific features relevant to the training data
+- **Parameter efficiency:** Low-rank factorization reduces trainable parameters while maintaining expressiveness
+
+The key insight: fine-tuning updates have low intrinsic rank, so we can capture them with much fewer parameters than full fine-tuning.
+
+---
+
+## What the Model Learns
+
+After training, the LoRA adapters encode:
+
+1. **Format adherence:** Always output Step 1-4 structure
+2. **Category recognition:** Email content → category mapping
+3. **Priority logic:** Category → priority level (verify_code=High, spam=Low)
+4. **Action generation:** Context → appropriate actions
+5. **Response drafting:** Category → suitable draft response
+6. **Stopping behavior:** EOS token placement prevents repetition
+
+The base model's general language understanding remains intact. LoRA adapters specialize attention mechanisms for the specific task patterns learned during training.
+
+---
+
+## What Tinker Offloads: Infrastructure Abstraction
+
+**What We Implement:**
+
+1. **Data Preparation:** Format data into prompt-completion pairs
+2. **Tokenization:** Convert text to tokens with proper masking and EOS handling
+3. **Training Loop:** Iterate through batches, call forward-backward, optimizer step
+4. **Checkpoint Management:** Save adapter weights to Tinker dashboard
+
+**What Tinker Handles:**
+
+1. **GPU Infrastructure:**
+   - GPU allocation and management
+   - CUDA setup and configuration
+   - Memory management across distributed nodes
+   - No need to provision or configure GPUs
+
+2. **Distributed Training:**
+   - Multi-GPU training orchestration
+   - Gradient synchronization across nodes
+   - Batch distribution and aggregation
+   - Fault tolerance and recovery
+
+3. **Model Loading and Management:**
+   - Base model loading from HuggingFace
+   - Model sharding across GPUs
+   - LoRA adapter initialization
+   - Weight checkpointing and restoration
+
+4. **Training Operations:**
+   - Forward pass through transformer layers
+   - Backpropagation computation
+   - Gradient computation for LoRA adapters only
+   - Optimizer state management (Adam momentum/variance)
+
+5. **Infrastructure Details:**
+   - Batch scheduling and queuing
+   - Resource allocation
+   - Network communication between nodes
+   - Checkpoint storage and retrieval
+
+**API Abstraction:**
+
+Tinker provides a simple API:
+
+- `create_lora_training_client()`: Initialize training with base model and rank
+- `get_tokenizer()`: Get tokenizer matching Tinker's configuration
+- `forward_backward()`: Compute loss and gradients (async future)
+- `optim_step()`: Update weights with optimizer (async future)
+- `save_weights_for_sampler()`: Save checkpoint to dashboard
+
+**What This Means:**
+
+Instead of managing:
+
+- PyTorch distributed training setup
+- CUDA device allocation
+- Multi-GPU communication
+- Gradient synchronization
+- Checkpoint storage infrastructure
+
+We focus on:
+
+- Data preparation and formatting
+- Training loop logic
+- Hyperparameter selection
+- Model evaluation
+
+**Trade-offs:**
+
+- **Vendor lock-in:** Weights stored in Tinker's format, tied to their infrastructure
+- **Less control:** Can't customize batch scheduling, gradient accumulation strategies
+- **Cost:** Scales with training time (pay for compute usage)
+- **Abstraction:** Less visibility into low-level training details
+
+**Benefits:**
+
+- **Faster iteration:** No infrastructure setup, start training immediately
+- **Scalability:** Distributed training handled automatically
+- **Reliability:** Fault tolerance and recovery built-in
+- **Simplicity:** Focus on model and data, not infrastructure
+
+---
+
+## What Changed After Training
+
+**Base Model Behavior:**
+
+```
+\{"category": "spam", "priority": "medium", "analysis": "This appears to be promotional content..."}
+```
+
+Inconsistent format, incorrect priority mappings, generic responses. The model doesn't follow the structured format reliably.
+
+**After Fine-Tuning:**
+
+```
+Step 1: Classification → Spam
+Step 2: Priority → Low
+Step 3: Suggested actions → Delete or mark as spam; no reply needed
+Step 4: Drafted response → No response required. Marking as spam/promotion.
+```
+
+Consistent format, correct mappings, task-specific responses. The model learned the structure and mappings.
+
+**Observations:** Format adherence improved significantly. The model learned to follow the Step 1-4 structure and apply category-to-priority mappings correctly. This was useful for understanding what fine-tuning actually changes in model behavior.
+
+---
+
+## Hyperparameter Choices
+
+**Base Model: Qwen3-4B-Instruct**
+
+- Instruction-tuned models understand structured formats better than base models
+- 4B parameters: reasonable size for experimentation without excessive cost
+- Good starting point for understanding fine-tuning mechanics
+
+**Rank 32:**
+
+- Common default for LoRA fine-tuning
+- Lower ranks (8-16) may underfit; higher ranks (64+) show diminishing returns
+- ~260K trainable params per attention layer—manageable for learning
+
+**3 Epochs:**
+
+- 1 epoch: insufficient for pattern learning
+- 3 epochs: reasonable convergence on 400 examples
+- More epochs: risk of overfitting (memorization vs. generalization)
+
+**Batch Size 4:**
+
+- Small batches: more gradient updates per epoch
+- Adds gradient noise (regularization effect)
+- Tinker handles batching, so this is more about update frequency
+
+**Learning Rate 1e-4:**
+
+- Standard range for LoRA fine-tuning (1e-5 to 1e-4)
+- Conservative: prevents catastrophic forgetting
+- Higher rates can destabilize training; lower rates converge slowly
+
+These were reasonable defaults for exploration. Systematic hyperparameter tuning would require more experimentation.
+
+---
+
+## What I Learned
+
+**Key Takeaways:**
+
+1. **LoRA's efficiency:** The low-rank factorization works well—small adapter matrices capture task-specific patterns without retraining the entire model. The math checks out in practice.
+
+2. **Tokenization matters:** Prompt masking and EOS token placement significantly affect what the model learns. Small details in tokenization have large impacts on behavior.
+
+3. **Training mechanics:** Understanding forward/backward passes helps debug issues. Seeing how gradients flow through LoRA adapters clarifies why they work.
+
+4. **Infrastructure abstraction:** Tinker handles a lot—distributed training, GPU management, checkpointing. Understanding what's abstracted away helps evaluate when to use APIs vs. building custom infrastructure.
+
+---
+
+## Implementation Outline
+
+**What We Build:**
+
+1. **Data Pipeline:**
+   - Load dataset from HuggingFace
+   - Format into prompt-completion pairs
+   - Apply task-specific mappings (category-to-priority in this case)
+   - Save as JSONL for training
+
+2. **Tokenization Layer:**
+   - Convert prompt-completion pairs to Datum objects
+   - Handle prompt masking (weights = 0)
+   - Handle completion weighting (weights = 1)
+   - Add EOS tokens for stopping behavior
+   - Shift tokens for next-token prediction
+
+3. **Training Orchestration:**
+   - Initialize Tinker training client with base model and rank
+   - Get tokenizer from Tinker (matches their configuration)
+   - Iterate through dataset in batches
+   - Call forward-backward for each batch
+   - Call optimizer step to update weights
+   - Save checkpoints periodically
+
+4. **Checkpoint Management:**
+   - Save adapter weights to Tinker dashboard
+   - Download weights as `.tar.gz` archives
+   - Extract for local use or merge with base model
+
+**Key Implementation Details:**
+
+- **Tokenizer synchronization:** Use `training_client.get_tokenizer()` to ensure tokenizer matches Tinker's configuration (critical for compatibility)
+- **Datum format:** Use raw lists for `loss_fn_inputs`, not TensorData (Tinker handles tensor conversion internally)
+- **Synchronous execution:** Use `.result()` on futures for simplicity (could be async for better throughput)
+- **Checkpoint format:** Save via `save_weights_for_sampler()` for dashboard visibility and easy retrieval
+
+**Using Trained Adapters:**
+
+- **Tinker SamplingClient:** Use Tinker's API for inference (no local setup)
+- **Local PEFT:** Download adapters, use with Transformers + PEFT library
+- **Merged model:** Merge adapters into base model for faster inference (one-time merge cost)
+
+Code: [GitHub](https://github.com/Shanvit7/email-triage-slm) · Model: [Hugging Face](https://huggingface.co/Shanvit/email-triage-slm)
+
+---
+
+### Further Reading
+
+- [Machine Learning Crash Course](https://developers.google.com/machine-learning/crash-course) - Google's intro to ML (linear regression, neural nets, embeddings, LLMs)
+- [Small Language Models are the Future of Agentic AI](https://research.nvidia.com/labs/lpr/slm-agents/) - NVIDIA Research position paper
+- [Tinker Documentation](https://tinker-docs.thinkingmachines.ai/) - Training API reference
+- [LoRA: Low-Rank Adaptation of Large Language Models](https://arxiv.org/abs/2106.09685) - Original LoRA paper
+- [Tinker LoRA Primer](https://tinker-docs.thinkingmachines.ai/lora-primer) - Practical LoRA guide
+- [Qwen3 Model Card](https://huggingface.co/Qwen/Qwen3-4B-Instruct-2507) - Base model details
+
+---
+
+© 2025 Shanvit S Shetty.

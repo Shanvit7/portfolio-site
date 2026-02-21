@@ -168,6 +168,13 @@ This internship laid the foundation for my full-time journey, teaching me the va
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    title: 'How I Trained an Email Triage SLM Using Tinker APIs',
+    description:
+      "A learning project exploring LoRA fine-tuning and Tinker's distributed training API. Email triage served as a concrete use case to understand the mechanics of fine-tuning small language models.",
+    link: '/blog/email-triage-slm-tinker-apis',
+    uid: 'blog-2',
+  },
+  {
     title: "I Didn't Care About AI — Until It Got Agentic",
     description:
       'Not a hot take — just some thoughts on what pulled me toward agentic systems and why they make more sense to me than the rest of AI so far.',
