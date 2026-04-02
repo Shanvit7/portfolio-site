@@ -4,6 +4,7 @@ import './globals.css'
 import Header from '@/components/molecules/header'
 import Footer from '@/components/molecules/footer'
 import { ThemeProvider } from 'next-themes'
+import { FloatingGlyphs } from '@/components/atoms/floating-glyphs'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
     default: 'Shanvit S Shetty',
     template: '%s | Shanvit S Shetty - Software Engineer',
   },
-  description: 'Web Dev and AI Enthusiast',
+  description: 'Web Dev. Currently obsessed with AI workflows & automations.',
 }
 
 const geist = Geist({
@@ -48,6 +49,7 @@ const RootLayout = ({
         storageKey="theme"
         defaultTheme="system"
       >
+        <FloatingGlyphs />
         <div className="flex min-h-screen w-full flex-col font-[family-name:var(--font-inter-tight)]">
           <div className="relative mx-auto w-full max-w-screen-sm flex-1 px-4 pt-20">
             <Header />
