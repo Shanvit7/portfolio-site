@@ -166,7 +166,16 @@ const Personal = () => (
               data-id={post.uid}
             >
               <div className="flex flex-col space-y-1">
-                <h4 className="font-normal dark:text-zinc-100">{post.title}</h4>
+                <div className="flex items-center justify-between gap-2">
+                  <h4 className="font-normal dark:text-zinc-100">
+                    {post.title}
+                  </h4>
+                  {post.date && (
+                    <span className="shrink-0 text-xs text-zinc-400 dark:text-zinc-500">
+                      {post.date}
+                    </span>
+                  )}
+                </div>
                 <p className="text-zinc-500 dark:text-zinc-400">
                   {post.description}
                 </p>

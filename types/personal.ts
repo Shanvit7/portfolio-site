@@ -24,6 +24,7 @@ export type BlogPost = {
   description: string
   link: string
   uid: string
+  date?: string
 }
 
 export type SocialLink = {

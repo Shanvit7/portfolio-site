@@ -198,6 +198,7 @@ export const BLOG_POSTS: BlogPost[] = [
       "A learning project exploring LoRA fine-tuning and Tinker's distributed training API. Email triage served as a concrete use case to understand the mechanics of fine-tuning small language models.",
     link: '/blog/email-triage-slm-tinker-apis',
     uid: 'blog-2',
+    date: 'Feb 21, 2026',
   },
   {
     title: "I Didn't Care About AI — Until It Got Agentic",
@@ -205,6 +206,7 @@ export const BLOG_POSTS: BlogPost[] = [
       'Not a hot take — just some thoughts on what pulled me toward agentic systems and why they make more sense to me than the rest of AI so far.',
     link: '/blog/i-didnt-care-about-ai-until-it-got-agentic',
     uid: 'blog-1',
+    date: 'Jul 4, 2025',
   },
 ]
 
