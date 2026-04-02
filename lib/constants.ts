@@ -105,7 +105,7 @@ Had a chance to explore a lot of interesting AI-related projects and prototypes.
     what_i_did: [
       'developed a whatsapp ecommerce support agent',
       'learnt and did hands-on implementation of agentic workflow systems',
-      'building vertical AI agents',
+      'building hierarchical AI agents',
     ],
   },
   {
