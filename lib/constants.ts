@@ -5,6 +5,30 @@ export const WEBSITE_URL = process.env.WEBSITE_URL as string
 
 export const PROJECTS: Project[] = [
   {
+    name: 'qagent',
+    description:
+      'Watches your staged Next.js changes and writes E2E Playwright tests for you — browser probe + AI loop.',
+    link: 'https://github.com/Shanvit7/qagent',
+    image: 'npm-placeholder',
+    id: 'qagent',
+    links: [
+      { label: 'GitHub', url: 'https://github.com/Shanvit7/qagent' },
+      { label: 'npm', url: 'https://www.npmjs.com/package/@shanvit7/qagent' },
+    ],
+  },
+  {
+    name: 'OpenZosma',
+    description:
+      'Open-source self-hosted platform for hierarchical AI agents — delegate tasks from WhatsApp, Slack, or your phone.',
+    link: 'https://github.com/zosmaai/openzosma',
+    image: 'github-placeholder',
+    id: 'openzosma',
+    links: [
+      { label: 'GitHub', url: 'https://github.com/zosmaai/openzosma' },
+      { label: 'Website', url: 'https://www.zosma.ai/openzosma' },
+    ],
+  },
+  {
     name: 'A2A Travel Agents Demo',
     description:
       'Mastra (TypeScript) receptionist agent orchestrating Agno (Python) hotel and flight booking agents via A2A protocol.',
@@ -71,8 +95,9 @@ Had a chance to explore a lot of interesting AI-related projects and prototypes.
 
 ### Highlights:
 - Built a *whatsapp ecommerce support agent* POC using **Mastra** for [**Foodstories**](https://www.foodstories.shop)
-- Working as a fullstack engineer on the [**Foodstories**](https://www.foodstories.shop) website built on **Next.js**, optimizing and implementing new features
+- Worked as a fullstack engineer on the [**Foodstories**](https://www.foodstories.shop) website built on **Next.js**, optimizing and implementing new features
 - Built an AI workflow suggesting exercises using Mastra and **TOON** for token optimization for [**Dashfit**](https://dashfit.in)
+- Contributing to [**OpenZosma**](https://www.zosma.ai/openzosma) — an open-source self-hosted platform for hierarchical AI agents started by Zosma AI
 - Learnt a lot about **multi agentic systems** and their **patterns** 
 - Understood nuances of working with **LLMs** and their **limitations**
 - Learning about Context Engineering, RAG and Fine-tuning

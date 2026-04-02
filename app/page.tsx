@@ -63,7 +63,7 @@ const Personal = () => (
     </motion.section>
 
     <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-      <h3 className="mb-5 text-lg font-medium">What I'm Cooking</h3>
+      <h3 className="mb-5 text-lg font-medium">What I've Been Cooking</h3>
       <Carousel className="w-full pb-12">
         <CarouselContent className="-ml-4">
           {PROJECTS.map((project) => (
@@ -147,7 +147,7 @@ const Personal = () => (
     </motion.section>
 
     <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-      <h3 className="mb-3 text-lg font-medium">Blog</h3>
+      <h3 className="mb-3 text-lg font-medium">Blogs</h3>
       <div className="flex flex-col space-y-0">
         <AnimatedBackground
           enableHover

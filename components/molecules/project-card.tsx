@@ -2,6 +2,7 @@
 
 import { Github } from 'lucide-react'
 import { HuggingfaceLogo } from '@/components/atoms/huggingface-logo'
+import { NpmLogo } from '@/components/atoms/npm-logo'
 import ProjectVideo from '@/components/molecules/project-video'
 import type { Project } from '@/types/personal'
 
@@ -19,6 +20,8 @@ export function ProjectCard({ project }: { project: Project }) {
   const PlaceholderIcon =
     project.image === 'huggingface-placeholder' ? (
       <HuggingfaceLogo className="h-16 w-16 text-white/90" />
+    ) : project.image === 'npm-placeholder' ? (
+      <NpmLogo className="h-16 w-16 text-white/90" />
     ) : (
       <Github className="h-16 w-16 text-white/90" />
     )
