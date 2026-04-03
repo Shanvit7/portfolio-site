@@ -91,7 +91,7 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     link: 'https://zosma.ai',
     id: 'work1',
     description: `
-Had a chance to explore a lot of interesting AI-related projects and prototypes. Currently working on **vertical AI agents**.
+Had a chance to explore a lot of interesting AI-related projects and prototypes. Currently working on **hierarchical AI agents**.
 
 ### Highlights:
 - Built a *whatsapp ecommerce support agent* POC using **Mastra** for [**Foodstories**](https://www.foodstories.shop)
