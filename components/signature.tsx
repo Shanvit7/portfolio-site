@@ -1,5 +1,6 @@
 'use client'
 import { useEffect, useId, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { motion } from 'motion/react'
 import opentype from 'opentype.js'
 
@@ -33,6 +34,7 @@ export function Signature({
   const topMargin = Math.max(5, (height - adjustedFontSize) / 2)
   const baseline = Math.min(height - 5, topMargin + adjustedFontSize)
   const maskId = `signature-reveal-${useId().replace(/:/g, '')}`
+  const pathname = usePathname()
 
   useEffect(() => {
     function checkMobile() {
@@ -97,7 +99,7 @@ export function Signature({
 
   return (
     <motion.svg
-      key={paths.length}
+      key={`${pathname}-${paths.length}`}
       width={width}
       height={height}
       viewBox={`0 0 ${width} ${height}`}
@@ -106,7 +108,7 @@ export function Signature({
       initial="hidden"
       whileInView={inView ? 'visible' : undefined}
       animate={inView ? undefined : 'visible'}
-      viewport={{ once }}
+      viewport={{ once, amount: 0.3 }}
     >
       <defs>
         <mask id={maskId} maskUnits="userSpaceOnUse">
