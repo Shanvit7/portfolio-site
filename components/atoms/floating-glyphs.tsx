@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { usePathname } from 'next/navigation'
 
 const GLYPHS = [
   '{ }',
@@ -98,8 +99,12 @@ function makeGlyph(w: number, h: number, randomY = false, dark = true): Glyph {
 export function FloatingGlyphs() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const mouse = useRef({ x: -9999, y: -9999 })
+  const pathname = usePathname()
+  const shouldShow = !pathname.startsWith('/blog')
 
   useEffect(() => {
+    if (!shouldShow) return () => {} // no-op cleanup
+
     const canvas = canvasRef.current
     if (!canvas) return
     const ctx = canvas.getContext('2d')
@@ -207,14 +212,14 @@ export function FloatingGlyphs() {
       window.removeEventListener('mouseleave', onLeave)
       observer.disconnect()
     }
-  }, [])
+  }, [shouldShow])
 
-  return (
+  return shouldShow ? (
     <canvas
       ref={canvasRef}
       className="pointer-events-none fixed inset-0 z-0"
       style={{ willChange: 'transform' }}
       aria-hidden
     />
-  )
+  ) : null
 }
