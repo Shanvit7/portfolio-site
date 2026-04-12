@@ -7,7 +7,7 @@ export const PROJECTS: Project[] = [
   {
     name: 'qagent',
     description:
-      'Watches your staged Next.js changes and writes E2E Playwright tests for you — browser probe + AI loop.',
+      'Watches your staged Next.js changes and writes behavioral regression playwright tests for you — browser probe + AI loop.',
     link: 'https://github.com/Shanvit7/qagent',
     image: 'npm-placeholder',
     id: 'qagent',
