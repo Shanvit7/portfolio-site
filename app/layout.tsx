@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     default: 'Shanvit S Shetty',
     template: '%s | Shanvit S Shetty - Software Engineer',
   },
-  description: 'Web Dev. Currently obsessed with AI workflows & automations.',
+  description: 'Building smarter, simpler systems: chaos. code. control.',
 }
 
 const geist = Geist({
@@ -50,7 +50,7 @@ const RootLayout = ({
         defaultTheme="system"
       >
         <FloatingGlyphs />
-        <div className="flex min-h-screen w-full flex-col font-[family-name:var(--font-inter-tight)]">
+        <div className="flex min-h-screen w-full flex-col font-(family-name:--font-inter-tight)">
           <div className="relative mx-auto w-full max-w-screen-sm flex-1 px-4 pt-20">
             <Header />
             {children}

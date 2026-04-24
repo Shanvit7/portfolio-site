@@ -18,7 +18,7 @@ const Header = () => (
         className="text-zinc-600 dark:text-zinc-500"
         delay={0.5}
       >
-        Web Dev. Currently obsessed with AI workflow, agents & automations.
+        Building smarter, simpler systems: chaos. code. control.
       </TextEffect>
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 pt-3 pb-4 text-xs text-zinc-600 dark:text-zinc-400">
         {PROFILE_LINKS.map(({ label, link }) => (
