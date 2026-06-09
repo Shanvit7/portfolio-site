@@ -3,25 +3,19 @@
 import { motion } from 'motion/react'
 import { Spotlight } from '@/components/atoms/spotlight'
 import MagneticSocialLink from '@/components/molecules/social-link'
-import { ProjectCard } from '@/components/molecules/project-card'
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNavigation,
-  CarouselIndicator,
-} from '@/components/motion-primitives/carousel'
+import { ActiveWorkRow } from '@/components/molecules/active-work-row'
 import WorkExperienceDialog from '@/components/molecules/work-experience'
 import Link from 'next/link'
 import { AnimatedBackground } from '@/components/atoms/animated-background'
 import { TextLoop } from '@/components/atoms/text-loop'
 // CONSTANTS
 import {
-  PROJECTS,
+  ACTIVE_WORK,
   WORK_EXPERIENCE,
   BLOG_POSTS,
   EMAIL,
   SOCIAL_LINKS,
+  GITHUB_URL,
 } from '@/lib/constants'
 
 const VARIANTS_CONTAINER = {
@@ -63,29 +57,22 @@ const Personal = () => (
     </motion.section>
 
     <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-      <div className="mb-5 flex items-center justify-between">
-        <h3 className="text-lg font-medium">What I've Been Cooking</h3>
+      <div className="mb-1 flex items-center justify-between">
+        <h3 className="text-lg font-medium">Shipping.</h3>
         <Link
-          href="/projects"
+          href={`${GITHUB_URL}?tab=repositories`}
+          target="_blank"
+          rel="noopener noreferrer"
           className="text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
         >
-          All projects →
+          See all projects
         </Link>
       </div>
-      <Carousel className="w-full pb-12">
-        <CarouselContent className="-ml-4">
-          {PROJECTS.slice(0, 3).map((project) => (
-            <CarouselItem
-              key={project.id}
-              className="basis-full pl-4 sm:basis-1/2"
-            >
-              <ProjectCard project={project} />
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselNavigation alwaysShow />
-        <CarouselIndicator />
-      </Carousel>
+      <div>
+        {ACTIVE_WORK.map((item) => (
+          <ActiveWorkRow key={item.id} item={item} />
+        ))}
+      </div>
     </motion.section>
 
     <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>

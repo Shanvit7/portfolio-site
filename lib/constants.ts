@@ -1,86 +1,12 @@
 // TYPES
-import { Project, WorkExperience, BlogPost, SocialLink } from '@/types/personal'
+import {
+  WorkExperience,
+  BlogPost,
+  SocialLink,
+  ActiveWork,
+} from '@/types/personal'
 
 export const WEBSITE_URL = process.env.WEBSITE_URL as string
-
-export const PROJECTS: Project[] = [
-  {
-    name: 'qagent',
-    description:
-      'Watches your staged Next.js changes and writes behavioral regression playwright tests for you — browser probe + AI loop.',
-    link: 'https://github.com/Shanvit7/qagent',
-    image: 'npm-placeholder',
-    id: 'qagent',
-    links: [
-      { label: 'GitHub', url: 'https://github.com/Shanvit7/qagent' },
-      { label: 'npm', url: 'https://www.npmjs.com/package/@shanvit7/qagent' },
-    ],
-  },
-  {
-    name: 'OpenZosma',
-    description:
-      'Open-source self-hosted platform for hierarchical AI agents — delegate tasks from WhatsApp, Slack, or your phone.',
-    link: 'https://github.com/zosmaai/openzosma',
-    image: 'github-placeholder',
-    id: 'openzosma',
-    links: [
-      { label: 'GitHub', url: 'https://github.com/zosmaai/openzosma' },
-      { label: 'Website', url: 'https://www.zosma.ai/openzosma' },
-    ],
-  },
-  {
-    name: 'A2A Travel Agents Demo',
-    description:
-      'Mastra (TypeScript) receptionist agent orchestrating Agno (Python) hotel and flight booking agents via A2A protocol.',
-    link: 'https://github.com/Shanvit7/a2a-mastra-demo',
-    image: 'github-placeholder',
-    id: 'a2a-travel-demo',
-    links: [
-      { label: 'GitHub', url: 'https://github.com/Shanvit7/a2a-mastra-demo' },
-    ],
-  },
-  {
-    name: 'Email Triage SLM',
-    description:
-      'Fine-tuned small language models for email classification and structured triage outputs using LoRA on Tinker Labs',
-    link: 'https://github.com/Shanvit7/email-triage-slm',
-    image: 'huggingface-placeholder',
-    id: 'email-triage-slm',
-    links: [
-      { label: 'GitHub', url: 'https://github.com/Shanvit7/email-triage-slm' },
-      {
-        label: 'Hugging Face',
-        url: 'https://huggingface.co/Shanvit/email-triage-slm',
-      },
-    ],
-  },
-  {
-    name: 'CQRS OMS Demo',
-    description:
-      'Order Management System with Bun, Hono, and Zod — CQRS and Event Sourcing with PostgreSQL and Redis.',
-    link: 'https://github.com/Shanvit7/cqrs-server-demo',
-    image: 'github-placeholder',
-    id: 'cqrs-server-demo',
-    links: [
-      { label: 'GitHub', url: 'https://github.com/Shanvit7/cqrs-server-demo' },
-    ],
-  },
-  {
-    name: 'AskBit',
-    description:
-      'FAQ assistant using bit vector encoding for semantic search with integrated RAG via local Llama 3',
-    link: 'https://github.com/Shanvit7/askbit',
-    image: 'huggingface-placeholder',
-    id: 'askbit',
-    links: [
-      { label: 'GitHub', url: 'https://github.com/Shanvit7/askbit' },
-      {
-        label: 'Hugging Face',
-        url: 'https://huggingface.co/Shanvit/askbit-faq-retriever',
-      },
-    ],
-  },
-]
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
@@ -91,21 +17,22 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     link: 'https://zosma.ai',
     id: 'work1',
     description: `
-Had a chance to explore a lot of interesting AI-related projects and prototypes. Currently working on **hierarchical AI agents**.
+Had a chance to explore a lot of interesting AI-related projects and prototypes. Currently working on making **better harnesses** for AI models.
 
 ### Highlights:
 - Built a *whatsapp ecommerce support agent* POC using **Mastra** for [**Foodstories**](https://www.foodstories.shop)
 - Worked as a fullstack engineer on the [**Foodstories**](https://www.foodstories.shop) website built on **Next.js**, optimizing and implementing new features
 - Built an AI workflow suggesting exercises using Mastra and **TOON** for token optimization for [**Dashfit**](https://dashfit.in)
 - Contributing to [**OpenZosma**](https://www.zosma.ai/openzosma) — an open-source self-hosted platform for hierarchical AI agents started by Zosma AI
-- Learnt a lot about **multi agentic systems** and their **patterns** 
-- Understood nuances of working with **LLMs** and their **limitations**
-- Learning about Context Engineering, RAG and Fine-tuning
+- Contributing to [**pi-llm-wiki**](https://github.com/zosmaai/pi-llm-wiki) — a self-maintaining Obsidian-compatible knowledge base for pi, following Karpathy's LLM Wiki pattern
+- Contributing to [**zosma-cowork**](https://github.com/zosmaai/zosma-cowork) — a desktop GUI for the pi coding agent, open-source Claude Cowork alternative
+- Built [**zolorag**](https://github.com/zosmaai/zolorag) from scratch — a fully local RAG app for chatting with PDF documents, no cloud, no external services
+- Experimenting with **SLMs**, **local LLM inference**, and **AI harness** tooling — fine-tuning and agent scaffolding
     `,
     what_i_did: [
       'developed a whatsapp ecommerce support agent',
       'learnt and did hands-on implementation of agentic workflow systems',
-      'building hierarchical AI agents',
+      'building better harnesses for LLMs and SLMs',
     ],
   },
   {
@@ -140,7 +67,7 @@ After PropertyGuru , I worked on [**Draftus**](https://www.draftus.com), a US-ba
   {
     company: 'Iotric',
     title: 'SDE I',
-    start: 'Feb 2023',
+    start: 'Apr 2023',
     end: 'Oct 2024',
     link: 'https://iotric.com',
     id: 'work3',
@@ -168,7 +95,7 @@ A fast-paced, high-growth phase filled with learning and real-world impact.
     company: 'Iotric',
     title: 'SDE (Intern)',
     start: 'Jul 2022',
-    end: 'Feb 2023',
+    end: 'Apr 2023',
     link: 'https://iotric.com',
     id: 'work4',
     description: `
@@ -188,6 +115,41 @@ This internship laid the foundation for my full-time journey, teaching me the va
       'integrated Mirrorfly chat SDK for real-time communication features',
       'maintained and updated legacy React codebases',
     ],
+  },
+]
+
+export const ACTIVE_WORK: ActiveWork[] = [
+  {
+    id: 'active-1',
+    name: 'pi-llm-wiki',
+    description:
+      'Self-maintaining Obsidian-compatible knowledge base for pi — turns raw sources into an interlinked wiki over time.',
+    type: 'OSS',
+    link: 'https://github.com/zosmaai/pi-llm-wiki',
+    links: [{ label: 'GitHub', url: 'https://github.com/zosmaai/pi-llm-wiki' }],
+    githubRepo: 'zosmaai/pi-llm-wiki',
+  },
+  {
+    id: 'active-2',
+    name: 'zosma-cowork',
+    description:
+      'Desktop GUI for the pi coding agent — open-source Claude Cowork alternative.',
+    type: 'OSS',
+    link: 'https://github.com/zosmaai/zosma-cowork',
+    links: [
+      { label: 'GitHub', url: 'https://github.com/zosmaai/zosma-cowork' },
+    ],
+    githubRepo: 'zosmaai/zosma-cowork',
+  },
+  {
+    id: 'active-3',
+    name: 'zolorag',
+    description:
+      'Fully local RAG app for PDF documents — single process, no cloud, no external services.',
+    type: 'OSS',
+    link: 'https://github.com/zosmaai/zolorag',
+    links: [{ label: 'GitHub', url: 'https://github.com/zosmaai/zolorag' }],
+    githubRepo: 'zosmaai/zolorag',
   },
 ]
 

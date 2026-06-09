@@ -1,13 +1,3 @@
-export type Project = {
-  name: string
-  description: string
-  link: string
-  links?: { label: string; url: string }[]
-  video?: string
-  image?: string
-  id: string
-}
-
 export type WorkExperience = {
   company: string
   title: string
@@ -25,6 +15,16 @@ export type BlogPost = {
   link: string
   uid: string
   date?: string
+}
+
+export type ActiveWork = {
+  id: string
+  name: string
+  description: string
+  type: 'OSS' | 'Work'
+  link: string
+  links?: { label: string; url: string }[]
+  githubRepo?: string
 }
 
 export type SocialLink = {
