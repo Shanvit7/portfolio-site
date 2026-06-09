@@ -47,11 +47,10 @@ const Personal = () => (
     <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
       <div className="flex-1">
         <p className="text-zinc-600 dark:text-zinc-400">
-          Started with web apps, now exploring ML, LLMs, and agentic workflows —
-          one at a time. Enjoys prototyping, working across the stack, and
-          building things that are clear, useful, and simple. Cares about
-          thoughtful UX, fast iteration, and solving real problems with clarity
-          and intent.
+          Started with web apps, now exploring ML and building with LLMs and
+          agentic workflows — one at a time. Enjoys prototyping across the stack
+          and shipping things that are clear, useful, and simple. Cares about
+          thoughtful UX, fast iteration, and solving real problems.
         </p>
       </div>
     </motion.section>
