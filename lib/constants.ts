@@ -32,7 +32,7 @@ Had a chance to explore a lot of interesting AI-related projects and prototypes.
     what_i_did: [
       'developed a whatsapp ecommerce support agent',
       'learnt and did hands-on implementation of agentic workflow systems',
-      'building better harnesses for LLMs and SLMs',
+      'building better harnesses for AI Agents',
     ],
   },
   {
