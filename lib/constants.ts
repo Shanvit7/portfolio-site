@@ -196,7 +196,7 @@ export const BLOG_POSTS: BlogPost[] = [
     title: 'Emotion Is a Missing Primitive in AI Memory',
     description:
       'Exploring how adopting human-like memory principles—importance, repetition, recency, and context—could make AI systems more efficient and focused as they scale.',
-    link: '/blog/emotion-is-a-missing-primitive-in-ai-memory',
+    link: 'https://substack.com/@shanvitshetty/p-195320978',
     uid: 'blog-3',
     date: 'Apr 10, 2026',
   },
@@ -204,17 +204,9 @@ export const BLOG_POSTS: BlogPost[] = [
     title: 'How I Trained an Email Triage SLM Using Tinker APIs',
     description:
       "A learning project exploring LoRA fine-tuning and Tinker's distributed training API. Email triage served as a concrete use case to understand the mechanics of fine-tuning small language models.",
-    link: '/blog/email-triage-slm-tinker-apis',
+    link: 'https://substack.com/@shanvitshetty/p-201153688',
     uid: 'blog-2',
     date: 'Feb 21, 2026',
-  },
-  {
-    title: "I Didn't Care About AI — Until It Got Agentic",
-    description:
-      'Not a hot take — just some thoughts on what pulled me toward agentic systems and why they make more sense to me than the rest of AI so far.',
-    link: '/blog/i-didnt-care-about-ai-until-it-got-agentic',
-    uid: 'blog-1',
-    date: 'Jul 4, 2025',
   },
 ]
 
@@ -249,5 +241,9 @@ export const PROFILE_LINKS: SocialLink[] = [
   {
     label: 'Hugging Face',
     link: process.env.NEXT_PUBLIC_HUGGINGFACE_URL as string,
+  },
+  {
+    label: 'Substack',
+    link: 'https://substack.com/@shanvitshetty',
   },
 ]

@@ -63,10 +63,18 @@ const Personal = () => (
     </motion.section>
 
     <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-      <h3 className="mb-5 text-lg font-medium">What I've Been Cooking</h3>
+      <div className="mb-5 flex items-center justify-between">
+        <h3 className="text-lg font-medium">What I've Been Cooking</h3>
+        <Link
+          href="/projects"
+          className="text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+        >
+          All projects →
+        </Link>
+      </div>
       <Carousel className="w-full pb-12">
         <CarouselContent className="-ml-4">
-          {PROJECTS.map((project) => (
+          {PROJECTS.slice(0, 3).map((project) => (
             <CarouselItem
               key={project.id}
               className="basis-full pl-4 sm:basis-1/2"
@@ -164,6 +172,8 @@ const Personal = () => (
               className="-mx-3 rounded-xl px-3 py-3"
               href={post.link}
               data-id={post.uid}
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <div className="flex flex-col space-y-1">
                 <div className="flex items-center justify-between gap-2">
