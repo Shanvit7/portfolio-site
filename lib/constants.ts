@@ -21,7 +21,7 @@ Had a chance to explore a lot of interesting AI-related projects and prototypes.
 
 ### Highlights:
 - Built a *whatsapp ecommerce support agent* POC using **Mastra** for [**Foodstories**](https://www.foodstories.shop)
-- Worked as a fullstack engineer on the [**Foodstories**](https://www.foodstories.shop) website built on **Next.js**, optimizing and implementing new features
+- Worked as a fullstack engineer on the [**Foodstories**](https://www.foodstories.shop) website built on **Next.js**, optimizing and implementing new features, *later platform raised ₹50Cr led by Nikhil Kamath*
 - Built an AI workflow suggesting exercises using Mastra and **TOON** for token optimization for [**Dashfit**](https://dashfit.in)
 - Contributing to [**OpenZosma**](https://www.zosma.ai/openzosma) — an open-source self-hosted platform for hierarchical AI agents started by Zosma AI
 - Contributing to [**pi-llm-wiki**](https://github.com/zosmaai/pi-llm-wiki) — a self-maintaining Obsidian-compatible knowledge base for pi, following Karpathy's LLM Wiki pattern
@@ -72,7 +72,7 @@ After PropertyGuru , I worked on [**Draftus**](https://www.draftus.com), a US-ba
     link: 'https://iotric.com',
     id: 'work3',
     description: `
-After graduating, I joined **Iotric** as an **SDE-1**, starting with [**myIDFi**](https://myidfi.com), a mortgage comparison platform built with **React**, **Material UI**, and **RTK Query**. Later, I joined [**Enoobs**](https://www.enoobs.com), Iotric's first in-house product — a social media platform built exclusively for gamers — where I led the frontend and managed two interns,collaborating across teams. The product ran for 10 months before being shelved due to low traction.
+After graduating, I joined **Iotric** as an **SDE-1**, starting with [**myIDFi**](https://myidfi.com), a mortgage comparison platform built with **React**, **Material UI**, and **RTK Query**. Later, I joined [**Enoobs**](https://www.enoobs.com), Iotric's first in-house product — a social media platform built exclusively for gamers — where I led the frontend and managed two interns,collaborating across teams.
 
 ### Highlights:
 - Shipped production UI for **myIDFi**; used **ChatGPT** early on to boost development and debugging
