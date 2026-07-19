@@ -1,8 +1,8 @@
 'use client'
-import { useEffect, useId, useState } from 'react'
-import { usePathname } from 'next/navigation'
 import { motion } from 'motion/react'
+import { usePathname } from 'next/navigation'
 import opentype from 'opentype.js'
+import { useEffect, useId, useState } from 'react'
 
 interface SignatureProps {
   text?: string
@@ -49,7 +49,7 @@ export function Signature({
     async function load() {
       try {
         // Try multiple paths to ensure font loads correctly
-        let font
+        let font: opentype.Font | undefined
         const fontPaths = [
           '/LastoriaBoldRegular.otf',
           './LastoriaBoldRegular.otf',

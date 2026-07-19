@@ -1,15 +1,15 @@
 'use client'
 // CORE
-import React from 'react'
+import type React from 'react'
 import ReactMarkdown from 'react-markdown'
 // COMPONENTS
 import {
   MorphingDialog,
-  MorphingDialogTrigger,
   MorphingDialogContainer,
   MorphingDialogContent,
-  MorphingDialogTitle,
   MorphingDialogDescription,
+  MorphingDialogTitle,
+  MorphingDialogTrigger,
 } from '@/components/atoms/morphing-dialog'
 
 // TYPES

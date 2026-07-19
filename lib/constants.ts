@@ -1,9 +1,9 @@
 // TYPES
-import {
-  WorkExperience,
+import type {
+  ActiveWork,
   BlogPost,
   SocialLink,
-  ActiveWork,
+  WorkExperience,
 } from '@/types/personal'
 
 export const WEBSITE_URL = process.env.WEBSITE_URL as string
@@ -120,7 +120,27 @@ This internship laid the foundation for my full-time journey, teaching me the va
 
 export const ACTIVE_WORK: ActiveWork[] = [
   {
+    id: 'active-0',
+    name: 'poiesis',
+    description:
+      'Open-source interactive coding tutor built on top of the pi agent — test-driven learning with real feedback loops.',
+    type: 'OSS',
+    link: 'https://shanvit7.github.io/poiesis/',
+    links: [
+      { label: 'GitHub', url: 'https://github.com/Shanvit7/poiesis' },
+      { label: 'Live', url: 'https://shanvit7.github.io/poiesis/' },
+    ],
+    githubRepo: 'Shanvit7/poiesis',
+  },
+  {
     id: 'active-1',
+    name: 'stan0',
+    description:
+      'AI-native video repurposing for long-form creators — analyses videos, finds the moments worth clipping, and renders them for YouTube Shorts.',
+    link: 'https://stan0.dev8s.io/',
+  },
+  {
+    id: 'active-2',
     name: 'pi-llm-wiki',
     description:
       'Self-maintaining Obsidian-compatible knowledge base for pi — turns raw sources into an interlinked wiki over time.',
@@ -130,7 +150,7 @@ export const ACTIVE_WORK: ActiveWork[] = [
     githubRepo: 'zosmaai/pi-llm-wiki',
   },
   {
-    id: 'active-2',
+    id: 'active-3',
     name: 'zosma-cowork',
     description:
       'Desktop GUI for the pi coding agent — open-source Claude Cowork alternative.',
@@ -140,16 +160,6 @@ export const ACTIVE_WORK: ActiveWork[] = [
       { label: 'GitHub', url: 'https://github.com/zosmaai/zosma-cowork' },
     ],
     githubRepo: 'zosmaai/zosma-cowork',
-  },
-  {
-    id: 'active-3',
-    name: 'zolorag',
-    description:
-      'Fully local RAG app for PDF documents — single process, no cloud, no external services.',
-    type: 'OSS',
-    link: 'https://github.com/zosmaai/zolorag',
-    links: [{ label: 'GitHub', url: 'https://github.com/zosmaai/zolorag' }],
-    githubRepo: 'zosmaai/zolorag',
   },
 ]
 

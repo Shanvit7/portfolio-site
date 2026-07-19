@@ -1,14 +1,14 @@
 'use client'
-import { cn } from '@/lib/utils'
 import {
   AnimatePresence,
   motion,
-  TargetAndTransition,
-  Transition,
-  Variant,
-  Variants,
+  type TargetAndTransition,
+  type Transition,
+  type Variant,
+  type Variants,
 } from 'motion/react'
 import React from 'react'
+import { cn } from '@/lib/utils'
 
 export type PresetType = 'blur' | 'fade-in-blur' | 'scale' | 'fade' | 'slide'
 

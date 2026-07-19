@@ -1,21 +1,21 @@
 'use client'
 // COMPONENTS
 import { motion } from 'motion/react'
-import { Spotlight } from '@/components/atoms/spotlight'
-import MagneticSocialLink from '@/components/molecules/social-link'
-import { ActiveWorkRow } from '@/components/molecules/active-work-row'
-import WorkExperienceDialog from '@/components/molecules/work-experience'
 import Link from 'next/link'
 import { AnimatedBackground } from '@/components/atoms/animated-background'
+import { Spotlight } from '@/components/atoms/spotlight'
 import { TextLoop } from '@/components/atoms/text-loop'
+import { ActiveWorkRow } from '@/components/molecules/active-work-row'
+import MagneticSocialLink from '@/components/molecules/social-link'
+import WorkExperienceDialog from '@/components/molecules/work-experience'
 // CONSTANTS
 import {
   ACTIVE_WORK,
-  WORK_EXPERIENCE,
   BLOG_POSTS,
   EMAIL,
-  SOCIAL_LINKS,
   GITHUB_URL,
+  SOCIAL_LINKS,
+  WORK_EXPERIENCE,
 } from '@/lib/constants'
 
 const VARIANTS_CONTAINER = {
@@ -47,10 +47,9 @@ const Personal = () => (
     <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
       <div className="flex-1">
         <p className="text-zinc-600 dark:text-zinc-400">
-          Started with web apps, now exploring ML and building with LLMs and
-          agentic workflows — one at a time. Enjoys prototyping across the stack
-          and shipping things that are clear, useful, and simple. Cares about
-          thoughtful UX, fast iteration, and solving real problems.
+          Full-stack web dev who’s shipped production apps at scale, now
+          building AI-native products and exploring content engineering —
+          agents, fine-tuned SLMs, and how software meets the content layer.
         </p>
       </div>
     </motion.section>

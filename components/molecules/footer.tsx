@@ -1,8 +1,8 @@
 'use client'
 // COMPONENTS
 import { TextLoop } from '@/components/atoms/text-loop'
-import { Signature } from '@/components/signature'
 import ThemeSwitch from '@/components/organisms/theme-switch'
+import { Signature } from '@/components/signature'
 // CONSTANTS
 import { GITHUB_URL } from '@/lib/constants'
 
@@ -20,7 +20,7 @@ const Footer = () => (
         once
       />
       <div className="flex w-full flex-col-reverse items-center gap-3 text-center sm:flex-row sm:justify-between sm:gap-0">
-        <a href={`${GITHUB_URL}/portfolio-site`} target="_blank">
+        <a href={`${GITHUB_URL}/portfolio-site`} target="_blank" rel="noopener">
           <TextLoop className="text-xs text-zinc-500">
             <span>© 2026 Shanvit S Shetty.</span>
             <span>Built with Motion Primitives, Next.js and Tailwind CSS.</span>

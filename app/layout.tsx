@@ -1,10 +1,10 @@
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
-import Header from '@/components/molecules/header'
-import Footer from '@/components/molecules/footer'
 import { ThemeProvider } from 'next-themes'
 import { FloatingGlyphs } from '@/components/atoms/floating-glyphs'
+import Footer from '@/components/molecules/footer'
+import Header from '@/components/molecules/header'
 
 export const viewport: Viewport = {
   width: 'device-width',

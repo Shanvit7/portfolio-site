@@ -1,7 +1,7 @@
 'use client'
+import Link from 'next/link'
 // COMPONENTS
 import { TextEffect } from '@/components/atoms/text-effect'
-import Link from 'next/link'
 // CONSTANTS
 import { PROFILE_LINKS } from '@/lib/constants'
 

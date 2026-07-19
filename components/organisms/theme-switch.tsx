@@ -1,11 +1,11 @@
 'use client'
+// ICONS
+import { MonitorIcon, MoonIcon, SunIcon } from 'lucide-react'
 // HOOKS
 import { useTheme } from 'next-themes'
 import { useEffect, useState } from 'react'
 // COMPONENTS
 import { AnimatedBackground } from '@/components/atoms/animated-background'
-// ICONS
-import { MonitorIcon, MoonIcon, SunIcon } from 'lucide-react'
 
 const THEMES_OPTIONS = [
   {

@@ -21,7 +21,7 @@ export type ActiveWork = {
   id: string
   name: string
   description: string
-  type: 'OSS' | 'Work'
+  type?: 'OSS' | 'Work'
   link: string
   links?: { label: string; url: string }[]
   githubRepo?: string
