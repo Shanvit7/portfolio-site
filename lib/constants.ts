@@ -17,13 +17,12 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     link: 'https://zosma.ai',
     id: 'work1',
     description: `
-Had a chance to explore a lot of interesting AI-related projects and prototypes. Currently working on making **better harnesses** for AI models.
+Had a chance to explore a lot of interesting AI-related projects and prototypes. Currently working on making **tally native** agentic workflows for accounting and finance.
 
 ### Highlights:
 - Built a *whatsapp ecommerce support agent* POC using **Mastra** for [**Foodstories**](https://www.foodstories.shop)
 - Worked as a fullstack engineer on the [**Foodstories**](https://www.foodstories.shop) website built on **Next.js**, optimizing and implementing new features, *later platform raised ₹50Cr led by Nikhil Kamath*
-- Built an AI workflow suggesting exercises using Mastra and **TOON** for token optimization for [**Dashfit**](https://dashfit.in)
-- Contributing to [**OpenZosma**](https://www.zosma.ai/openzosma) — an open-source self-hosted platform for hierarchical AI agents started by Zosma AI
+- Built an AI workflow suggesting workout routines using Mastra and **TOON** for token optimization for [**Dashfit**](https://dashfit.in)
 - Contributing to [**pi-llm-wiki**](https://github.com/zosmaai/pi-llm-wiki) — a self-maintaining Obsidian-compatible knowledge base for pi, following Karpathy's LLM Wiki pattern
 - Contributing to [**zosma-cowork**](https://github.com/zosmaai/zosma-cowork) — a desktop GUI for the pi coding agent, open-source Claude Cowork alternative
 - Built [**zolorag**](https://github.com/zosmaai/zolorag) from scratch — a fully local RAG app for chatting with PDF documents, no cloud, no external services
@@ -136,8 +135,8 @@ export const ACTIVE_WORK: ActiveWork[] = [
     id: 'active-1',
     name: 'stan0',
     description:
-      'AI-native video repurposing for long-form creators — analyses videos, finds the moments worth clipping, and renders them for YouTube Shorts.',
-    link: 'https://stan0.dev8s.io/',
+      'Content operations for teams that ship — plan, create, review, publish, distribute, and measure every piece of content so the work your team ships gets the attention it deserves.',
+    link: 'https://stan0.dev8s.io',
   },
   {
     id: 'active-2',
