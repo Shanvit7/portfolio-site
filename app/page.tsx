@@ -47,7 +47,9 @@ const Personal = () => (
     <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
       <div className="flex-1">
         <p className="text-zinc-600 dark:text-zinc-400">
-        Full-stack web dev building AI-native products, with a side interest in content engineering — agents and how software meets the content layer.
+          Full-stack web dev building AI-native products, with a side interest
+          in content engineering — agents and how software meets the content
+          layer.
         </p>
       </div>
     </motion.section>
