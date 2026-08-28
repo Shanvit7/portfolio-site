@@ -24,7 +24,6 @@ export type ActiveWork = {
   type?: 'OSS' | 'Work'
   link: string
   links?: { label: string; url: string }[]
-  githubRepo?: string
 }
 
 export type SocialLink = {

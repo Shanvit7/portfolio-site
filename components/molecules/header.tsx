@@ -6,7 +6,7 @@ import { TextEffect } from '@/components/atoms/text-effect'
 import { PROFILE_LINKS } from '@/lib/constants'
 
 const Header = () => (
-  <header className="mb-8 flex items-center justify-between">
+  <header className="mb-1 flex items-center justify-between">
     <div>
       <Link href="/" className="font-medium text-black dark:text-white">
         Shanvit S Shetty
@@ -15,10 +15,10 @@ const Header = () => (
         as="p"
         preset="fade"
         per="char"
-        className="text-zinc-600 dark:text-zinc-500"
+        className="text-zinc-600 dark:text-zinc-300"
         delay={0.5}
       >
-        Building smarter, simpler systems: chaos. code. control.
+        Building smarter, simpler systems.
       </TextEffect>
       <div className="flex flex-wrap items-center gap-x-3 gap-y-1 pt-3 pb-4 text-xs text-zinc-600 dark:text-zinc-400">
         {PROFILE_LINKS.map(({ label, link }) => (

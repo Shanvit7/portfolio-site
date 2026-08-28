@@ -17,21 +17,23 @@ export const WORK_EXPERIENCE: WorkExperience[] = [
     link: 'https://zosma.ai',
     id: 'work1',
     description: `
-Had a chance to explore a lot of interesting AI-related projects and prototypes. Currently working on making **tally native** agentic workflows for accounting and finance.
+Shipping several interesting AI-related projects, products and prototypes. Wearing multiple hats, when needed.
 
 ### Highlights:
-- Built a *whatsapp ecommerce support agent* POC using **Mastra** for [**Foodstories**](https://www.foodstories.shop)
-- Worked as a fullstack engineer on the [**Foodstories**](https://www.foodstories.shop) website built on **Next.js**, optimizing and implementing new features, *later platform raised ₹50Cr led by Nikhil Kamath*
-- Built an AI workflow suggesting workout routines using Mastra and **TOON** for token optimization for [**Dashfit**](https://dashfit.in)
-- Contributing to [**pi-llm-wiki**](https://github.com/zosmaai/pi-llm-wiki) — a self-maintaining Obsidian-compatible knowledge base for pi, following Karpathy's LLM Wiki pattern
-- Contributing to [**zosma-cowork**](https://github.com/zosmaai/zosma-cowork) — a desktop GUI for the pi coding agent, open-source Claude Cowork alternative
+- Worked as a frontend engineer on the [**Foodstories**](https://www.foodstories.shop) website built on **Next.js**, optimizing and implementing new features, *later platform raised ₹50Cr led by Nikhil Kamath*
+- Built an AI workflow suggesting workout routines & exercises for [**Dashfit**](https://dashfit.in) - using **Mastra** and **TOON** for token optimization plus **PromptFoo** evals.
+- Built a **Next.js + Fastify** vendor CRM integrating **SAP data** for shipment tracking on [**Foodstories**](https://www.foodstories.shop).
+- Built a **Legal Ops** litigation platform with **Kanban workflows, RBAC, audit history, analytics, and six PDF reports** — including an offline-first PWA with queued updates, reconnect sync, and an outbox-based scheduler for hearing notifications via email.
+- Owned **Zosma AI Web** technical SEO, Core Web Vitals, and observability — **Grafana Faro** real-user monitoring
 - Built [**zolorag**](https://github.com/zosmaai/zolorag) from scratch — a fully local RAG app for chatting with PDF documents, no cloud, no external services
+- Built a **Tauri Desktop** app pulling Tally Data via gateway using **tally-xml**
+- Built a *whatsapp ecommerce support agent* POC using **Mastra** for [**Foodstories**](https://www.foodstories.shop)
 - Experimenting with **SLMs**, **local LLM inference**, and **AI harness** tooling — fine-tuning and agent scaffolding
     `,
     what_i_did: [
       'developed a whatsapp ecommerce support agent',
       'learnt and did hands-on implementation of agentic workflow systems',
-      'building better harnesses for AI Agents',
+      'Shipped in-house products across web, desktop, and npm',
     ],
   },
   {
@@ -42,25 +44,18 @@ Had a chance to explore a lot of interesting AI-related projects and prototypes.
     link: 'https://mavonic.com',
     id: 'work2',
     description: `
-After IOTric, I joined Mavonic as an **SDE-1** and went full-stack from day one. I worked on [**PropertyGuru**](https://www.propertyguru.ae), a real estate platform built on **Next.js** and **Strapi**, which pulled in **10K+** daily visitors.
+After IOTric, I joined Mavonic as an **SDE-1** and went full-stack from day one. Mostly worked on [**PropertyGuru**](https://www.propertyguru.ae), a real estate website marketplace built on **Next.js** and **Strapi**, which pulled in **10K+** daily visitors. Driving UI/UX, SEO, and performance improvements; reworked key pages from runtime SSR to **SSG + ISR** to reduce request-time server work and improve initial load performance.
 
 ### Highlights:
-- Handled core site, internal agent portal, and [**CreditNow**](https://www.creditnow.ae) (same stack)
-- Coordinated with project managers and DevOps team for frequent daily deployments
+- Built **Next.js realtor leads platform** for PropertyGuru with **RBAC**, lead assignment, salesperson workflows, and follow-ups, backed by **Strapi** authentication/APIs; contributed to **SQL/query and backend optimizations** to improve response times.
+- Built US-based student-mentor platform [**Draftus**](https://www.draftus.com) - **mobile-first Next.js + Supabase** web app, a US-based online social talent mining application (MVP), continuing in a full-stack role.
+- Google Meet automated [**stand-up bot**](https://github.com/Shanvit7/daily-standup-bot) using **Agno** that daily joins and pings absentees on Slack.
 - Used **Cursor** (Agentic IDE) and **v0.dev** for rapid UI iteration
-
-After PropertyGuru , I worked on [**Draftus**](https://www.draftus.com), a US-based online social talent mining application (MVP), continuing in a full-stack role.
-
-### Side Projects:
-- Face recognition **Python service** (used across multiple internal projects)
-- Google Meet automated [**stand-up bot**](https://github.com/Shanvit7/daily-standup-bot) using **Agno** that daily joins and pings absentees on Slack
-- Secure PDF sharing [**POC**](https://legitimacy-mavonic.vercel.app) for an internal product idea
 `,
     what_i_did: [
       'made facial recognition python service used throughout multiple internal projects',
       'built automated bot to join daily standup Meet and ping absentees on slack',
       'worked on a website with 10k+ daily visitors',
-      'built SDK to make enterprise data secure and private',
     ],
   },
   {
@@ -71,23 +66,21 @@ After PropertyGuru , I worked on [**Draftus**](https://www.draftus.com), a US-ba
     link: 'https://iotric.com',
     id: 'work3',
     description: `
-After graduating, I joined **Iotric** as an **SDE-1**, starting with [**myIDFi**](https://myidfi.com), a mortgage comparison platform built with **React**, **Material UI**, and **RTK Query**. Later, I joined [**Enoobs**](https://www.enoobs.com), Iotric's first in-house product — a social media platform built exclusively for gamers — where I led the frontend and managed two interns,collaborating across teams.
+After graduating, I joined **Iotric** as an **SDE-I**, starting with [**myIDFi**](https://myidfi.com), a mortgage comparison platform built with **React**, **Material UI**, and **RTK Query**. Later, joined [**Enoobs**](https://www.enoobs.com), Iotric's first in-house product — a social media platform built exclusively for gamers — where I led the frontend and managed two interns,collaborating across teams.
 
 ### Highlights:
-- Shipped production UI for **myIDFi**; used **ChatGPT** early on to boost development and debugging
-- Led frontend for **Enoobs** using **Next.js**, coordinated with designers, and proposed new features
-- Mentored interns and worked cross-functionally across product and design
-
-### Side Projects:
+- Shipped production UI for **myIDFi**; effectively used **AI** early on to boost development and debugging
+- Led frontend for **Enoobs** using **Next.js**, coordinated with designers, proposed & shipped new features
+- Built a [**npm** chatbot package](https://www.npmjs.com/package/qie-chatbot), later evolved into a [**full-fledged product**](https://botric.ai) by the company
 - Worked as a **backend engineer** for few projects for self-learning
-- Built a [**Node** chatbot package](https://www.npmjs.com/package/qie-chatbot), later evolved into a [**full-fledged product**](https://botric.ai) by the company
+- Mentored interns and worked cross-functionally across product and design
 
 A fast-paced, high-growth phase filled with learning and real-world impact.
 `,
     what_i_did: [
       'built a gamers-only social platform from scratch using next-js',
-      'developed and published chatbot node package',
-      'built core mortgage platform features: analytics, integrations, and email templates',
+      'developed and published chatbot npm package',
+      'shipped features and bug fixes to mortgage platform',
     ],
   },
   {
@@ -119,24 +112,16 @@ This internship laid the foundation for my full-time journey, teaching me the va
 
 export const ACTIVE_WORK: ActiveWork[] = [
   {
-    id: 'active-0',
-    name: 'poiesis',
+    id: 'active-4',
+    name: 'tabot',
     description:
-      'Open-source interactive coding tutor built on top of the pi agent — test-driven learning with real feedback loops.',
+      'Local-first work-memory layer for browser workers — turns browser activity into structured, portable context you own.',
     type: 'OSS',
-    link: 'https://shanvit7.github.io/poiesis/',
+    link: 'https://shanvit7.github.io/tabot/',
     links: [
-      { label: 'GitHub', url: 'https://github.com/Shanvit7/poiesis' },
-      { label: 'Live', url: 'https://shanvit7.github.io/poiesis/' },
+      { label: 'GitHub', url: 'https://github.com/Shanvit7/tabot' },
+      { label: 'Live', url: 'https://shanvit7.github.io/tabot/' },
     ],
-    githubRepo: 'Shanvit7/poiesis',
-  },
-  {
-    id: 'active-1',
-    name: 'stan0',
-    description:
-      'Content operations for teams that ship — plan, create, review, publish, distribute, and measure every piece of content so the work your team ships gets the attention it deserves.',
-    link: 'https://stan0.dev8s.io',
   },
   {
     id: 'active-2',
@@ -146,7 +131,6 @@ export const ACTIVE_WORK: ActiveWork[] = [
     type: 'OSS',
     link: 'https://github.com/zosmaai/pi-llm-wiki',
     links: [{ label: 'GitHub', url: 'https://github.com/zosmaai/pi-llm-wiki' }],
-    githubRepo: 'zosmaai/pi-llm-wiki',
   },
   {
     id: 'active-3',
@@ -158,7 +142,6 @@ export const ACTIVE_WORK: ActiveWork[] = [
     links: [
       { label: 'GitHub', url: 'https://github.com/zosmaai/zosma-cowork' },
     ],
-    githubRepo: 'zosmaai/zosma-cowork',
   },
 ]
 

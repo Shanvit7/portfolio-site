@@ -10,9 +10,9 @@ import {
 import React from 'react'
 import { cn } from '@/lib/utils'
 
-export type PresetType = 'blur' | 'fade-in-blur' | 'scale' | 'fade' | 'slide'
+type PresetType = 'blur' | 'fade-in-blur' | 'scale' | 'fade' | 'slide'
 
-export type PerType = 'word' | 'char' | 'line'
+type PerType = 'word' | 'char' | 'line'
 
 export type TextEffectProps = {
   children: string
@@ -132,7 +132,7 @@ const AnimationComponent: React.FC<{
       <motion.span className="inline-block whitespace-pre">
         {segment.split('').map((char, charIndex) => (
           <motion.span
-            key={`char-${charIndex}`}
+            key={`char-${char}-${charIndex}`}
             aria-hidden="true"
             variants={variants}
             className="inline-block whitespace-pre"
@@ -275,15 +275,20 @@ export function TextEffect({
           style={style}
         >
           {per !== 'line' ? <span className="sr-only">{children}</span> : null}
-          {segments.map((segment, index) => (
-            <AnimationComponent
-              key={`${per}-${index}-${segment}`}
-              segment={segment}
-              variants={computedVariants.item}
-              per={per}
-              segmentWrapperClassName={segmentWrapperClassName}
-            />
-          ))}
+          {segments.map((segment, index) => {
+            // index included to keep duplicate segments stable as separate
+            // motion items (same segment text repeats across words/lines)
+            const segmentKey = `${per}-${segment}-${index}`
+            return (
+              <AnimationComponent
+                key={segmentKey}
+                segment={segment}
+                variants={computedVariants.item}
+                per={per}
+                segmentWrapperClassName={segmentWrapperClassName}
+              />
+            )
+          })}
         </MotionTag>
       )}
     </AnimatePresence>

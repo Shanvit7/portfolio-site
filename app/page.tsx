@@ -1,6 +1,6 @@
 'use client'
 // COMPONENTS
-import { motion } from 'motion/react'
+import { domAnimation, LazyMotion, m } from 'motion/react'
 import Link from 'next/link'
 import { AnimatedBackground } from '@/components/atoms/animated-background'
 import { Spotlight } from '@/components/atoms/spotlight'
@@ -38,166 +38,172 @@ const TRANSITION_SECTION = {
 }
 
 const Personal = () => (
-  <motion.main
-    className="space-y-24"
-    variants={VARIANTS_CONTAINER}
-    initial="hidden"
-    animate="visible"
-  >
-    <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-      <div className="flex-1">
-        <p className="text-zinc-600 dark:text-zinc-400">
-          Full-stack web dev building AI-native products, with a side interest
-          in content engineering — agents and how software meets the content
-          layer.
-        </p>
-      </div>
-    </motion.section>
+  <LazyMotion features={domAnimation}>
+    <m.main
+      className="space-y-24"
+      variants={VARIANTS_CONTAINER}
+      initial="hidden"
+      animate="visible"
+    >
+      <m.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
+        <div className="flex-1">
+          <p className="text-zinc-600 dark:text-zinc-400">
+            Product Engineer with 4+ years of experience building and shipping
+            web applications. Built products from scratch and delivered UI/UX,
+            analytics, and growth improvements at scale.{' '}
+            <span className="text-white">Curious</span> about how engineering
+            can influence how products reach, engage, and grow their users.
+          </p>
+        </div>
+      </m.section>
 
-    <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-      <div className="mb-1 flex items-center justify-between">
-        <h3 className="text-lg font-medium">Shipping.</h3>
-        <Link
-          href={`${GITHUB_URL}?tab=repositories`}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
-        >
-          See all projects
-        </Link>
-      </div>
-      <div>
-        {ACTIVE_WORK.map((item) => (
-          <ActiveWorkRow key={item.id} item={item} />
-        ))}
-      </div>
-    </motion.section>
-
-    <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-      <h3 className="mb-5 text-lg font-medium">Work Experience</h3>
-      <div className="grid grid-cols-1 gap-4">
-        {WORK_EXPERIENCE.map(
-          ({
-            id,
-            title,
-            company,
-            start,
-            end,
-            description,
-            what_i_did,
-            link,
-          }) => (
-            <div
-              key={id}
-              className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-px dark:bg-zinc-600/30"
-            >
-              <Spotlight
-                className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
-                size={64}
-              />
-              <div className="relative h-full w-full rounded-[15px] bg-white p-3 sm:p-4 dark:bg-zinc-950">
-                <div className="flex flex-col">
-                  <div className="flex flex-row items-center justify-between gap-2">
-                    <h4 className="font-normal dark:text-zinc-100">{title}</h4>
-                    <a
-                      href={link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-zinc-700 dark:text-zinc-300"
-                    >
-                      {company}
-                    </a>
-                  </div>
-                  <div className="flex flex-col gap-1 pt-1 sm:flex-row sm:items-center sm:justify-between">
-                    <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                      {start} - {end}
-                    </p>
-                    <WorkExperienceDialog
-                      title={title}
-                      company={company}
-                      start={start}
-                      end={end}
-                      description={description}
-                    >
-                      <TextLoop>
-                        {what_i_did.map((item) => (
-                          <span
-                            key={item}
-                            className="wrap-break-word whitespace-normal will-change-contents"
-                          >
-                            {item}
-                          </span>
-                        ))}
-                      </TextLoop>
-                    </WorkExperienceDialog>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ),
-        )}
-      </div>
-    </motion.section>
-
-    <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-      <h3 className="mb-3 text-lg font-medium">Blogs</h3>
-      <div className="flex flex-col space-y-0">
-        <AnimatedBackground
-          enableHover
-          className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-900/80"
-          transition={{
-            type: 'spring',
-            bounce: 0,
-            duration: 0.2,
-          }}
-        >
-          {BLOG_POSTS.map((post) => (
-            <Link
-              key={post.uid}
-              className="-mx-3 rounded-xl px-3 py-3"
-              href={post.link}
-              data-id={post.uid}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div className="flex flex-col space-y-1">
-                <div className="flex items-center justify-between gap-2">
-                  <h4 className="font-normal dark:text-zinc-100">
-                    {post.title}
-                  </h4>
-                  {post.date && (
-                    <span className="shrink-0 text-xs text-zinc-400 dark:text-zinc-500">
-                      {post.date}
-                    </span>
-                  )}
-                </div>
-                <p className="text-zinc-500 dark:text-zinc-400">
-                  {post.description}
-                </p>
-              </div>
-            </Link>
+      <m.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
+        <div className="mb-1 flex items-center justify-between">
+          <h3 className="text-lg font-medium">Shipping.</h3>
+          <Link
+            href={`${GITHUB_URL}?tab=repositories`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
+          >
+            See all projects
+          </Link>
+        </div>
+        <div>
+          {ACTIVE_WORK.map((item) => (
+            <ActiveWorkRow key={item.id} item={item} />
           ))}
-        </AnimatedBackground>
-      </div>
-    </motion.section>
+        </div>
+      </m.section>
 
-    <motion.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-      <h3 className="mb-5 text-lg font-medium">Connect</h3>
-      <p className="mb-5 text-zinc-600 dark:text-zinc-400">
-        Feel free to contact me at{' '}
-        <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>
-          {EMAIL}
-        </a>
-      </p>
-      <div className="flex flex-wrap items-center justify-start gap-3">
-        {SOCIAL_LINKS.map((link) => (
-          <MagneticSocialLink key={link.label} link={link.link}>
-            {link.label}
-          </MagneticSocialLink>
-        ))}
-      </div>
-    </motion.section>
-  </motion.main>
+      <m.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
+        <h3 className="mb-5 text-lg font-medium">Work Experience</h3>
+        <div className="grid grid-cols-1 gap-4">
+          {WORK_EXPERIENCE.map(
+            ({
+              id,
+              title,
+              company,
+              start,
+              end,
+              description,
+              what_i_did,
+              link,
+            }) => (
+              <div
+                key={id}
+                className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-px dark:bg-zinc-600/30"
+              >
+                <Spotlight
+                  className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+                  size={64}
+                />
+                <div className="relative h-full w-full rounded-[15px] bg-white p-3 sm:p-4 dark:bg-zinc-950">
+                  <div className="flex flex-col">
+                    <div className="flex flex-row items-center justify-between gap-2">
+                      <h4 className="font-normal dark:text-zinc-100">
+                        {title}
+                      </h4>
+                      <a
+                        href={link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-zinc-700 dark:text-zinc-300"
+                      >
+                        {company}
+                      </a>
+                    </div>
+                    <div className="flex flex-col gap-1 pt-1 sm:flex-row sm:items-center sm:justify-between">
+                      <p className="text-sm text-zinc-600 dark:text-zinc-400">
+                        {start} - {end}
+                      </p>
+                      <WorkExperienceDialog
+                        title={title}
+                        company={company}
+                        start={start}
+                        end={end}
+                        description={description}
+                      >
+                        <TextLoop>
+                          {what_i_did.map((item) => (
+                            <span
+                              key={item}
+                              className="wrap-break-word whitespace-normal"
+                            >
+                              {item}
+                            </span>
+                          ))}
+                        </TextLoop>
+                      </WorkExperienceDialog>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ),
+          )}
+        </div>
+      </m.section>
+
+      <m.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
+        <h3 className="mb-3 text-lg font-medium">Blogs</h3>
+        <div className="flex flex-col space-y-0">
+          <AnimatedBackground
+            enableHover
+            className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-900/80"
+            transition={{
+              type: 'spring',
+              bounce: 0,
+              duration: 0.2,
+            }}
+          >
+            {BLOG_POSTS.map((post) => (
+              <Link
+                key={post.uid}
+                className="-mx-3 rounded-xl px-3 py-3"
+                href={post.link}
+                data-id={post.uid}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="flex flex-col space-y-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <h4 className="font-normal dark:text-zinc-100">
+                      {post.title}
+                    </h4>
+                    {post.date && (
+                      <span className="shrink-0 text-xs text-zinc-400 dark:text-zinc-500">
+                        {post.date}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-zinc-500 dark:text-zinc-400">
+                    {post.description}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </AnimatedBackground>
+        </div>
+      </m.section>
+
+      <m.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
+        <h3 className="mb-5 text-lg font-medium">Connect</h3>
+        <p className="mb-5 text-zinc-600 dark:text-zinc-400">
+          Feel free to contact me at{' '}
+          <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>
+            {EMAIL}
+          </a>
+        </p>
+        <div className="flex flex-wrap items-center justify-start gap-3">
+          {SOCIAL_LINKS.map((link) => (
+            <MagneticSocialLink key={link.label} link={link.link}>
+              {link.label}
+            </MagneticSocialLink>
+          ))}
+        </div>
+      </m.section>
+    </m.main>
+  </LazyMotion>
 )
 
 export default Personal

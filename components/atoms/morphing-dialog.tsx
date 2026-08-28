@@ -1,6 +1,5 @@
 'use client'
 
-import { XIcon } from 'lucide-react'
 import {
   AnimatePresence,
   MotionConfig,
@@ -21,7 +20,7 @@ import { createPortal } from 'react-dom'
 import useClickOutside from '@/hooks/use-click-outside'
 import { cn } from '@/lib/utils'
 
-export type MorphingDialogContextType = {
+type MorphingDialogContextType = {
   isOpen: boolean
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
   uniqueId: string
@@ -41,7 +40,7 @@ function useMorphingDialog() {
   return context
 }
 
-export type MorphingDialogProviderProps = {
+type MorphingDialogProviderProps = {
   children: React.ReactNode
   transition?: Transition
 }
@@ -71,7 +70,7 @@ function MorphingDialogProvider({
   )
 }
 
-export type MorphingDialogProps = {
+type MorphingDialogProps = {
   children: React.ReactNode
   transition?: Transition
 }
@@ -84,7 +83,7 @@ function MorphingDialog({ children, transition }: MorphingDialogProps) {
   )
 }
 
-export type MorphingDialogTriggerProps = {
+type MorphingDialogTriggerProps = {
   children: React.ReactNode
   className?: string
   style?: React.CSSProperties
@@ -132,7 +131,7 @@ function MorphingDialogTrigger({
   )
 }
 
-export type MorphingDialogContentProps = {
+type MorphingDialogContentProps = {
   children: React.ReactNode
   className?: string
   style?: React.CSSProperties
@@ -220,7 +219,7 @@ function MorphingDialogContent({
   )
 }
 
-export type MorphingDialogContainerProps = {
+type MorphingDialogContainerProps = {
   children: React.ReactNode
   className?: string
   style?: React.CSSProperties
@@ -258,7 +257,7 @@ function MorphingDialogContainer({ children }: MorphingDialogContainerProps) {
   )
 }
 
-export type MorphingDialogTitleProps = {
+type MorphingDialogTitleProps = {
   children: React.ReactNode
   className?: string
   style?: React.CSSProperties
@@ -283,31 +282,7 @@ function MorphingDialogTitle({
   )
 }
 
-export type MorphingDialogSubtitleProps = {
-  children: React.ReactNode
-  className?: string
-  style?: React.CSSProperties
-}
-
-function MorphingDialogSubtitle({
-  children,
-  className,
-  style,
-}: MorphingDialogSubtitleProps) {
-  const { uniqueId } = useMorphingDialog()
-
-  return (
-    <motion.div
-      layoutId={`dialog-subtitle-container-${uniqueId}`}
-      className={className}
-      style={style}
-    >
-      {children}
-    </motion.div>
-  )
-}
-
-export type MorphingDialogDescriptionProps = {
+type MorphingDialogDescriptionProps = {
   children: React.ReactNode
   className?: string
   disableLayoutAnimation?: boolean
@@ -346,78 +321,11 @@ function MorphingDialogDescription({
   )
 }
 
-export type MorphingDialogImageProps = {
-  src: string
-  alt: string
-  className?: string
-  style?: React.CSSProperties
-}
-
-function MorphingDialogImage({
-  src,
-  alt,
-  className,
-  style,
-}: MorphingDialogImageProps) {
-  const { uniqueId } = useMorphingDialog()
-
-  return (
-    <motion.img
-      src={src}
-      alt={alt}
-      className={cn(className)}
-      layoutId={`dialog-img-${uniqueId}`}
-      style={style}
-    />
-  )
-}
-
-export type MorphingDialogCloseProps = {
-  children?: React.ReactNode
-  className?: string
-  variants?: {
-    initial: Variant
-    animate: Variant
-    exit: Variant
-  }
-}
-
-function MorphingDialogClose({
-  children,
-  className,
-  variants,
-}: MorphingDialogCloseProps) {
-  const { setIsOpen, uniqueId } = useMorphingDialog()
-
-  const handleClose = useCallback(() => {
-    setIsOpen(false)
-  }, [setIsOpen])
-
-  return (
-    <motion.button
-      onClick={handleClose}
-      type="button"
-      aria-label="Close dialog"
-      key={`dialog-close-${uniqueId}`}
-      className={cn('absolute top-6 right-6', className)}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      variants={variants}
-    >
-      {children || <XIcon size={24} />}
-    </motion.button>
-  )
-}
-
 export {
   MorphingDialog,
-  MorphingDialogClose,
   MorphingDialogContainer,
   MorphingDialogContent,
   MorphingDialogDescription,
-  MorphingDialogImage,
-  MorphingDialogSubtitle,
   MorphingDialogTitle,
   MorphingDialogTrigger,
 }
