@@ -127,7 +127,7 @@ export const ACTIVE_WORK: ActiveWork[] = [
     id: 'active-2',
     name: 'pi-llm-wiki',
     description:
-      'Self-maintaining Obsidian-compatible knowledge base for pi — turns raw sources into an interlinked wiki over time.',
+      'Self-maintaining Obsidian-compatible knowledge base for pi — turns raw sources into an interlinked wiki over time. Reaching 500+ github stars',
     type: 'OSS',
     link: 'https://github.com/zosmaai/pi-llm-wiki',
     links: [{ label: 'GitHub', url: 'https://github.com/zosmaai/pi-llm-wiki' }],
@@ -135,8 +135,7 @@ export const ACTIVE_WORK: ActiveWork[] = [
   {
     id: 'active-3',
     name: 'zosma-cowork',
-    description:
-      'Desktop GUI for the pi coding agent — open-source Claude Cowork alternative.',
+    description: 'Web-based open-source AI coworker platform',
     type: 'OSS',
     link: 'https://github.com/zosmaai/zosma-cowork',
     links: [
