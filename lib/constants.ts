@@ -25,7 +25,6 @@ Shipping several interesting AI-related projects, products and prototypes. Weari
 - Built a **Next.js + Fastify** vendor CRM integrating **SAP data** for shipment tracking on [**Foodstories**](https://www.foodstories.shop).
 - Built a **Legal Ops** litigation platform with **Kanban workflows, RBAC, audit history, analytics, and six PDF reports** — including an offline-first PWA with queued updates, reconnect sync, and an outbox-based scheduler for hearing notifications via email.
 - Owned **Zosma AI Web** technical SEO, Core Web Vitals, and observability — **Grafana Faro** real-user monitoring
-- Built [**zolorag**](https://github.com/zosmaai/zolorag) from scratch — a fully local RAG app for chatting with PDF documents, no cloud, no external services
 - Built a **Tauri Desktop** app pulling Tally Data via gateway using **tally-xml**
 - Built a *whatsapp ecommerce support agent* POC using **Mastra** for [**Foodstories**](https://www.foodstories.shop)
 - Experimenting with **SLMs**, **local LLM inference**, and **AI harness** tooling — fine-tuning and agent scaffolding
@@ -113,9 +112,9 @@ This internship laid the foundation for my full-time journey, teaching me the va
 export const ACTIVE_WORK: ActiveWork[] = [
   {
     id: 'active-4',
-    name: 'tabot',
+    name: 'Tabot',
     description:
-      'Local-first work-memory layer for browser workers — turns browser activity into structured, portable context you own.',
+      'Local-first Chrome extension that turns browser activity into session timelines, domain history, and recurring paths; optional MCP/ChatGPT answers questions over filtered results.',
     type: 'OSS',
     link: 'https://shanvit7.github.io/tabot/',
     links: [
@@ -148,15 +147,15 @@ export const BLOG_POSTS: BlogPost[] = [
   {
     title: 'Emotion Is a Missing Primitive in AI Memory',
     description:
-      'Exploring how adopting human-like memory principles—importance, repetition, recency, and context—could make AI systems more efficient and focused as they scale.',
-    link: 'https://substack.com/@shanvitshetty/p-195320978',
+      'What importance, repetition, and emotion might teach us about memory in AI systems.',
+    link: 'https://shanvitshetty.substack.com/p/emotion-is-a-missing-primitive-in',
     uid: 'blog-3',
     date: 'Apr 10, 2026',
   },
   {
     title: 'How I Trained an Email Triage SLM Using Tinker APIs',
     description:
-      "A learning project exploring LoRA fine-tuning and Tinker's distributed training API. Email triage served as a concrete use case to understand the mechanics of fine-tuning small language models.",
+      'A hands-on experiment with LoRA, Tinker APIs, and fine-tuning a small language model to sort email.',
     link: 'https://substack.com/@shanvitshetty/p-201153688',
     uid: 'blog-2',
     date: 'Feb 21, 2026',
@@ -164,6 +163,8 @@ export const BLOG_POSTS: BlogPost[] = [
 ]
 
 export const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL as string
+
+export const LINKEDIN_URL = process.env.NEXT_PUBLIC_LINKEDIN_URL as string
 
 export const EMAIL = process.env.NEXT_PUBLIC_EMAIL as string
 

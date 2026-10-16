@@ -1,11 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
-import { ThemeProvider } from 'next-themes'
-import { FloatingGlyphs } from '@/components/atoms/floating-glyphs'
-import ReactScan from '@/components/atoms/react-scan'
-import Footer from '@/components/molecules/footer'
-import Header from '@/components/molecules/header'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -19,21 +13,11 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   title: {
-    default: 'Shanvit S Shetty',
-    template: '%s | Shanvit S Shetty - Software Engineer',
+    default: 'Shanvit S Shetty - Front End Engineer',
+    template: '%s',
   },
   description: 'Building smarter, simpler systems.',
 }
-
-const geist = Geist({
-  variable: '--font-geist',
-  subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-})
 
 const RootLayout = ({
   children,
@@ -41,26 +25,7 @@ const RootLayout = ({
   children: React.ReactNode
 }>) => (
   <html lang="en" suppressHydrationWarning>
-    <body
-      className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-zinc-950`}
-    >
-      <ThemeProvider
-        enableSystem={true}
-        attribute="class"
-        storageKey="theme"
-        defaultTheme="system"
-      >
-        <FloatingGlyphs />
-        {process.env.NODE_ENV === 'development' && <ReactScan />}
-        <div className="flex min-h-screen w-full flex-col font-(family-name:--font-inter-tight)">
-          <div className="relative mx-auto w-full max-w-screen-sm flex-1 px-4 pt-20">
-            <Header />
-            {children}
-            <Footer />
-          </div>
-        </div>
-      </ThemeProvider>
-    </body>
+    <body className="bg-white antialiased">{children}</body>
   </html>
 )
 
