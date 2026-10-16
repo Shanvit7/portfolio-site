@@ -1,209 +1,182 @@
-'use client'
-// COMPONENTS
-import { domAnimation, LazyMotion, m } from 'motion/react'
-import Link from 'next/link'
-import { AnimatedBackground } from '@/components/atoms/animated-background'
-import { Spotlight } from '@/components/atoms/spotlight'
-import { TextLoop } from '@/components/atoms/text-loop'
-import { ActiveWorkRow } from '@/components/molecules/active-work-row'
-import MagneticSocialLink from '@/components/molecules/social-link'
-import WorkExperienceDialog from '@/components/molecules/work-experience'
-// CONSTANTS
-import {
-  ACTIVE_WORK,
-  BLOG_POSTS,
-  EMAIL,
-  GITHUB_URL,
-  SOCIAL_LINKS,
-  WORK_EXPERIENCE,
-} from '@/lib/constants'
+import { ArrowUpRight } from 'lucide-react'
+import type { Metadata } from 'next'
+import { Patrick_Hand, Rubik_Dirt } from 'next/font/google'
+import { EMAIL, GITHUB_URL, WORK_EXPERIENCE } from '@/lib/constants'
+import { IotricStory } from './new/iotric-story'
+import styles from './new/paper.module.css'
 
-const VARIANTS_CONTAINER = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
+const crayon = Rubik_Dirt({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-crayon',
+  display: 'swap',
+})
+
+const handwriting = Patrick_Hand({
+  weight: '400',
+  subsets: ['latin'],
+  variable: '--font-handwriting',
+  display: 'swap',
+})
+
+export const metadata: Metadata = {
+  title: 'Shanvit S Shetty - Front End Engineer',
+  description:
+    'Shanvit S Shetty. Front End engineer, product at heart. Building and shipping web applications from scratch.',
+  alternates: { canonical: '/' },
 }
 
-const VARIANTS_SECTION = {
-  hidden: { opacity: 0, y: 20, filter: 'blur(8px)' },
-  visible: { opacity: 1, y: 0, filter: 'blur(0px)' },
-}
+// Back-and-forth crayon passes, not a straight left-to-right wipe.
+const scribblePath = Array.from(
+  { length: 33 },
+  (_, i) =>
+    `${i ? 'L' : 'M'}${(-0.04 + i * 0.034).toFixed(3)} ${i % 2 ? -0.15 : 1.15}`,
+).join(' ')
 
-const TRANSITION_SECTION = {
-  duration: 0.3,
-}
+export default function PaperIntro() {
+  const currentWork = WORK_EXPERIENCE[0]
 
-const Personal = () => (
-  <LazyMotion features={domAnimation}>
-    <m.main
-      className="space-y-24"
-      variants={VARIANTS_CONTAINER}
-      initial="hidden"
-      animate="visible"
+  return (
+    <main
+      className={`${styles.paper} ${crayon.variable} ${handwriting.variable}`}
     >
-      <m.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-        <div className="flex-1">
-          <p className="text-zinc-600 dark:text-zinc-400">
-            Product Engineer with 4+ years of experience building and shipping
-            web applications. Built products from scratch and delivered UI/UX,
-            analytics, and growth improvements at scale.{' '}
-            <span className="text-white">Curious</span> about how engineering
-            can influence how products reach, engage, and grow their users.
-          </p>
-        </div>
-      </m.section>
+      <a className={styles.skipLink} href="#intro">
+        Skip to introduction
+      </a>
+      <div className={styles.sheet}>
+        <header className={styles.header}>
+          <span className={styles.wordmark} aria-hidden="true">
+            s.s<span aria-hidden="true">✳</span>
+          </span>
+          <nav className={styles.nav} aria-label="Find Shanvit">
+            {GITHUB_URL && (
+              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
+                GitHub <ArrowUpRight aria-hidden="true" size={18} />
+              </a>
+            )}
+            {EMAIL && (
+              <a href={`mailto:${EMAIL}`}>
+                Say hello <span aria-hidden="true">↗</span>
+              </a>
+            )}
+          </nav>
+        </header>
 
-      <m.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-        <div className="mb-1 flex items-center justify-between">
-          <h3 className="text-lg font-medium">Shipping.</h3>
-          <Link
-            href={`${GITHUB_URL}?tab=repositories`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-zinc-500 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-100"
-          >
-            See all projects
-          </Link>
-        </div>
-        <div>
-          {ACTIVE_WORK.map((item) => (
-            <ActiveWorkRow key={item.id} item={item} />
-          ))}
-        </div>
-      </m.section>
-
-      <m.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-        <h3 className="mb-5 text-lg font-medium">Work Experience</h3>
-        <div className="grid grid-cols-1 gap-4">
-          {WORK_EXPERIENCE.map(
-            ({
-              id,
-              title,
-              company,
-              start,
-              end,
-              description,
-              what_i_did,
-              link,
-            }) => (
+        <section id="intro" className={styles.intro} aria-label="Introduction">
+          <div className={styles.nameBlock}>
+            <svg
+              className={styles.inkMasks}
+              width="0"
+              height="0"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <defs>
+                {['greeting', 'first', 'surname', 'underline'].map((part) => (
+                  <mask
+                    key={part}
+                    id={`intro-${part}-ink`}
+                    maskUnits="objectBoundingBox"
+                    maskContentUnits="objectBoundingBox"
+                    x="0"
+                    y="0"
+                    width="1"
+                    height="1"
+                    style={{ maskType: 'alpha' }}
+                  >
+                    <path
+                      className={styles.inkStroke}
+                      data-ink-part={part}
+                      d={part === 'underline' ? 'M-0.1 0.5H1.1' : scribblePath}
+                      pathLength="1"
+                      fill="none"
+                      stroke="white"
+                      strokeWidth={part === 'underline' ? 2 : 0.09}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </mask>
+                ))}
+              </defs>
+            </svg>
+            <noscript>
+              <style>{`.${styles.inkStroke}{animation:none;stroke-dashoffset:0}`}</style>
+            </noscript>
+            <p
+              className={styles.greeting}
+              style={{ maskImage: 'url(#intro-greeting-ink)' }}
+            >
+              hey, I’m <span aria-hidden="true">↴</span>
+            </p>
+            <h1 className={styles.name}>
+              <span
+                className={styles.firstName}
+                style={{ maskImage: 'url(#intro-first-ink)' }}
+              >
+                Shanvit
+              </span>
+              <span
+                className={styles.surname}
+                style={{ maskImage: 'url(#intro-surname-ink)' }}
+              >
+                S Shetty<span className={styles.period}>.</span>
+              </span>
+            </h1>
+            <div className={styles.marks} aria-hidden="true">
               <div
-                key={id}
-                className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-px dark:bg-zinc-600/30"
-              >
-                <Spotlight
-                  className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
-                  size={64}
-                />
-                <div className="relative h-full w-full rounded-[15px] bg-white p-3 sm:p-4 dark:bg-zinc-950">
-                  <div className="flex flex-col">
-                    <div className="flex flex-row items-center justify-between gap-2">
-                      <h4 className="font-normal dark:text-zinc-100">
-                        {title}
-                      </h4>
-                      <a
-                        href={link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-zinc-700 dark:text-zinc-300"
-                      >
-                        {company}
-                      </a>
-                    </div>
-                    <div className="flex flex-col gap-1 pt-1 sm:flex-row sm:items-center sm:justify-between">
-                      <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                        {start} - {end}
-                      </p>
-                      <WorkExperienceDialog
-                        title={title}
-                        company={company}
-                        start={start}
-                        end={end}
-                        description={description}
-                      >
-                        <TextLoop>
-                          {what_i_did.map((item) => (
-                            <span
-                              key={item}
-                              className="wrap-break-word whitespace-normal"
-                            >
-                              {item}
-                            </span>
-                          ))}
-                        </TextLoop>
-                      </WorkExperienceDialog>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ),
-          )}
-        </div>
-      </m.section>
+                className={styles.stillMark}
+                style={{ maskImage: 'url(#intro-underline-ink)' }}
+              />
+            </div>
+            <p className={styles.nameNote}>
+              Building smarter, simpler systems.
+            </p>
+          </div>
 
-      <m.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-        <h3 className="mb-3 text-lg font-medium">Blogs</h3>
-        <div className="flex flex-col space-y-0">
-          <AnimatedBackground
-            enableHover
-            className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-900/80"
-            transition={{
-              type: 'spring',
-              bounce: 0,
-              duration: 0.2,
-            }}
-          >
-            {BLOG_POSTS.map((post) => (
-              <Link
-                key={post.uid}
-                className="-mx-3 rounded-xl px-3 py-3"
-                href={post.link}
-                data-id={post.uid}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="flex flex-col space-y-1">
-                  <div className="flex items-center justify-between gap-2">
-                    <h4 className="font-normal dark:text-zinc-100">
-                      {post.title}
-                    </h4>
-                    {post.date && (
-                      <span className="shrink-0 text-xs text-zinc-400 dark:text-zinc-500">
-                        {post.date}
-                      </span>
-                    )}
-                  </div>
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    {post.description}
-                  </p>
-                </div>
-              </Link>
-            ))}
-          </AnimatedBackground>
-        </div>
-      </m.section>
+          <div className={styles.about}>
+            <p className={styles.role}>
+              Front End engineer.
+              <span>Product at heart.</span>
+            </p>
+            <p className={styles.description}>
+              4+ years building and shipping web applications. From a blank
+              canvas to products people use.
+            </p>
+            <p className={styles.curiosity}>
+              Curious about how engineering shapes the way people find, use, and
+              grow with a product.
+            </p>
+            {EMAIL && (
+              <a className={styles.contact} href={`mailto:${EMAIL}`}>
+                Let’s build something
+                <ArrowUpRight aria-hidden="true" size={24} strokeWidth={1.5} />
+              </a>
+            )}
+          </div>
+        </section>
 
-      <m.section variants={VARIANTS_SECTION} transition={TRANSITION_SECTION}>
-        <h3 className="mb-5 text-lg font-medium">Connect</h3>
-        <p className="mb-5 text-zinc-600 dark:text-zinc-400">
-          Feel free to contact me at{' '}
-          <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>
-            {EMAIL}
-          </a>
-        </p>
-        <div className="flex flex-wrap items-center justify-start gap-3">
-          {SOCIAL_LINKS.map((link) => (
-            <MagneticSocialLink key={link.label} link={link.link}>
-              {link.label}
-            </MagneticSocialLink>
-          ))}
-        </div>
-      </m.section>
-    </m.main>
-  </LazyMotion>
-)
-
-export default Personal
+        <footer className={styles.pageNote}>
+          <p className={styles.current}>
+            <span className={styles.currentMark} aria-hidden="true">
+              ✳
+            </span>
+            Currently building at{' '}
+            <a
+              href={currentWork.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {currentWork.company} <span aria-hidden="true">↗</span>
+            </a>
+          </p>
+          <p className={styles.marginNote}>
+            A fresh page,
+            <br />
+            same curious mind.
+          </p>
+        </footer>
+      </div>
+      <IotricStory />
+    </main>
+  )
+}

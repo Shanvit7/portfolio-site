@@ -46,33 +46,6 @@
       }
     }
   },
-  "overrides": [
-    {
-      "includes": [
-        "components/atoms/animated-background.tsx",
-        "components/atoms/text-effect.tsx",
-        "components/atoms/morphing-dialog.tsx",
-        "components/signature.tsx"
-      ],
-      "linter": {
-        "rules": {
-          "suspicious": {
-            "noArrayIndexKey": "off",
-            "noExplicitAny": "off"
-          },
-          "style": {
-            "noNonNullAssertion": "off"
-          },
-          "correctness": {
-            "noUnsafeOptionalChaining": "off"
-          },
-          "performance": {
-            "noImgElement": "off"
-          }
-        }
-      }
-    }
-  ],
   "javascript": {
     "formatter": {
       "quoteStyle": "single",

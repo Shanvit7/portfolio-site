@@ -2,3 +2,6 @@ allowBuilds:
   esbuild: true
   msw: false
   sharp: false
+minimumReleaseAgeExclude:
+  - '@remotion/player@4.0.536'
+  - remotion@4.0.536
