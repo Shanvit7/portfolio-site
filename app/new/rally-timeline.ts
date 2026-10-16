@@ -31,6 +31,8 @@ export function rallyAt(frame: number) {
     ballX: missed ? 0.18 + 0.64 * t : fromRight ? x : 1 - x,
     ballY: missed ? 480 - 120 * t - 4 * 130 * t * (1 - t) : y,
     missed,
+    // Only once the ball is past the bat, not for the whole approaching turn.
+    angry: missed && t > 0.76,
     leftHit: hit(1),
     rightHit: hit(0),
     leftStep: Math.sin((f * Math.PI) / 52) * 9,

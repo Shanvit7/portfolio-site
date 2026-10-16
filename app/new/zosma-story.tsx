@@ -37,13 +37,10 @@ export function ZosmaStory({
               Now I take <span>the shot.</span>
             </h2>
             <p>
-              I joined as a Founding Engineer. Frontend is still home; now I
-              ship across web, desktop, and AI workflows.
+              I joined as a Founding Engineer. I still build interfaces, but now
+              I also own performance, SEO, offline workflows, and AI product
+              surfaces.
             </p>
-            <p>More ownership. Real users. A lot of different problems.</p>
-            <a className={styles.skipRally} href="#after-iotric">
-              Skip the shot ↓
-            </a>
           </div>
         </article>
         <article className={styles.rallyBeat}>
@@ -59,12 +56,12 @@ export function ZosmaStory({
               >
                 Foodstories ↗
               </a>
-              , I built and optimized the Next.js storefront serving 4K+ daily
-              and 70K+ weekly users.
+              , I shipped checkout, gifting, bulk orders, and personalized
+              hampers for 4K+ daily and 70K+ weekly users.
             </p>
             <p>
-              Checkout, gifting, bulk orders, and a personalized hamper builder.
-              Product analytics showed what happened after shipping.
+              SSR, ISR, and SSG brought Lighthouse to 98 and First Contentful
+              Paint below one second. Organic traffic grew 65% in three months.
             </p>
           </div>
         </article>
@@ -73,19 +70,20 @@ export function ZosmaStory({
             <p className={styles.date}>Then, handle what gets in the way</p>
             <h3>Systems that keep their footing.</h3>
             <p>
-              A vendor CRM connected Next.js and Fastify to SAP shipment data.
-              Legal Ops brought Kanban, RBAC, audit history, and PDF reports.
+              A Next.js + Fastify vendor CRM connected SAP shipment data. I also
+              built Legal Ops with Kanban, role-based access, audit history, and
+              six PDF reports.
             </p>
             <p>
-              I also built its offline-first PWA: queued updates, reconnect
-              sync, and an outbox scheduler for hearing notifications.
+              Its offline-first PWA queued edits, synced on reconnect, and
+              scheduled hearing notifications.
             </p>
           </div>
         </article>
         <article className={styles.rallyBeat}>
           <div className={styles.rallyCopy}>
             <p className={styles.date}>The next goal</p>
-            <h3>Make AI useful. Keep shipping.</h3>
+            <h3>Interfaces for AI.</h3>
             <p>
               On{' '}
               <a
@@ -95,19 +93,13 @@ export function ZosmaStory({
               >
                 Zosma Cowork ↗
               </a>
-              , I built agent chat infrastructure and authentication for 10+
-              model providers across React, Tauri, Rust, and Node.js.
+              , I built Next.js interfaces for an open-source AI coworker,
+              separating the product experience from the Hono agent runtime and
+              contributing to monorepo/application architecture migration.
             </p>
             <p>
-              Alongside that: agentic workflows, local LLM experiments, and{' '}
-              <a
-                href="https://github.com/zosmaai/zolorag"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                zolorag ↗
-              </a>
-              , a fully local PDF chat app.
+              On Zosma AI’s site: better Core Web Vitals, less JavaScript, and
+              Grafana Faro observability.
             </p>
           </div>
         </article>

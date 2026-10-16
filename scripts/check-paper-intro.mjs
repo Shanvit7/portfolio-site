@@ -14,6 +14,11 @@ assert.doesNotMatch(paperPage, /<canvas[\s>]/, 'No floating glyph canvas')
 assert.equal((paperPage.match(/<h1[\s>]/g) || []).length, 1, 'One main heading')
 assert.match(paperPage, /Front End engineer\./)
 assert.match(paperPage, /Product at heart\./)
+assert.match(paperPage, /From a blank canvas to products people use\./)
+assert.match(paperPage, /Curious about how engineering shapes/)
+assert.match(paperPage, /70K\+ weekly/)
+assert.match(paperPage, /under 1s/)
+assert.match(paperPage, /65% in three months/)
 assert.doesNotMatch(paperPage, /name="robots" content="noindex, nofollow"/)
 assert.match(paperPage, /rel="canonical" href="[^"]*\//)
 const favicon = await fetch(new URL('/favicon.ico', origin))
@@ -55,6 +60,42 @@ assert.match(
   /Finding my feet\./,
   'IoTric chapter available without JS',
 )
+assert.doesNotMatch(paperPage, /Skip to Mavonic|Skip to Zosma AI|Skip the shot/)
+assert.match(
+  paperPage,
+  /Skip to introduction/,
+  'Keyboard skip link remains available',
+)
+assert.doesNotMatch(
+  paperPage,
+  /zolorag/i,
+  'Removed project stays out of portfolio',
+)
+assert.match(paperPage, /Say hello on LinkedIn/)
+assert.match(paperPage, /linkedin\.com\/in\/shanvit-shetty/)
+assert.match(paperPage, /Still building it alongside my role at Zosma AI/)
+assert.match(paperPage, /underlying systems that help/)
+assert.match(paperPage, /href="#writing"/)
+assert.match(paperPage, /Sometimes I write\./)
+assert.match(paperPage, /data-book-art/)
+assert.match(paperPage, /data-book-leaf/)
+assert.match(
+  paperPage,
+  /shanvitshetty\.substack\.com\/p\/emotion-is-a-missing-primitive-in/,
+)
+assert.match(paperPage, /substack\.com\/@shanvitshetty\/p-201153688/)
+assert.match(paperPage, /href="https:\/\/www\.enoobs\.com\/"/)
+assert.match(paperPage, /Hono agent runtime/)
+assert.doesNotMatch(paperPage, /across 10\+ model providers/)
+assert.ok(
+  paperPage.indexOf('id="writing"') < paperPage.indexOf('id="tabot"'),
+  'Writing follows sports; Tabot has its own section after it',
+)
+assert.match(paperPage, /70K\+ weekly users/)
+assert.match(paperPage, /github\.com\/Shanvit7\/tabot/)
+assert.match(paperPage, /shanvit7\.github\.io\/tabot/)
+const tabotPreview = await fetch(new URL('/tabot-preview.webp', origin))
+assert.equal(tabotPreview.status, 200, 'Tabot preview asset is available')
 assert.equal(
   (paperPage.match(/<article[\s>]/g) || []).length,
   12,

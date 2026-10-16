@@ -84,6 +84,10 @@ try {
     evaluate('document.fonts.ready.then(() => true)')
     scrollTo(0)
     const chapters = evaluate(`(() => {
+      for (const selector of ['#writing h2', '#writing h3', '#tabot h2', '#tabot img']) {
+        const box = document.querySelector(selector).getBoundingClientRect();
+        if (box.left < 0 || box.right > innerWidth) throw Error(selector + ' overflows');
+      }
       if (document.documentElement.scrollWidth > innerWidth) throw Error('Page overflow');
       if (document.querySelectorAll('article').length !== 12) throw Error('Missing story');
       return [...document.querySelectorAll('[data-basketball-story], #mavonic, #zosma')]
@@ -192,6 +196,47 @@ try {
     'none',
   )
   console.log('Phone → desktop resize resets hidden opacity and rail position')
+  const writing = evaluate(`(() => {
+    const rect = document.querySelector('#writing').getBoundingClientRect();
+    return {top:rect.top + scrollY, height:rect.height};
+  })()`)
+  const leaves = []
+  for (const progress of [0.15, 0.38, 0.85, 0.38]) {
+    scrollTo(writing.top - 900 * 0.9 + writing.height * progress)
+    leaves.push(
+      evaluate(`document.querySelector('[data-book-leaf]').getAttribute('d')`),
+    )
+  }
+  assert.notEqual(leaves[0], leaves[1], 'Book leaf lifts with scrolling')
+  assert.notEqual(leaves[1], leaves[2], 'Book leaf turns onto the left page')
+  assert.equal(
+    leaves[1],
+    leaves[3],
+    'Reverse scroll restores the same leaf pose',
+  )
+  assert.match(
+    evaluate(
+      `getComputedStyle(document.querySelector('[data-motion]')).clipPath`,
+    ),
+    /inset/,
+    'Sports stage is vertically clipped before writing and Tabot',
+  )
+  const pageErrors = JSON.parse(browser('errors', '--json')).data.errors.map(
+    (error) => error.text ?? error.message ?? JSON.stringify(error),
+  )
+  assert.ok(
+    !pageErrors.some((error) => /hydrat|didn't match/i.test(error)),
+    `No hydration mismatch after the crayon book mounts: ${JSON.stringify(pageErrors)}`,
+  )
+  browser('scrollintoview', '#tabot')
+  browser(
+    'wait',
+    '--fn',
+    `document.querySelector('#tabot img').complete && document.querySelector('#tabot img').naturalWidth > 0`,
+  )
+  console.log(
+    'Writing: reversible crayon page turn; both essays and Tabot fit; preview loads',
+  )
   browser('set', 'viewport', '390', '844')
   browser('set', 'media', 'light', 'reduced-motion')
   browser(
@@ -207,6 +252,27 @@ try {
     'none',
   )
   assert.ok(evaluate(`document.documentElement.scrollWidth <= innerWidth`))
+  const reducedBook = evaluate(
+    `document.querySelector('[data-book-leaf]').getAttribute('d')`,
+  )
+  browser('scrollintoview', '#writing')
+  assert.equal(
+    evaluate(`document.querySelector('[data-book-leaf]').getAttribute('d')`),
+    reducedBook,
+    'Reduced-motion book never scrubs',
+  )
+  assert.equal(
+    evaluate(
+      `getComputedStyle(document.querySelector('[class*=bookSticky]')).position`,
+    ),
+    'static',
+  )
+  assert.equal(
+    evaluate(
+      `document.querySelectorAll('#writing a[href*="substack"]').length`,
+    ),
+    2,
+  )
   assert.ok(
     evaluate(
       `[...document.querySelectorAll('[class*=copyStage]')].every(e => getComputedStyle(e).opacity === '1')`,

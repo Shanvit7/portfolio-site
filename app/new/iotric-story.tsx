@@ -57,7 +57,6 @@ export function IotricStory() {
           <p>
             Scroll to follow the play <span aria-hidden="true">↘</span>
           </p>
-          <a href="#mavonic">Skip to Mavonic ↓</a>
         </div>
       </header>
 
@@ -144,9 +143,17 @@ export function IotricStory() {
                 to owning it.
               </h3>
               <p>
-                At Enoobs, a social platform for gamers, I led the Next.js
-                frontend, mentored two interns, and worked with product and
-                design to ship features.
+                At{' '}
+                <a
+                  href="https://www.enoobs.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Enoobs ↗
+                </a>
+                , a social platform for gamers, I led the Next.js frontend,
+                mentored an intern, and worked with product and design to ship
+                features.
               </p>
               <p>
                 I also published{' '}
@@ -178,8 +185,10 @@ export function IotricStory() {
       </div>
 
       <div id="after-iotric" tabIndex={-1} className={styles.outro}>
-        <p>Still frontend at heart. Still taking the shot.</p>
-        <a href="#intro">Back to the introduction ↑</a>
+        <p>Still building interfaces for underlying systems that help.</p>
+        <a href="#writing">
+          A different kind of page <span aria-hidden="true">↓</span>
+        </a>
       </div>
     </div>
   )

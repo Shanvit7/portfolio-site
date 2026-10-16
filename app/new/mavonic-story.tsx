@@ -43,11 +43,9 @@ export function MavonicStory({
               >
                 PropertyGuru ↗
               </a>
-              : Next.js + Strapi, serving 10K+ daily visitors.
+              , I improved listings for 10K+ daily visitors, cutting load time
+              from ~10 seconds to under 1 second.
             </p>
-            <a className={styles.skipRally} href="#zosma">
-              Skip to Zosma AI ↓
-            </a>
           </div>
         </article>
         <article className={styles.rallyBeat}>
@@ -55,13 +53,12 @@ export function MavonicStory({
             <p className={styles.date}>Backend · Returning the serve</p>
             <h3>Past the interface.</h3>
             <p>
-              Strapi APIs, role-based access, lead assignment, and salesperson
-              follow-ups. I worked on SQL queries and backend optimizations,
-              too.
+              I built role-based lead assignment and follow-up workflows for
+              Realtor Leads, and contributed to SQL/query optimizations.
             </p>
             <p>
-              Back on the frontend, I moved key PropertyGuru pages from
-              request-time SSR to SSG + ISR.
+              For PropertyGuru, I moved listing pages from request-time SSR to
+              SSG + ISR, bringing load time below one second.
             </p>
           </div>
         </article>
@@ -101,10 +98,6 @@ export function MavonicStory({
               </a>{' '}
               from scratch: a mobile-first student–mentor platform with Next.js,
               Supabase, and TanStack Query.
-            </p>
-            <p>
-              Backend to AI, then back to what people needed on screen. That was
-              my Mavonic rally.
             </p>
           </div>
         </article>

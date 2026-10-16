@@ -72,11 +72,13 @@ function BenderArt({
   hit,
   step,
   compact,
+  angry,
 }: {
   x: number
   hit: number
   step: number
   compact: boolean
+  angry: boolean
 }) {
   const scale = compact ? 0.98 : 1
   return (
@@ -189,16 +191,52 @@ function BenderArt({
         d="M66 40Q99 31 136 41L148 51L142 71Q107 82 66 70Z"
         fill="#29383e"
       />
-      <ellipse cx="90" cy="55" rx="16" ry="15" fill="#eee6b1" stroke="none" />
-      <ellipse cx="123" cy="56" rx="16" ry="15" fill="#eee6b1" stroke="none" />
+      <ellipse
+        cx="90"
+        cy={angry ? 61 : 55}
+        rx="16"
+        ry={angry ? 9 : 15}
+        fill="#eee6b1"
+        stroke="none"
+      />
+      <ellipse
+        cx="123"
+        cy={angry ? 61 : 56}
+        rx="16"
+        ry={angry ? 9 : 15}
+        fill="#eee6b1"
+        stroke="none"
+      />
       <path
-        d="M91 48H99V59H91ZM124 49H132V60H124Z"
+        d={
+          angry
+            ? 'M91 59H99V67H91ZM124 59H132V67H124Z'
+            : 'M91 48H99V59H91ZM124 49H132V60H124Z'
+        }
         fill="#263138"
         stroke="none"
       />
-      <path d="M73 82Q103 77 130 81V99Q103 105 73 99Z" fill="#eee6bd" />
+      {angry && (
+        <path
+          d="M74 40H106V57L74 51ZM107 40H139V51L107 57Z"
+          fill="#29383e"
+          stroke="none"
+        />
+      )}
       <path
-        d="M74 90H129M83 81V100M94 80V102M105 80V102M116 80V101M126 81V100"
+        d={
+          angry
+            ? 'M68 81Q103 75 136 81V101Q103 108 68 102Z'
+            : 'M73 82Q103 77 130 81V99Q103 105 73 99Z'
+        }
+        fill="#eee6bd"
+      />
+      <path
+        d={
+          angry
+            ? 'M69 90H135M78 81V101M89 79V104M100 79V104M111 79V104M122 80V103M132 81V101'
+            : 'M74 90H129M83 81V100M94 80V102M105 80V102M116 80V101M126 81V100'
+        }
         fill="none"
         stroke="#6e7772"
         strokeWidth="1.7"
@@ -301,6 +339,7 @@ function RallyPlayerArt({
   step,
   color,
   compact,
+  angry = false,
 }: {
   frame: number
   x: number
@@ -309,9 +348,13 @@ function RallyPlayerArt({
   step: number
   color: string
   compact: boolean
+  angry?: boolean
 }) {
   const scale = compact ? 0.98 : 1
-  if (flip) return <BenderArt x={x} hit={hit} step={step} compact={compact} />
+  if (flip)
+    return (
+      <BenderArt x={x} hit={hit} step={step} compact={compact} angry={angry} />
+    )
   const arms = rallyArmsAt(frame)
   return (
     <g
@@ -570,6 +613,7 @@ export function RallyArt({
           step={pose.rightStep}
           color="#b83b31"
           compact={compact}
+          angry={pose.angry}
         />
         <g fill="none" stroke="#333f5b" strokeWidth="13">
           <path

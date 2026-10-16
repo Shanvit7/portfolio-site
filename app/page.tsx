@@ -1,9 +1,17 @@
 import { ArrowUpRight } from 'lucide-react'
 import type { Metadata } from 'next'
 import { Patrick_Hand, Rubik_Dirt } from 'next/font/google'
-import { EMAIL, GITHUB_URL, WORK_EXPERIENCE } from '@/lib/constants'
+import Image from 'next/image'
+import {
+  BLOG_POSTS,
+  EMAIL,
+  GITHUB_URL,
+  LINKEDIN_URL,
+  WORK_EXPERIENCE,
+} from '@/lib/constants'
 import { IotricStory } from './new/iotric-story'
 import styles from './new/paper.module.css'
+import { WritingStory } from './new/writing-story'
 
 const crayon = Rubik_Dirt({
   weight: '400',
@@ -22,7 +30,7 @@ const handwriting = Patrick_Hand({
 export const metadata: Metadata = {
   title: 'Shanvit S Shetty - Front End Engineer',
   description:
-    'Shanvit S Shetty. Front End engineer, product at heart. Building and shipping web applications from scratch.',
+    'Frontend engineer. Built for 70K+ weekly users, cut property-listing load time from ~10s to under 1s, and helped grow organic traffic 65% in three months. Building Tabot alongside my day job.',
   alternates: { canonical: '/' },
 }
 
@@ -54,9 +62,10 @@ export default function PaperIntro() {
                 GitHub <ArrowUpRight aria-hidden="true" size={18} />
               </a>
             )}
-            {EMAIL && (
-              <a href={`mailto:${EMAIL}`}>
-                Say hello <span aria-hidden="true">↗</span>
+            {LINKEDIN_URL && (
+              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
+                Say hello on LinkedIn{' '}
+                <ArrowUpRight aria-hidden="true" size={18} />
               </a>
             )}
           </nav>
@@ -177,6 +186,68 @@ export default function PaperIntro() {
         </footer>
       </div>
       <IotricStory />
+      <WritingStory>
+        <ol className={styles.postList}>
+          {BLOG_POSTS.map((post) => (
+            <li key={post.uid}>
+              <a href={post.link} target="_blank" rel="noopener noreferrer">
+                <h3>{post.title}</h3>
+                <span>
+                  Read on Substack <ArrowUpRight aria-hidden="true" size={20} />
+                </span>
+              </a>
+              <p>{post.description}</p>
+            </li>
+          ))}
+        </ol>
+      </WritingStory>
+      <section
+        className={styles.project}
+        id="tabot"
+        aria-labelledby="tabot-title"
+      >
+        <div className={styles.projectCopy}>
+          <p className={styles.projectLabel}>On the side. Still building.</p>
+          <h2 id="tabot-title">Tabot</h2>
+          <p>
+            I built an open-source, local-first Chrome extension and dashboard
+            that turns browser activity into session timelines, domain history,
+            navigation paths, and recurring-visit patterns.
+          </p>
+          <p>
+            Optional MCP/ChatGPT access answers questions over filtered results.
+            Raw browsing history stays on-device.
+          </p>
+          <p className={styles.projectStatus}>
+            Still building it alongside my role at Zosma AI.
+          </p>
+          <div className={styles.projectLinks}>
+            <a
+              href="https://github.com/Shanvit7/tabot"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              GitHub <ArrowUpRight aria-hidden="true" size={18} />
+            </a>
+            <a
+              href="https://shanvit7.github.io/tabot/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Live demo <ArrowUpRight aria-hidden="true" size={18} />
+            </a>
+          </div>
+        </div>
+        <figure className={styles.projectPreview}>
+          <Image
+            src="/tabot-preview.webp"
+            alt="Tabot browser extension showing a browsing session timeline"
+            width={960}
+            height={540}
+            sizes="(max-width: 800px) 100vw, 52vw"
+          />
+        </figure>
+      </section>
     </main>
   )
 }

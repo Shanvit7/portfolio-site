@@ -50,22 +50,13 @@
   margin: 0 0 8px;
 }
 
-.instructions a,
-.outro a,
-.skipRally {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
-  color: var(--blue);
-  text-decoration: underline;
-  text-underline-offset: 5px;
-}
-
 .track {
   display: grid;
   grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
   gap: 0 clamp(32px, 5vw, 80px);
   position: relative;
+  /* Keep full-width art, but stop the negative-margin sticky stage at the chapter boundary. */
+  clip-path: inset(0 -100vw);
 }
 
 .court {
@@ -318,13 +309,20 @@
 }
 
 .outro p {
+  max-width: 38ch;
   margin: 0;
   color: var(--blue);
   font-size: 1.75rem;
 }
 
 .outro a {
-  font-size: 1.125rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 44px;
+  color: var(--red);
+  text-decoration: underline;
+  text-underline-offset: 5px;
 }
 
 @media (max-width: 900px) {
