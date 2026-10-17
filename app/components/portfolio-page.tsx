@@ -172,7 +172,11 @@ const PaperIntro = () => {
                   <span>Read online</span>
                   <ArrowUpRight aria-hidden="true" size={17} />
                 </a>
-                <a className={styles.resumeLink} href="/resume.pdf" download>
+                <a
+                  className={styles.resumeLink}
+                  href="/resume.pdf"
+                  download="shanvit_shetty_resume.pdf"
+                >
                   <Download aria-hidden="true" size={17} />
                   <span>Download PDF</span>
                 </a>
