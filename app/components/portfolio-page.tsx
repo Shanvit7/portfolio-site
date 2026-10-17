@@ -149,7 +149,7 @@ const PaperIntro = () => {
             </p>
             <p className={styles.description}>
               4+ years building and shipping web applications. From a blank
-              canvas to products people use.
+              canvas to production-ready experiences.
             </p>
             <p className={styles.curiosity}>
               Curious about how engineering shapes the way people find, use, and
