@@ -232,6 +232,80 @@
   color: var(--muted);
 }
 
+.resumeActions {
+  position: relative;
+  width: fit-content;
+  max-width: 100%;
+  margin-top: 24px;
+}
+
+.resumePrompt {
+  margin: 0 0 10px;
+  color: var(--red);
+  font-size: 1.125rem;
+}
+
+.resumeChoices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.resumeLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 8px 12px;
+  color: var(--ink);
+  background: rgb(255 255 255 / 70%);
+  border: 1px solid var(--blue);
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.resumeLink:hover {
+  background: color-mix(in oklab, var(--blue) 12%, white);
+  transform: translateY(-2px);
+}
+
+.resumeLink:active {
+  transform: translateY(0);
+}
+
+.resumeSpark {
+  position: absolute;
+  top: -10px;
+  right: -16px;
+  color: var(--green);
+  font-size: 1.125rem;
+  pointer-events: none;
+  animation: resume-spark 5s ease-in-out infinite;
+}
+
+@keyframes resume-spark {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: rotate(0deg) scale(0.9);
+  }
+  50% {
+    opacity: 1;
+    transform: rotate(35deg) scale(1.08);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resumeLink,
+  .resumeSpark {
+    animation: none;
+    transition: none;
+  }
+}
+
 .contactGroup {
   margin-top: 28px;
 }

@@ -1,4 +1,4 @@
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, Download } from 'lucide-react'
 import { Patrick_Hand } from 'next/font/google'
 import localFont from 'next/font/local'
 import Image from 'next/image'
@@ -155,6 +155,29 @@ const PaperIntro = () => {
               Curious about how engineering shapes the way people find, use, and
               grow with a product.
             </p>
+            <div className={styles.resumeActions}>
+              <p className={styles.resumePrompt}>
+                Skip the theatrics. My résumé: take a look. Take a copy.
+              </p>
+              <span className={styles.resumeSpark} aria-hidden="true">
+                ✳
+              </span>
+              <div className={styles.resumeChoices}>
+                <a
+                  className={styles.resumeLink}
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>Read online</span>
+                  <ArrowUpRight aria-hidden="true" size={17} />
+                </a>
+                <a className={styles.resumeLink} href="/resume.pdf" download>
+                  <Download aria-hidden="true" size={17} />
+                  <span>Download PDF</span>
+                </a>
+              </div>
+            </div>
             {EMAIL && <ContactCopy email={EMAIL} />}
           </div>
         </section>
