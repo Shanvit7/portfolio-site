@@ -7,16 +7,23 @@ export const viewport: Viewport = {
   themeColor: '#ffffff',
 }
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+const metadataBase = (() => {
+  try {
+    return siteUrl ? new URL(siteUrl) : undefined
+  } catch {
+    return undefined
+  }
+})()
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://nim-fawn.vercel.app/'),
-  alternates: {
-    canonical: '/',
-  },
+  ...(metadataBase ? { metadataBase } : {}),
   title: {
-    default: 'Shanvit S Shetty - Front End Engineer',
-    template: '%s',
+    default: 'Shanvit S Shetty | Software Engineer',
+    template: '%s | Shanvit S Shetty',
   },
-  description: 'Building smarter, simpler systems.',
+  description:
+    'Software engineer building web products and exploring machine learning, LLMs, and agentic systems.',
 }
 
 const RootLayout = ({

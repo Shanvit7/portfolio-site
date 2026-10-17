@@ -2,6 +2,36 @@
 @plugin "@tailwindcss/typography";
 @custom-variant dark (&:is(.dark *));
 
+@theme {
+  --color-paper: oklch(1 0 0);
+  --color-ink: oklch(0.27 0.005 260);
+  --color-blue: oklch(0.46 0.2 265);
+  --color-red: oklch(0.5 0.17 29);
+  --color-muted: oklch(0.45 0.01 260);
+  --color-green: oklch(0.42 0.09 155);
+  --color-selection: oklch(0.9 0.06 90);
+  --font-crayon-display: var(--font-crayon), "Arial Black", sans-serif;
+  --text-copy: 1.25rem;
+  --text-copy--line-height: 1.5;
+  --text-small-copy: 1.125rem;
+  --text-small-copy--line-height: 1.5;
+}
+
+@theme inline {
+  --font-hand: var(--font-handwriting), "Segoe Print", cursive;
+  --font-crayon-display: var(--font-crayon), "Arial Black", sans-serif;
+}
+
+:root {
+  position: relative;
+  --paper: var(--color-paper);
+  --ink: var(--color-ink);
+  --blue: var(--color-blue);
+  --red: var(--color-red);
+  --muted: var(--color-muted);
+  --green: var(--color-green);
+}
+
 /*
   The default border color has changed to `currentColor` in Tailwind CSS v4,
   so we've added these compatibility styles to make sure everything still

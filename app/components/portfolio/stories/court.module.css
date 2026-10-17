@@ -1,0 +1,473 @@
+.chapter {
+  max-width: 1600px;
+  margin-inline: auto;
+  padding: 112px clamp(24px, 5vw, 80px) 72px;
+}
+
+.heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 40px;
+  margin-bottom: 32px;
+}
+
+.company {
+  color: var(--red);
+  margin: 0 0 16px;
+  font-size: var(--text-copy);
+}
+
+.heading h2,
+.rallyCopy h2 {
+  margin: 0;
+  color: var(--blue);
+  font-family: var(--font-crayon), sans-serif;
+  font-size: clamp(2.5rem, 4.6vw, 4rem);
+  font-weight: 400;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.heading h2 {
+  transform: rotate(-2deg);
+}
+
+.subtitle {
+  max-width: 36ch;
+  margin: 24px 0 0;
+  font-size: 1.375rem;
+}
+
+.instructions {
+  flex-shrink: 0;
+  font-size: 1.125rem;
+  color: var(--muted);
+}
+
+.instructions p {
+  margin: 0 0 8px;
+}
+
+.track {
+  display: grid;
+  grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr);
+  gap: 0 clamp(32px, 5vw, 80px);
+  position: relative;
+  /* Keep full-width art, but stop the negative-margin sticky stage at the chapter boundary. */
+  clip-path: inset(0 -100vw);
+}
+
+.court {
+  align-self: start;
+  min-width: 0;
+  margin: 0;
+}
+
+.art {
+  width: 100%;
+  aspect-ratio: 1000 / 840;
+  pointer-events: none;
+}
+
+.caption {
+  color: var(--muted);
+  font-size: 1rem;
+  padding-inline: 16px;
+}
+
+.story {
+  min-width: 0;
+}
+
+.beat {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-block: 40px;
+  max-width: 38ch;
+}
+
+.date {
+  margin: 0 0 18px;
+  color: var(--red);
+  font-size: 1.125rem;
+}
+
+.beat h3,
+.rallyCopy h3 {
+  margin: 0 0 24px;
+  font-family: var(--font-crayon), sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.875rem, 3vw, 2.75rem);
+  line-height: 1.2;
+  text-wrap: balance;
+  letter-spacing: -0.02em;
+}
+
+.beat > p:not(.date),
+.rallyCopy > p:not(.company, .date) {
+  margin: 0 0 18px;
+  font-size: var(--text-copy);
+  line-height: var(--text-copy--line-height);
+  text-wrap: pretty;
+}
+
+.beat .aside {
+  color: var(--blue);
+  transform: rotate(-2deg);
+}
+
+.beat a,
+.rallyCopy a {
+  color: var(--blue);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.track[data-motion="true"] {
+  display: block;
+}
+
+.track[data-motion="true"] .court {
+  position: sticky;
+  top: 0;
+  height: 100svh;
+  margin-bottom: -100svh;
+}
+
+.track[data-motion="true"] .art {
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+.track[data-motion="true"] .caption {
+  display: none;
+}
+
+.track[data-motion="true"] .story {
+  position: relative;
+  width: 34%;
+  margin-left: 66%;
+}
+
+.track[data-motion="true"] .beat {
+  min-height: 90svh;
+}
+
+.handoff {
+  display: none;
+}
+
+.track[data-motion="true"] .handoff {
+  display: block;
+  height: 240svh;
+  pointer-events: none;
+}
+
+.mavonic {
+  position: relative;
+  grid-column: 1 / -1;
+  margin-top: 112px;
+  scroll-margin-top: 24px;
+}
+
+.rallyStill {
+  margin: 0 0 40px;
+  width: 100%;
+  aspect-ratio: 1440 / 820;
+}
+
+.penaltyStill {
+  margin: 0 0 40px;
+}
+
+.penaltyStill > svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1200 / 980;
+}
+
+.track[data-motion="true"] .penaltyStill {
+  display: none;
+}
+
+.rallyBeat {
+  padding-block: 32px;
+}
+
+.rallyCopy {
+  max-width: 70ch;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.rallyCopy h2 {
+  margin-bottom: 20px;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.rallyCopy h2 span {
+  color: var(--red);
+  white-space: nowrap;
+}
+
+.rallyCopy h3 {
+  color: var(--blue);
+}
+
+.track[data-motion="true"] .mavonic {
+  position: relative;
+  margin-top: 0;
+}
+
+.track[data-motion="true"] .rallyStill {
+  display: none;
+}
+
+.rallyRunway,
+.finalHold {
+  display: none;
+}
+
+.track[data-motion="true"] .finalHold {
+  display: block;
+  height: 100svh;
+}
+
+.track[data-motion="true"] .copyStage {
+  position: sticky;
+  top: 0;
+  height: max(44svh, 360px);
+  margin-bottom: min(-44svh, -360px);
+  overflow: clip;
+}
+
+/* Shared with footballViewport(): copy always owns the paper lane above the stadium. */
+.track[data-motion="true"] .footballChapter .copyStage {
+  top: 0;
+  z-index: 1;
+  height: max(34svh, 320px);
+  margin-bottom: min(-34svh, -320px);
+  background: var(--paper) url("/new/paper.png") repeat;
+}
+
+.track[data-motion="true"] .copyRail {
+  display: flex;
+  width: 100%;
+  will-change: transform;
+}
+
+.track[data-motion="true"] .rallyBeat {
+  flex: 0 0 100%;
+  min-width: 0;
+  padding: 4px 16px 0;
+}
+
+.track[data-motion="true"] .rallyCopy .company,
+.track[data-motion="true"] .rallyCopy .date {
+  margin-bottom: 8px;
+}
+
+.track[data-motion="true"] .rallyCopy h2,
+.track[data-motion="true"] .rallyCopy h3 {
+  margin-bottom: 12px;
+}
+
+.track[data-motion="true"] .rallyRunway {
+  display: block;
+  height: 400svh;
+}
+
+/* Basketball keeps its vertical desktop story; phones reuse the horizontal rail. */
+.track[data-motion="true"] .basketballStory .copyStage {
+  position: static;
+  height: auto;
+  margin-bottom: 0;
+  overflow: visible;
+}
+
+.track[data-motion="true"] .basketballStory .copyRail {
+  display: block;
+  will-change: auto;
+}
+
+.track[data-motion="true"] .basketballStory .rallyRunway {
+  display: none;
+}
+
+.outro {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  padding-top: 64px;
+  scroll-margin-top: 32px;
+}
+
+.outro p {
+  max-width: 38ch;
+  margin: 0;
+  color: var(--blue);
+  font-size: 1.75rem;
+}
+
+.outro a {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  min-height: 44px;
+  color: var(--red);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+}
+
+@media (max-width: 900px) {
+  .heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .instructions {
+    display: flex;
+    align-items: baseline;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .track {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 700px) {
+  .chapter {
+    padding: 80px 24px 48px;
+  }
+
+  .company {
+    font-size: 1.125rem;
+  }
+
+  .heading h2,
+  .rallyCopy h2 {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+  }
+
+  .subtitle {
+    font-size: var(--text-copy);
+  }
+
+  .instructions {
+    gap: 4px 20px;
+    font-size: 1rem;
+  }
+
+  .track {
+    display: block;
+  }
+
+  .track[data-motion="true"] .story {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .track[data-motion="true"] .basketballStory .copyStage {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    margin-bottom: -100svh;
+    overflow: clip;
+  }
+
+  .track[data-motion="true"] .basketballStory .copyRail {
+    display: flex;
+    padding-top: 42svh;
+    will-change: transform;
+  }
+
+  .track[data-motion="true"] .basketballStory .rallyRunway {
+    display: block;
+  }
+
+  .track[data-motion="true"] .basketballStory .beat {
+    flex: 0 0 100%;
+    min-width: 0;
+    max-width: none;
+    min-height: 0;
+    padding: 0 4px 24px;
+    justify-content: flex-start;
+  }
+
+  .track[data-motion="true"] .basketballStory .beat > p:not(.date) {
+    font-size: 1.0625rem;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .track[data-motion="true"] .basketballStory .date {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .beat {
+    max-width: 44ch;
+    padding-block: 32px;
+  }
+
+  .beat h3,
+  .rallyCopy h3 {
+    font-size: clamp(1.75rem, 7vw, 2.5rem);
+    margin-bottom: 20px;
+  }
+
+  .rallyCopy > p:not(.company, .date) {
+    font-size: 1.125rem;
+    line-height: 1.45;
+    margin-bottom: 14px;
+  }
+
+  .rallyCopy .company,
+  .rallyCopy .date {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .footballChapter .rallyCopy > p:not(.company, .date) {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 8px;
+  }
+
+  .footballChapter .rallyCopy h2 {
+    font-size: clamp(1.75rem, 7vw, 3rem);
+  }
+
+  .track[data-motion="true"] .footballChapter .rallyBeat {
+    padding-inline: 8px;
+  }
+
+  .penaltyStill > svg {
+    aspect-ratio: 700 / 980;
+  }
+
+  .outro {
+    padding-top: 40px;
+  }
+
+  .outro p {
+    font-size: 1.5rem;
+  }
+}
+
+/* Default layout is compact and readable before hydration and without JavaScript. */
+@media (prefers-reduced-motion: reduce), (max-height: 550px),
+  (max-height: 650px) and (orientation: landscape) {
+  .instructions p {
+    display: none;
+  }
+}
