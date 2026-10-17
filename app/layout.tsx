@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { WEBSITE_URL } from '@/lib/constants'
 import './globals.css'
 
 export const viewport: Viewport = {
@@ -7,10 +8,9 @@ export const viewport: Viewport = {
   themeColor: '#ffffff',
 }
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
 const metadataBase = (() => {
   try {
-    return siteUrl ? new URL(siteUrl) : undefined
+    return new URL(WEBSITE_URL)
   } catch {
     return undefined
   }

@@ -50,7 +50,11 @@ for (const [width, height] of [
   [700, 660],
 ]) {
   const viewport = footballViewport(height)
-  assert.ok(viewport.top >= 320, 'Night artwork stays below the job copy')
+  assert.equal(
+    viewport.top,
+    Math.max(height * 0.34, 380),
+    'Night artwork reserves enough room for the job copy',
+  )
   const point = penaltyScreenBallAt(0, width, viewport.height)
   const landing = pitchHandoffAt(PITCH_HANDOFF_FRAMES, width, height)
   close(landing.x, point.x, 'Handoff meets illustrated ball x')

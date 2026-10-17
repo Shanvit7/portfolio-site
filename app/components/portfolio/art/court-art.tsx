@@ -27,7 +27,7 @@ export const CourtArt = ({
       <defs>
         <mask id={`${id}-wax`} style={{ maskType: 'luminance' }}>
           <image
-            href="/new/wax-grain.png"
+            href="/portfolio/textures/wax-grain.png"
             x="0"
             y="-80"
             width="1000"

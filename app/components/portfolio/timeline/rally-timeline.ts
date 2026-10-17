@@ -232,7 +232,7 @@ export const penaltyAt = (frame: number) => {
 }
 
 export const footballViewport = (height: number) => {
-  const top = Math.max(height * 0.34, 320)
+  const top = Math.max(height * 0.34, 380)
   return { top, height: Math.max(1, Math.round(height - top)) }
 }
 

@@ -1,34 +1,67 @@
 import type { Metadata } from 'next'
 import PaperIntro from '@/components/portfolio-page'
+import { GITHUB_URL, LINKEDIN_URL, WEBSITE_URL } from '@/lib/constants'
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL
+const title = 'Shanvit S Shetty — Frontend Engineer & Product Builder'
+const description =
+  'Frontend engineer with 4+ years building web products. Improved property listings serving 10K+ daily visitors from ~10s to under 1s, and helped grow organic traffic 65% in three months. Building at Zosma AI.'
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'ProfilePage',
+      '@id': `${WEBSITE_URL}/#profile`,
+      url: `${WEBSITE_URL}/`,
+      name: title,
+      mainEntity: { '@id': `${WEBSITE_URL}/#person` },
+    },
+    {
+      '@type': 'Person',
+      '@id': `${WEBSITE_URL}/#person`,
+      name: 'Shanvit S Shetty',
+      url: `${WEBSITE_URL}/`,
+      jobTitle: 'Frontend Engineer',
+      description,
+      sameAs: [GITHUB_URL, LINKEDIN_URL].filter(Boolean),
+      worksFor: {
+        '@type': 'Organization',
+        '@id': `${WEBSITE_URL}/#zosma-ai`,
+        name: 'Zosma AI',
+        url: 'https://zosma.ai',
+      },
+    },
+  ],
+}
 
 export const metadata: Metadata = {
-  title: 'Shanvit S Shetty | Software Engineer',
-  description:
-    'Frontend engineer. Built for 70K+ weekly users, cut property-listing load time from ~10s to under 1s, and helped grow organic traffic 65% in three months. Building Tabot alongside my day job.',
-  ...(siteUrl
-    ? {
-        alternates: { canonical: '/' },
-        openGraph: {
-          type: 'website',
-          url: '/',
-          title: 'Shanvit S Shetty | Software Engineer',
-          description:
-            'Frontend engineer building products used by 70K+ people each week. Currently building Tabot alongside my day job.',
-        },
-      }
-    : {}),
+  title,
+  description,
+  alternates: { canonical: WEBSITE_URL },
+  openGraph: {
+    type: 'website',
+    url: WEBSITE_URL,
+    title,
+    description,
+  },
   twitter: {
     card: 'summary',
-    title: 'Shanvit S Shetty | Software Engineer',
-    description:
-      'Frontend engineer building products used by 70K+ people each week. Currently building Tabot alongside my day job.',
+    title,
+    description,
   },
 }
 
-const HomePage = () => {
-  return <PaperIntro />
-}
+const HomePage = () => (
+  <>
+    <script
+      type="application/ld+json"
+      // biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD is serialized and escapes script-closing markup.
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+      }}
+    />
+    <PaperIntro />
+  </>
+)
 
 export default HomePage

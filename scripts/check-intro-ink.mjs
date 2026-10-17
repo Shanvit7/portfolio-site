@@ -30,6 +30,12 @@ assert.match(
   /animation-timing-function: cubic-bezier/,
   'Stroke accelerates and settles smoothly',
 )
+assert.match(timing, /animation-delay: 0\.65s/, 'No multi-second LCP delay')
+assert.match(
+  css,
+  /content-visibility: auto/,
+  'Offscreen sections skip rendering',
+)
 assert.match(
   css,
   /@media \(prefers-reduced-motion: reduce\)\s*\{\s*\.inkStroke\s*\{\s*animation: none/,

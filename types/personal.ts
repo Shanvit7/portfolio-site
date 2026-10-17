@@ -16,17 +16,3 @@ export type BlogPost = {
   uid: string
   date?: string
 }
-
-export type ActiveWork = {
-  id: string
-  name: string
-  description: string
-  type?: 'OSS' | 'Work'
-  link: string
-  links?: { label: string; url: string }[]
-}
-
-export type SocialLink = {
-  label: string
-  link: string
-}

@@ -6,7 +6,6 @@ const robots = (): MetadataRoute.Robots => {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: '/private/',
     },
     sitemap: `${WEBSITE_URL}/sitemap.xml`,
   }

@@ -59,7 +59,7 @@ export const WritingStory = ({ children }: { children: ReactNode }) => {
             <defs>
               <mask id={`${id}-book-wax`} style={{ maskType: 'luminance' }}>
                 <image
-                  href="/new/wax-grain.png"
+                  href="/portfolio/textures/wax-grain.png"
                   width="600"
                   height="440"
                   preserveAspectRatio="none"

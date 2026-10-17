@@ -249,9 +249,9 @@
 .track[data-motion="true"] .footballChapter .copyStage {
   top: 0;
   z-index: 1;
-  height: max(34svh, 320px);
-  margin-bottom: min(-34svh, -320px);
-  background: var(--paper) url("/new/paper.png") repeat;
+  height: max(34svh, 380px);
+  margin-bottom: min(-34svh, -380px);
+  background: var(--paper) url("/portfolio/textures/paper.webp") repeat;
 }
 
 .track[data-motion="true"] .copyRail {

@@ -1,6 +1,8 @@
 import { ArrowUpRight } from 'lucide-react'
-import { Patrick_Hand, Rubik_Dirt } from 'next/font/google'
+import { Patrick_Hand } from 'next/font/google'
+import localFont from 'next/font/local'
 import Image from 'next/image'
+import { preload } from 'react-dom'
 import { ContactCopy } from '@/components/contact-copy'
 import { IotricStory } from '@/components/portfolio/stories/iotric-story'
 import styles from '@/components/portfolio/stories/paper.module.css'
@@ -13,9 +15,9 @@ import {
   WORK_EXPERIENCE,
 } from '@/lib/constants'
 
-const crayon = Rubik_Dirt({
+const crayon = localFont({
+  src: '../fonts/rubik-dirt-english.woff2',
   weight: '400',
-  subsets: ['latin'],
   variable: '--font-crayon',
   display: 'swap',
 })
@@ -35,11 +37,15 @@ const scribblePath = Array.from(
 ).join(' ')
 
 const PaperIntro = () => {
+  preload('/portfolio/textures/crayon-stroke.webp', {
+    as: 'image',
+    fetchPriority: 'high',
+  })
   const currentWork = WORK_EXPERIENCE[0]
 
   return (
     <main
-      className={`${styles.paper} ${crayon.variable} ${handwriting.variable} isolate min-h-svh bg-paper bg-[url('/new/paper.png')] bg-repeat [font-family:var(--font-handwriting),_Segoe_Print,cursive] text-[1.25rem] leading-[1.45] text-ink [color-scheme:light]`}
+      className={`${styles.paper} ${crayon.variable} ${handwriting.variable} isolate min-h-svh bg-paper bg-[url('/portfolio/textures/paper.webp')] bg-repeat [font-family:var(--font-handwriting),Segoe_Print,cursive] text-[1.25rem] leading-[1.45] text-ink scheme-light`}
     >
       <a className={styles.skipLink} href="#intro">
         Skip to introduction

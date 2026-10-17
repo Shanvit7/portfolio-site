@@ -116,7 +116,7 @@ const CourtComposition = ({
           <defs>
             <mask id={`${id}-pitch-wax`} style={{ maskType: 'luminance' }}>
               <image
-                href="/new/wax-grain.png"
+                href="/portfolio/textures/wax-grain.png"
                 width={screenWidth}
                 height={height}
                 preserveAspectRatio="none"

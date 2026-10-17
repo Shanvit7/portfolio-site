@@ -29,9 +29,10 @@ assert.deepEqual(
   [0, 0, 1, 0],
   'Screenshot-derived favicon is a valid ICO',
 )
-const legacyRoute = await fetch(new URL('/new', origin), { redirect: 'manual' })
-assert.equal(legacyRoute.status, 307, '/new redirects permanently to root')
-assert.equal(new URL(legacyRoute.headers.get('location'), origin).pathname, '/')
+const removedRoute = await fetch(new URL('/new', origin), {
+  redirect: 'manual',
+})
+assert.equal(removedRoute.status, 404, '/new is not a route')
 assert.match(paperPage, /stillMark/, 'Original crayon texture retained')
 for (const part of ['greeting', 'first', 'surname', 'underline']) {
   assert.match(
@@ -152,10 +153,14 @@ assert.match(
   /data-stadium-crowd="true"/,
   'Static night stadium and crowd available',
 )
-for (const asset of ['paper.png', 'crayon-stroke.png', 'wax-grain.png']) {
-  const response = await fetch(new URL(`/new/${asset}`, origin))
+for (const [asset, type] of [
+  ['paper.webp', 'image/webp'],
+  ['crayon-stroke.webp', 'image/webp'],
+  ['wax-grain.png', 'image/png'],
+]) {
+  const response = await fetch(new URL(`/portfolio/textures/${asset}`, origin))
   assert.equal(response.status, 200, asset)
-  assert.equal(response.headers.get('content-type'), 'image/png', asset)
+  assert.equal(response.headers.get('content-type'), type, asset)
 }
 assert.doesNotMatch(
   paperPage,
@@ -163,5 +168,5 @@ assert.doesNotMatch(
   'Player remains lazy, not SSR',
 )
 console.log(
-  'Paper portfolio checks passed at root; /new redirects; no legacy shell.',
+  'Paper portfolio checks passed; /new has no route; no legacy shell.',
 )

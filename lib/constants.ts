@@ -1,12 +1,9 @@
 // TYPES
-import type {
-  ActiveWork,
-  BlogPost,
-  SocialLink,
-  WorkExperience,
-} from '@/types/personal'
+import type { BlogPost, WorkExperience } from '@/types/personal'
 
-export const WEBSITE_URL = process.env.WEBSITE_URL as string
+export const WEBSITE_URL = (
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://shanvit.vercel.app'
+).replace(/\/+$/, '')
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
@@ -109,40 +106,6 @@ This internship laid the foundation for my full-time journey, teaching me the va
   },
 ]
 
-export const ACTIVE_WORK: ActiveWork[] = [
-  {
-    id: 'active-4',
-    name: 'Tabot',
-    description:
-      'Local-first Chrome extension that turns browser activity into session timelines, domain history, and recurring paths; optional MCP/ChatGPT answers questions over filtered results.',
-    type: 'OSS',
-    link: 'https://shanvit7.github.io/tabot/',
-    links: [
-      { label: 'GitHub', url: 'https://github.com/Shanvit7/tabot' },
-      { label: 'Live', url: 'https://shanvit7.github.io/tabot/' },
-    ],
-  },
-  {
-    id: 'active-2',
-    name: 'pi-llm-wiki',
-    description:
-      'Self-maintaining Obsidian-compatible knowledge base for pi — turns raw sources into an interlinked wiki over time. Reaching 500+ github stars',
-    type: 'OSS',
-    link: 'https://github.com/zosmaai/pi-llm-wiki',
-    links: [{ label: 'GitHub', url: 'https://github.com/zosmaai/pi-llm-wiki' }],
-  },
-  {
-    id: 'active-3',
-    name: 'zosma-cowork',
-    description: 'Web-based open-source AI coworker platform',
-    type: 'OSS',
-    link: 'https://github.com/zosmaai/zosma-cowork',
-    links: [
-      { label: 'GitHub', url: 'https://github.com/zosmaai/zosma-cowork' },
-    ],
-  },
-]
-
 export const BLOG_POSTS: BlogPost[] = [
   {
     title: 'Emotion Is a Missing Primitive in AI Memory',
@@ -167,37 +130,3 @@ export const GITHUB_URL = process.env.NEXT_PUBLIC_GITHUB_URL as string
 export const LINKEDIN_URL = process.env.NEXT_PUBLIC_LINKEDIN_URL as string
 
 export const EMAIL = process.env.NEXT_PUBLIC_EMAIL as string
-
-export const SOCIAL_LINKS: SocialLink[] = [
-  {
-    label: 'Email',
-    link: `mailto:${EMAIL}`,
-  },
-  {
-    label: 'LinkedIn',
-    link: process.env.NEXT_PUBLIC_LINKEDIN_URL as string,
-  },
-]
-
-export const PROFILE_LINKS: SocialLink[] = [
-  {
-    label: 'Github',
-    link: GITHUB_URL,
-  },
-  {
-    label: 'HackerRank',
-    link: process.env.NEXT_PUBLIC_HACKERRANK_URL as string,
-  },
-  {
-    label: 'LeetCode',
-    link: process.env.NEXT_PUBLIC_LEETCODE_URL as string,
-  },
-  {
-    label: 'Hugging Face',
-    link: process.env.NEXT_PUBLIC_HUGGINGFACE_URL as string,
-  },
-  {
-    label: 'Substack',
-    link: 'https://substack.com/@shanvitshetty',
-  },
-]

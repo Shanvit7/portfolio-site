@@ -305,7 +305,7 @@ export const FootballArt = ({
           style={{ maskType: 'luminance' }}
         >
           <image
-            href="/new/wax-grain.png"
+            href="/portfolio/textures/wax-grain.png"
             x={c - span / 2}
             y="-820"
             width={span}

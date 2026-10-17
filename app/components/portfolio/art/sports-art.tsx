@@ -52,7 +52,7 @@ export const SportsArt = ({
       <defs>
         <mask id={`${id}-ball-wax`} style={{ maskType: 'luminance' }}>
           <image
-            href="/new/wax-grain.png"
+            href="/portfolio/textures/wax-grain.png"
             width={width}
             height={height}
             preserveAspectRatio="none"

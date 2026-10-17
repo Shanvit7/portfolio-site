@@ -1,4 +1,6 @@
 {
   "$schema": "https://unpkg.com/knip@6/schema.json",
-  "ignore": [".agents/**"]
+  "entry": ["scripts/**/*.mjs"],
+  "ignore": [".agents/**"],
+  "ignoreBinaries": ["agent-browser"]
 }

@@ -1,4 +1,4 @@
-export const COURT_FRAMES = 481
+const COURT_FRAMES = 481
 export const COURT_FPS = 60
 
 const between = (frame: number, start: number, end: number) =>

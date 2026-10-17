@@ -28,6 +28,8 @@ const scrollTo = (y) => {
   if (delta)
     browser('scroll', delta > 0 ? 'down' : 'up', String(Math.abs(delta)))
   settle()
+  evaluate('document.fonts.ready.then(() => true)')
+  settle()
 }
 
 try {
@@ -36,7 +38,7 @@ try {
   const ink = evaluate(`(() => {
     const animations = document.getAnimations().filter(a => a.effect?.target?.dataset.inkPart);
     if (animations.length !== 4) throw Error('Four one-shot ink strokes expected');
-    return [0, 850, 1800, 2800].map(time => {
+    return [0, 250, 700, 1450].map(time => {
       animations.forEach(a => {a.pause(); a.currentTime = time});
       return {height:document.querySelector('h1').getBoundingClientRect().height,
         strokes:Object.fromEntries(animations.map(a => [a.effect.target.dataset.inkPart,
@@ -61,7 +63,7 @@ try {
     'Every stroke finishes fully visible',
   )
   console.log(
-    'Intro: sequential scribble masks finish in 2.65s, no layout shift',
+    'Intro: overlapping scribble masks finish in 1.4s, no layout shift',
   )
   for (const [width, height] of [
     [320, 568],
@@ -141,7 +143,7 @@ try {
         )
         assert.ok(
           panel.bottom <= panel.laneBottom + 1,
-          `${width}: text clipped ${JSON.stringify(panel)}`,
+          `${width}×${height}: chapter ${chapterIndex}, panel ${index} clipped ${JSON.stringify(panel)}`,
         )
         assert.ok(
           Math.abs(panel.laneTop) < 1 && panel.opacity === 1,

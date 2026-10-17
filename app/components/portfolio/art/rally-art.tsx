@@ -545,7 +545,7 @@ export const RallyArt = ({
       <defs>
         <mask id={`${id}-rally-wax`} style={{ maskType: 'luminance' }}>
           <image
-            href="/new/wax-grain.png"
+            href="/portfolio/textures/wax-grain.png"
             width={width}
             height="820"
             preserveAspectRatio="none"
