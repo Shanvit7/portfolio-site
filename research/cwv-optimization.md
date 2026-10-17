@@ -26,6 +26,12 @@ Before the resource preload, applied-throttling run was 94 / 2.970s LCP. Final a
 
 The methods disagree. Keep both results visible; deploy and collect field data before declaring CWV fixed. Default simulated LCP remains poor. Server remains statically prerendered; no caching layer or additional animation framework added.
 
+## Live production diagnosis (2026-10-17)
+
+Three fresh Lighthouse 12.8.2 mobile `simulate` runs on `https://shanvit.vercel.app/` scored **84, 87, 90** (median 87). LCP was **4.139, 4.084, 3.643s**; CLS 0 and TBT 9–16ms. Confirms score can cross 90 on a single run, but not consistently. In the 87-point run, LCP element is the intro's `.stillMark` underline. Lighthouse marked request discoverable, high priority, and not lazy. Its run-3 phase breakdown was TTFB 643ms, load delay 816ms, resource load 1215ms, render delay 970ms. This is lab simulation, not Vercel's actual server response (the report's server audit was ~7ms).
+
+Other audit leads: render-blocking CSS estimated 90ms; unused JS estimated 79KiB / 300ms. Neither is proven to be the dominant fix. The 240KB display font is already preloaded. Tested `next/font/local preload:false` locally: score stayed 83, LCP about 4.14–4.22s; font still requested at very high priority later. Reverted because no measured win. Don't drop the visual font or animation based on guesswork. Next experiment should target the LCP render/load phases and possible initial client JS cost, with matched repeated live/deploy runs; no tested source change here clears that bar.
+
 ## Reproduce
 
 ```bash
