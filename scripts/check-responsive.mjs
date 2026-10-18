@@ -36,13 +36,18 @@ try {
   browser('open', origin)
   evaluate('document.fonts.ready.then(() => true)')
   const ink = evaluate(`(() => {
-    const animations = document.getAnimations().filter(a => a.effect?.target?.dataset.inkPart);
-    if (animations.length !== 4) throw Error('Four one-shot ink strokes expected');
+    const parts = [...document.querySelectorAll('[data-ink-part]')];
+    parts.forEach(e => { e.style.animation = 'none' });
+    void document.querySelector('h1').offsetHeight;
+    parts.forEach(e => { e.style.animation = '' });
+    const animations = parts.flatMap(e => e.getAnimations());
+    if (animations.length !== 4) throw Error('Four one-shot ink reveals expected');
     return [0, 250, 700, 1450].map(time => {
       animations.forEach(a => {a.pause(); a.currentTime = time});
       return {height:document.querySelector('h1').getBoundingClientRect().height,
         strokes:Object.fromEntries(animations.map(a => [a.effect.target.dataset.inkPart,
-          parseFloat(getComputedStyle(a.effect.target).strokeDashoffset)]))};
+          a.effect.getComputedTiming().progress])),
+        clips:parts.map(e => getComputedStyle(e).clipPath)};
     });
   })()`)
   assert.ok(
@@ -53,17 +58,17 @@ try {
     ink[1].strokes.first > 0 && ink[1].strokes.first < 1,
     'First name is scribbled progressively',
   )
-  assert.equal(ink[1].strokes.surname, 1, 'Surname waits for first name')
+  assert.equal(ink[1].strokes.surname, 0, 'Surname waits for first name')
   assert.ok(
     ink[2].strokes.surname > 0 && ink[2].strokes.surname < 1,
     'Surname follows first name',
   )
   assert.ok(
-    Object.values(ink[3].strokes).every((offset) => offset === 0),
-    'Every stroke finishes fully visible',
+    ink[3].clips.every((clip) => clip === 'none'),
+    'Every reveal releases its clip and finishes fully visible',
   )
   console.log(
-    'Intro: overlapping scribble masks finish in 1.4s, no layout shift',
+    'Intro: crayon reveals finish in 1.4s, clips released, no layout shift',
   )
   for (const [width, height] of [
     [320, 568],
@@ -77,7 +82,7 @@ try {
     [844, 390],
   ]) {
     browser('set', 'viewport', String(width), String(height))
-    const animated = height > 550 && (height > 650 || width < height)
+    const animated = height > 600 && (height > 650 || width < height)
     browser(
       'wait',
       '--fn',
@@ -91,9 +96,10 @@ try {
         if (box.left < 0 || box.right > innerWidth) throw Error(selector + ' overflows');
       }
       if (document.documentElement.scrollWidth > innerWidth) throw Error('Page overflow');
-      if (document.querySelectorAll('article').length !== 12) throw Error('Missing story');
+      if (document.querySelectorAll('article').length !== 13) throw Error('Missing story');
       return [...document.querySelectorAll('[data-basketball-story], #mavonic, #zosma')]
-        .map(e => ({top:e.getBoundingClientRect().top + scrollY, height:e.clientHeight}));
+        .map(e => ({top:e.getBoundingClientRect().top + scrollY, height:e.clientHeight,
+          count:e.querySelectorAll('article').length}));
     })()`)
     if (!animated) {
       assert.equal(
@@ -106,7 +112,9 @@ try {
         evaluate(`!!document.querySelector('[data-rally-character=shanvit]')`),
         true,
       )
-      console.log(`${width}×${height}: static landscape, all 12 beats readable`)
+      console.log(
+        `${width}×${height}: static short viewport, all 13 beats readable`,
+      )
       continue
     }
     for (const [chapterIndex, chapter] of chapters.entries()) {
@@ -119,8 +127,10 @@ try {
         )
         continue
       }
-      for (let index = 0; index < 4; index++) {
-        scrollTo(chapter.top + (chapter.height * (index + 0.12)) / 4)
+      for (let index = 0; index < chapter.count; index++) {
+        scrollTo(
+          chapter.top + (chapter.height * (index + 0.12)) / chapter.count,
+        )
         const panel = evaluate(`(() => {
           const chapter = document.querySelectorAll('[data-basketball-story], #mavonic, #zosma')[${chapterIndex}];
           const stage = chapter.querySelector('[class*=copyStage]');
@@ -246,7 +256,7 @@ try {
     '--fn',
     `document.querySelector('[data-motion]')?.dataset.motion === 'false'`,
   )
-  assert.equal(evaluate(`document.querySelectorAll('article').length`), 12)
+  assert.equal(evaluate(`document.querySelectorAll('article').length`), 13)
   assert.equal(
     evaluate(
       `getComputedStyle(document.querySelector('[data-basketball-story] [class*=copyRail]')).transform`,
@@ -282,12 +292,12 @@ try {
   )
   assert.ok(
     evaluate(
-      `[...document.querySelectorAll('[data-ink-part]')].every(e => getComputedStyle(e).animationName === 'none' && parseFloat(getComputedStyle(e).strokeDashoffset) === 0)`,
+      `[...document.querySelectorAll('[data-ink-part]')].every(e => getComputedStyle(e).animationName === 'none' && getComputedStyle(e).clipPath === 'none')`,
     ),
     'Reduced-motion intro starts fully drawn',
   )
   console.log(
-    'Reduced motion: finished intro and all 12 beats readable without scrubbing',
+    'Reduced motion: finished intro and all 13 beats readable without scrubbing',
   )
 } finally {
   browser('close')

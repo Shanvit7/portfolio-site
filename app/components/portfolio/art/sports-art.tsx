@@ -50,9 +50,9 @@ export const SportsArt = ({
       data-handoff-progress={h.toFixed(3)}
     >
       <defs>
-        <mask id={`${id}-ball-wax`} style={{ maskType: 'luminance' }}>
+        <mask id={`${id}-ball-wax`} style={{ maskType: 'alpha' }}>
           <image
-            href="/portfolio/textures/wax-grain.png"
+            href="/portfolio/textures/wax-grain-alpha.png"
             width={width}
             height={height}
             preserveAspectRatio="none"

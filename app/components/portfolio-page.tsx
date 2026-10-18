@@ -29,13 +29,6 @@ const handwriting = Patrick_Hand({
   display: 'swap',
 })
 
-// Back-and-forth crayon passes, not a straight left-to-right wipe.
-const scribblePath = Array.from(
-  { length: 33 },
-  (_, i) =>
-    `${i ? 'L' : 'M'}${(-0.04 + i * 0.034).toFixed(3)} ${i % 2 ? -0.15 : 1.15}`,
-).join(' ')
-
 const PaperIntro = () => {
   preload('/portfolio/textures/crayon-stroke.webp', {
     as: 'image',
@@ -72,69 +65,33 @@ const PaperIntro = () => {
 
         <section id="intro" className={styles.intro} aria-label="Introduction">
           <div className={styles.nameBlock}>
-            <svg
-              className={styles.inkMasks}
-              width="0"
-              height="0"
-              aria-hidden="true"
-              focusable="false"
-            >
-              <defs>
-                {['greeting', 'first', 'surname', 'underline'].map((part) => (
-                  <mask
-                    key={part}
-                    id={`intro-${part}-ink`}
-                    maskUnits="objectBoundingBox"
-                    maskContentUnits="objectBoundingBox"
-                    x="0"
-                    y="0"
-                    width="1"
-                    height="1"
-                    style={{ maskType: 'alpha' }}
-                  >
-                    <path
-                      className={styles.inkStroke}
-                      data-ink-part={part}
-                      d={part === 'underline' ? 'M0 0.5H1' : scribblePath}
-                      pathLength="1"
-                      fill="none"
-                      stroke="white"
-                      strokeWidth={part === 'underline' ? 1 : 0.09}
-                      // Round caps at this mask scale reveal almost the entire underline at once.
-                      strokeLinecap={part === 'underline' ? 'butt' : 'round'}
-                      strokeLinejoin="round"
-                    />
-                  </mask>
-                ))}
-              </defs>
-            </svg>
             <noscript>
-              <style>{`.${styles.inkStroke}{animation:none;stroke-dashoffset:0}`}</style>
+              <style>{`.${styles.inkReveal}[data-ink-part]{animation:none}`}</style>
             </noscript>
             <p
-              className={styles.greeting}
-              style={{ maskImage: 'url(#intro-greeting-ink)' }}
+              className={`${styles.greeting} ${styles.inkReveal}`}
+              data-ink-part="greeting"
             >
               hey, I’m <span aria-hidden="true">↴</span>
             </p>
             <h1 className={styles.name}>
               <span
-                className={styles.firstName}
-                style={{ maskImage: 'url(#intro-first-ink)' }}
+                className={`${styles.firstName} ${styles.inkReveal}`}
+                data-ink-part="first"
               >
                 Shanvit
               </span>
               <span
-                className={styles.surname}
-                style={{ maskImage: 'url(#intro-surname-ink)' }}
+                className={`${styles.surname} ${styles.inkReveal}`}
+                data-ink-part="surname"
               >
                 S Shetty<span className={styles.period}>.</span>
               </span>
             </h1>
             <div className={styles.marks} aria-hidden="true">
               <div
-                className={styles.stillMark}
-                style={{ maskImage: 'url(#intro-underline-ink)' }}
+                className={`${styles.stillMark} ${styles.inkReveal}`}
+                data-ink-part="underline"
               />
             </div>
             <p className={styles.nameNote}>

@@ -1,6 +1,7 @@
-import { motion, useScroll, useTransform } from 'motion/react'
-import type { ReactNode, RefObject } from 'react'
+import { motion, useTransform } from 'motion/react'
+import { Children, type ReactNode, type RefObject } from 'react'
 import styles from '@/components/portfolio/stories/court.module.css'
+import { useScrollProgress } from './use-scroll-progress'
 
 // Shared by Mavonic and Zosma; text stays semantic and outside the decorative Player.
 export const StoryRail = ({
@@ -12,19 +13,30 @@ export const StoryRail = ({
   motionAllowed: boolean
   children: ReactNode
 }) => {
-  const { scrollYProgress } = useScroll({
-    target: chapterRef,
-    offset: ['start end', 'end start'],
-    layoutEffect: false,
-  })
+  const count = Children.count(children)
+  const scrollYProgress = useScrollProgress(chapterRef, 1, 0)
   const x = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.32, 0.4, 0.52, 0.6, 0.72, 0.8, 1],
-    ['0%', '0%', '0%', '-100%', '-100%', '-200%', '-200%', '-300%', '-300%'],
+    [
+      0,
+      ...Array.from({ length: count }, (_, i) => [
+        (i + 1) / (count + 1),
+        (i + 1.6) / (count + 1),
+      ]).flat(),
+      1,
+    ],
+    [
+      '0%',
+      ...Array.from({ length: count }, (_, i) => [
+        `${-i * 100}%`,
+        `${-i * 100}%`,
+      ]).flat(),
+      `${-(count - 1) * 100}%`,
+    ],
   )
   const opacity = useTransform(
     scrollYProgress,
-    [0, 0.2, 0.205, 1],
+    [0, 1 / (count + 1), 1 / (count + 1) + 0.005, 1],
     [0, 0, 1, 1],
   )
   return (
@@ -54,7 +66,7 @@ export const StoryRail = ({
               top:
                 chapter.getBoundingClientRect().top +
                 window.scrollY +
-                (chapter.clientHeight * (index + 0.12)) / 4,
+                (chapter.clientHeight * (index + 0.12)) / count,
               behavior: 'instant',
             })
           }}
@@ -62,7 +74,11 @@ export const StoryRail = ({
           {children}
         </motion.div>
       </motion.div>
-      <div className={styles.rallyRunway} aria-hidden="true" />
+      <div
+        className={styles.rallyRunway}
+        style={{ height: `${count * 100}svh` }}
+        aria-hidden="true"
+      />
     </>
   )
 }

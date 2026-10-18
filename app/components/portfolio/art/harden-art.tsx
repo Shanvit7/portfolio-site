@@ -1,3 +1,4 @@
+import { svgNumber as n } from '@/components/portfolio/art/svg-number'
 import type { courtAt } from '@/components/portfolio/timeline/court-timeline'
 
 type Pose = ReturnType<typeof courtAt>
@@ -7,8 +8,8 @@ const normal = (a: Point, b: Point): Point => {
   const length = Math.hypot(b.x - a.x, b.y - a.y)
   return { x: -(b.y - a.y) / length, y: (b.x - a.x) / length }
 }
-const offset = (p: Point, n: Point, width: number) =>
-  `${p.x + n.x * width} ${p.y + n.y * width}`
+const offset = (p: Point, direction: Point, width: number) =>
+  `${n(p.x + direction.x * width)} ${n(p.y + direction.y * width)}`
 
 const NEAR_SHOULDER: Point = { x: 182, y: 171 }
 const FAR_SHOULDER: Point = { x: 91, y: 167 }
@@ -33,12 +34,12 @@ const Limb = ({
   const l = normal(joint, end)
   const m = { x: (u.x + l.x) / 2, y: (u.y + l.y) / 2 }
   const [shoulder, elbow, wrist] = widths
-  const contour = `M${offset(start, u, shoulder)}Q${offset(joint, u, shoulder)} ${offset(joint, m, elbow)}Q${offset(joint, l, elbow + 3)} ${offset(end, l, wrist)}L${offset(end, l, -wrist)}Q${offset(joint, l, -elbow - 2)} ${offset(joint, m, -elbow)}Q${offset(joint, u, -shoulder)} ${offset(start, u, -shoulder)}Q${start.x - (joint.x - start.x) * 0.12} ${start.y - (joint.y - start.y) * 0.12} ${offset(start, u, shoulder)}Z`
+  const contour = `M${offset(start, u, shoulder)}Q${offset(joint, u, shoulder)} ${offset(joint, m, elbow)}Q${offset(joint, l, elbow + 3)} ${offset(end, l, wrist)}L${offset(end, l, -wrist)}Q${offset(joint, l, -elbow - 2)} ${offset(joint, m, -elbow)}Q${offset(joint, u, -shoulder)} ${offset(start, u, -shoulder)}Q${n(start.x - (joint.x - start.x) * 0.12)} ${n(start.y - (joint.y - start.y) * 0.12)} ${offset(start, u, shoulder)}Z`
   return (
     <g stroke="#2b2c32" strokeWidth="1.8" strokeLinejoin="round">
       <path d={contour} fill={fill} />
       <path
-        d={`M${start.x} ${start.y}Q${joint.x} ${joint.y} ${end.x} ${end.y}L${offset(end, l, -wrist)}Q${offset(joint, l, -elbow - 2)} ${offset(joint, m, -elbow)}Q${offset(joint, u, -shoulder)} ${offset(start, u, -shoulder)}Z`}
+        d={`M${n(start.x)} ${n(start.y)}Q${n(joint.x)} ${n(joint.y)} ${n(end.x)} ${n(end.y)}L${offset(end, l, -wrist)}Q${offset(joint, l, -elbow - 2)} ${offset(joint, m, -elbow)}Q${offset(joint, u, -shoulder)} ${offset(start, u, -shoulder)}Z`}
         fill={shade}
         stroke="none"
       />
@@ -61,12 +62,12 @@ const elbow = (start: Point, end: Point, side: number): Point => {
 const Foot = ({ x, y, angle }: { x: number; y: number; angle: number }) => {
   return (
     <g
-      transform={`translate(${x} ${y})`}
+      transform={`translate(${n(x)} ${n(y)})`}
       stroke="#30323a"
       strokeWidth="1.7"
       strokeLinejoin="round"
     >
-      <g transform={`rotate(${angle})`}>
+      <g transform={`rotate(${n(angle)})`}>
         <path d="M-12-60L12-60L11 0L-10 1Z" fill="#f0f0eb" />
         <path d="M3-58L12-58L11 0L4 0Z" fill="#c8cbd0" stroke="none" />
         <path d="M-11-53L11-53M-11-49L11-49" stroke="#a8acb6" strokeWidth="1" />
@@ -107,8 +108,8 @@ export const HardenArt = ({ pose, id }: { pose: Pose; id: string }) => {
   return (
     <g
       id={`${id}-harden`}
-      transform={`translate(${pose.x} ${pose.y})`}
-      opacity={pose.arrival}
+      transform={`translate(${n(pose.x)} ${n(pose.y)})`}
+      opacity={n(pose.arrival)}
     >
       <Limb
         start={{ x: 107, y: 300 }}
@@ -150,7 +151,7 @@ export const HardenArt = ({ pose, id }: { pose: Pose; id: string }) => {
         }
       />
 
-      <g transform={`rotate(${pose.lean} 130 300)`}>
+      <g transform={`rotate(${n(pose.lean)} 130 300)`}>
         {/* Right arm is the guide; left shooting arm drives the ball overhead. */}
         <Limb
           start={farShoulder}
@@ -161,7 +162,7 @@ export const HardenArt = ({ pose, id }: { pose: Pose; id: string }) => {
           shade="#a9b5c3"
         />
         <g
-          transform={`translate(${farHand.x} ${farHand.y}) rotate(${mix(20, -25, g)})`}
+          transform={`translate(${n(farHand.x)} ${n(farHand.y)}) rotate(${n(mix(20, -25, g))})`}
           fill="#9e6b51"
           stroke="#3e302c"
           strokeWidth="1.3"
@@ -227,7 +228,7 @@ export const HardenArt = ({ pose, id }: { pose: Pose; id: string }) => {
         <path d="M126 180L130 180L130 188L126 188Z" fill="#e8e7e2" />
 
         {/* Rear three-quarter head, matching the supplied silhouette reference. */}
-        <g transform={`rotate(${-g * 9} 156 121)`}>
+        <g transform={`rotate(${n(-g * 9)} 156 121)`}>
           <path
             d="M140 116L136 142Q150 153 166 143L173 123Z"
             fill="#9f6b4e"
@@ -298,20 +299,20 @@ export const HardenArt = ({ pose, id }: { pose: Pose; id: string }) => {
           shade="#82533e"
         />
         <path
-          d={`M${nearShoulder.x + 5} ${nearShoulder.y + 12}Q${nearElbow.x + 6} ${nearElbow.y - 12} ${nearElbow.x + 2} ${nearElbow.y + 1}`}
+          d={`M${n(nearShoulder.x + 5)} ${n(nearShoulder.y + 12)}Q${n(nearElbow.x + 6)} ${n(nearElbow.y - 12)} ${n(nearElbow.x + 2)} ${n(nearElbow.y + 1)}`}
           fill="none"
           stroke="#d4a17a"
           strokeWidth="2"
         />
         <path
-          d={`M${nearShoulder.x + 1} ${nearShoulder.y + 15}Q${nearElbow.x - 8} ${nearElbow.y - 15} ${nearElbow.x - 3} ${nearElbow.y - 1}`}
+          d={`M${n(nearShoulder.x + 1)} ${n(nearShoulder.y + 15)}Q${n(nearElbow.x - 8)} ${n(nearElbow.y - 15)} ${n(nearElbow.x - 3)} ${n(nearElbow.y - 1)}`}
           fill="none"
           stroke="#655043"
           strokeWidth="3"
           opacity=".45"
         />
         <g
-          transform={`translate(${nearHand.x} ${nearHand.y}) rotate(${mix(5, -22, g)})`}
+          transform={`translate(${n(nearHand.x)} ${n(nearHand.y)}) rotate(${n(mix(5, -22, g))})`}
           fill="#bb8460"
           stroke="#44312a"
           strokeWidth="1.3"

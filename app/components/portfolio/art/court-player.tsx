@@ -1,7 +1,6 @@
 'use client'
 
-import { Player, type PlayerRef } from '@remotion/player'
-import { useMotionValueEvent, useScroll } from 'motion/react'
+import { useMotionValueEvent } from 'motion/react'
 import {
   type RefObject,
   useCallback,
@@ -10,39 +9,31 @@ import {
   useRef,
   useState,
 } from 'react'
-import { useCurrentFrame, useVideoConfig } from 'remotion'
-import { CourtArt } from '@/components/portfolio/art/court-art'
 import { FootballArt } from '@/components/portfolio/art/football-art'
 import { SportsArt } from '@/components/portfolio/art/sports-art'
-import { COURT_FPS } from '@/components/portfolio/timeline/court-timeline'
+import { useScrollProgress } from '@/components/portfolio/stories/use-scroll-progress'
 import {
   footballViewport,
   PENALTY_START_FRAME,
   pitchHandoffAt,
   RALLY_END_FRAME,
-  SPORTS_FRAMES,
   sportsFrameAt,
 } from '@/components/portfolio/timeline/rally-timeline'
 
 const CourtComposition = ({
+  frame,
+  width,
+  height,
   screenWidth,
   stageLeft,
 }: {
+  frame: number
+  width: number
+  height: number
   screenWidth: number
   stageLeft: number
 }) => {
-  const { width, height } = useVideoConfig()
-  const frame = useCurrentFrame()
   const id = useId().replaceAll(':', '')
-  if (frame <= RALLY_END_FRAME)
-    return (
-      <SportsArt
-        frame={frame}
-        width={width}
-        height={height}
-        screenWidth={screenWidth}
-      />
-    )
   const handoff = pitchHandoffAt(
     frame - RALLY_END_FRAME,
     width,
@@ -60,7 +51,7 @@ const CourtComposition = ({
   )
   return (
     <div
-      data-sports-frame={frame}
+      data-sports-frame={frame > RALLY_END_FRAME ? frame : undefined}
       data-pitch-handoff={progress.toFixed(3)}
       style={{
         position: 'relative',
@@ -75,25 +66,27 @@ const CourtComposition = ({
           style={{
             position: 'absolute',
             inset: 0,
-            transform: `translate(${-width * 0.08 * progress}px, ${-pan}px)`,
+            transform: `translate3d(${-width * 0.08 * progress}px, ${-pan}px, 0)`,
           }}
         >
           <SportsArt
-            frame={RALLY_END_FRAME}
+            frame={Math.min(frame, RALLY_END_FRAME)}
             width={width}
             height={height}
             screenWidth={screenWidth}
-            showRallyBall={false}
+            showRallyBall={frame <= RALLY_END_FRAME}
             missProgress={progress}
           />
         </div>
       )}
+      {/* Mount offscreen early: the final rally must not also construct a stadium. */}
       <div
         data-football-bleed
         style={{
           position: 'absolute',
           left: -stageLeft,
-          top: pitchY,
+          top: 0,
+          transform: `translate3d(0, ${pitchY}px, 0)`,
           width: screenWidth,
           height: footballViewport(height).height,
         }}
@@ -105,7 +98,7 @@ const CourtComposition = ({
           showBall={progress >= 1}
         />
       </div>
-      {progress < 1 && (
+      {frame > RALLY_END_FRAME && progress < 1 && (
         <svg
           aria-hidden="true"
           width={screenWidth}
@@ -114,9 +107,9 @@ const CourtComposition = ({
           style={{ position: 'absolute', left: -stageLeft, top: 0 }}
         >
           <defs>
-            <mask id={`${id}-pitch-wax`} style={{ maskType: 'luminance' }}>
+            <mask id={`${id}-pitch-wax`} style={{ maskType: 'alpha' }}>
               <image
-                href="/portfolio/textures/wax-grain.png"
+                href="/portfolio/textures/wax-grain-alpha.png"
                 width={screenWidth}
                 height={height}
                 preserveAspectRatio="none"
@@ -202,7 +195,7 @@ const CourtPlayer = ({
   pitchBridge: RefObject<HTMLDivElement | null>
   penalty: RefObject<HTMLElement | null>
 }) => {
-  const player = useRef<PlayerRef>(null)
+  const [frame, setFrame] = useState(0)
   const lastFrame = useRef(-1)
   const bounds = useRef({
     bridge: 0.25,
@@ -216,11 +209,7 @@ const CourtPlayer = ({
     screenWidth: 1440,
     stageLeft: 0,
   })
-  const { scrollYProgress } = useScroll({
-    target,
-    offset: ['start start', 'end end'],
-    layoutEffect: false,
-  })
+  const scrollYProgress = useScrollProgress(target, 0, 1)
 
   const seek = useCallback((progress: number) => {
     const frame = sportsFrameAt(
@@ -230,8 +219,8 @@ const CourtPlayer = ({
       bounds.current.pitchBridge,
       bounds.current.penalty,
     )
-    if (frame === lastFrame.current || !player.current) return
-    player.current.seekTo(frame)
+    if (frame === lastFrame.current) return
+    setFrame(frame)
     lastFrame.current = frame
   }, [])
 
@@ -265,12 +254,20 @@ const CourtPlayer = ({
       }
       const stageRect = stage.getBoundingClientRect()
       const scale = stageRect.width / stage.clientWidth
-      setSize({
+      const next = {
         width: Math.max(1, stage.clientWidth),
         height: Math.max(1, stage.clientHeight),
         screenWidth: document.documentElement.clientWidth / scale,
         stageLeft: stageRect.left / scale,
-      })
+      }
+      setSize((current) =>
+        current.width === next.width &&
+        current.height === next.height &&
+        current.screenWidth === next.screenWidth &&
+        current.stageLeft === next.stageLeft
+          ? current
+          : next,
+      )
       lastFrame.current = -1
       seek(scrollYProgress.get())
     }
@@ -283,32 +280,7 @@ const CourtPlayer = ({
     return () => observer.disconnect()
   }, [target, bridge, rally, pitchBridge, penalty, scrollYProgress, seek])
 
-  return (
-    <Player
-      ref={player}
-      component={CourtComposition}
-      inputProps={{ screenWidth: size.screenWidth, stageLeft: size.stageLeft }}
-      overflowVisible
-      compositionWidth={size.width}
-      compositionHeight={size.height}
-      durationInFrames={SPORTS_FRAMES}
-      fps={COURT_FPS}
-      controls={false}
-      autoPlay={false}
-      loop={false}
-      clickToPlay={false}
-      doubleClickToFullscreen={false}
-      spaceKeyToPlayOrPause={false}
-      initiallyShowControls={false}
-      showVolumeControls={false}
-      numberOfSharedAudioTags={0}
-      acknowledgeRemotionLicense
-      moveToBeginningWhenEnded={false}
-      browserMediaControlsBehavior={{ mode: 'do-nothing' }}
-      errorFallback={() => <CourtArt />}
-      style={{ width: '100%', height: '100%', pointerEvents: 'none' }}
-    />
-  )
+  return <CourtComposition frame={frame} {...size} />
 }
 
 export default CourtPlayer

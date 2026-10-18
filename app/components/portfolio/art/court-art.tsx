@@ -1,5 +1,6 @@
 import { useId } from 'react'
 import { HardenArt } from '@/components/portfolio/art/harden-art'
+import { svgNumber as n } from '@/components/portfolio/art/svg-number'
 import { courtAt } from '@/components/portfolio/timeline/court-timeline'
 
 type CourtPose = ReturnType<typeof courtAt>
@@ -25,9 +26,9 @@ export const CourtArt = ({
       data-court-frame={Math.round(pose.frame)}
     >
       <defs>
-        <mask id={`${id}-wax`} style={{ maskType: 'luminance' }}>
+        <mask id={`${id}-wax`} style={{ maskType: 'alpha' }}>
           <image
-            href="/portfolio/textures/wax-grain.png"
+            href="/portfolio/textures/wax-grain-alpha.png"
             x="0"
             y="-80"
             width="1000"
@@ -36,7 +37,7 @@ export const CourtArt = ({
         </mask>
       </defs>
       <g
-        transform={`translate(${500 * (1 - pose.camera)} ${380 * (1 - pose.camera)}) scale(${pose.camera})`}
+        transform={`translate(${n(500 * (1 - pose.camera))} ${n(380 * (1 - pose.camera))}) scale(${n(pose.camera)})`}
         mask={`url(#${id}-wax)`}
         strokeLinejoin="round"
         strokeLinecap="round"
@@ -59,10 +60,10 @@ export const CourtArt = ({
           />
         </g>
         <g
-          transform={`translate(${x - 60} ${pose.effort * 20})`}
+          transform={`translate(${n(x - 60)} ${n(pose.effort * 20)})`}
           fill="none"
           stroke="#2449cf"
-          opacity={pose.effort * 0.5}
+          opacity={n(pose.effort * 0.5)}
         >
           <path
             d="M-20 300L143 286M-50 332L106 316M-16 354L157 334M20 391L122 373M-30 456L80 442"
@@ -75,12 +76,17 @@ export const CourtArt = ({
         </g>
         <g opacity=".16" fill="#253555">
           <ellipse
-            cx={x + 140}
+            cx={n(x + 140)}
             cy="653"
-            rx={123 - pose.jump * 0.4}
-            ry={10 - pose.jump * 0.07}
+            rx={n(123 - pose.jump * 0.4)}
+            ry={n(10 - pose.jump * 0.07)}
           />
-          <ellipse cx={ballX} cy="652" rx={28 * shadow} ry={5 * shadow} />
+          <ellipse
+            cx={n(ballX)}
+            cy="652"
+            rx={n(28 * shadow)}
+            ry={n(5 * shadow)}
+          />
         </g>
         <g fill="none">
           <path
@@ -106,7 +112,7 @@ export const CourtArt = ({
             strokeWidth="3"
           />
           <path
-            d={`M814 273L826 ${333 + net}L875 ${333 + net}L892 271M826 333L885 284M839 336L894 282M816 281L861 336M826 276L876 336M814 298L887 297M822 316L881 316`}
+            d={`M814 273L826 ${n(333 + net)}L875 ${n(333 + net)}L892 271M826 333L885 284M839 336L894 282M816 281L861 336M826 276L876 336M814 298L887 297M822 316L881 316`}
             stroke="#788398"
             strokeWidth="1.7"
           />
@@ -123,11 +129,11 @@ export const CourtArt = ({
         <use
           href={`#${id}-harden`}
           transform="translate(-38 6)"
-          opacity={pose.effort * 0.06}
+          opacity={n(pose.effort * 0.06)}
         />
         <HardenArt pose={pose} id={id} />
         <path
-          d={`M${pose.releaseX} ${pose.releaseY}Q${(pose.releaseX + 850) / 2} ${(pose.releaseY + 270) / 2 - 250} 850 270`}
+          d={`M${n(pose.releaseX)} ${n(pose.releaseY)}Q${n((pose.releaseX + 850) / 2)} ${n((pose.releaseY + 270) / 2 - 250)} 850 270`}
           fill="none"
           stroke="#294bd1"
           strokeWidth="2"
@@ -136,9 +142,9 @@ export const CourtArt = ({
         />
         <g
           opacity={showBall ? 1 : 0}
-          transform={`translate(${ballX} ${ballY}) scale(${1 / squash} ${squash})`}
+          transform={`translate(${n(ballX)} ${n(ballY)}) scale(${n(1 / squash)} ${n(squash)})`}
         >
-          <g transform={`rotate(${rotation})`}>
+          <g transform={`rotate(${n(rotation)})`}>
             <circle r="27" fill="#df7429" stroke="#462e29" strokeWidth="2.7" />
             <path
               d="M-21-17Q-28 13-6 25Q17 33 25 10Q13 22-4 12Q-18 3-21-17"
@@ -159,7 +165,12 @@ export const CourtArt = ({
           stroke="#ba392b"
           strokeWidth="5"
         />
-        <g fill="none" stroke="#c13c2d" strokeWidth="3" opacity={pose.net / 16}>
+        <g
+          fill="none"
+          stroke="#c13c2d"
+          strokeWidth="3"
+          opacity={n(pose.net / 16)}
+        >
           <path d="M798 259L783 248M804 245L798 226M898 292L914 304M905 280L926 285" />
         </g>
       </g>

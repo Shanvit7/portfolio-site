@@ -1,8 +1,9 @@
 'use client'
 
-import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react'
+import { motion, useReducedMotion, useTransform } from 'motion/react'
 import { type ReactNode, useEffect, useId, useRef, useState } from 'react'
 import styles from './paper.module.css'
+import { useScrollProgress } from './use-scroll-progress'
 
 const rightPage =
   'M300 132C365 88 445 101 510 126L510 330C435 303 365 307 300 350C300 278 300 204 300 132Z'
@@ -19,11 +20,7 @@ export const WritingStory = ({ children }: { children: ReactNode }) => {
   // Motion values differ from the static SSR markup, so animate only after mount.
   const [animated, setAnimated] = useState(false)
   useEffect(() => setAnimated(reduced === false), [reduced])
-  const { scrollYProgress } = useScroll({
-    target: section,
-    offset: ['start 90%', 'end 90%'],
-    layoutEffect: false,
-  })
+  const scrollYProgress = useScrollProgress(section, 0.9, 0.9)
   const leaf = useTransform(
     scrollYProgress,
     [0.08, 0.35, 0.65],
@@ -57,9 +54,9 @@ export const WritingStory = ({ children }: { children: ReactNode }) => {
             focusable="false"
           >
             <defs>
-              <mask id={`${id}-book-wax`} style={{ maskType: 'luminance' }}>
+              <mask id={`${id}-book-wax`} style={{ maskType: 'alpha' }}>
                 <image
-                  href="/portfolio/textures/wax-grain.png"
+                  href="/portfolio/textures/wax-grain-alpha.png"
                   width="600"
                   height="440"
                   preserveAspectRatio="none"

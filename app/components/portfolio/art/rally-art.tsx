@@ -543,9 +543,9 @@ export const RallyArt = ({
       data-rally-frame={Math.round(pose.frame)}
     >
       <defs>
-        <mask id={`${id}-rally-wax`} style={{ maskType: 'luminance' }}>
+        <mask id={`${id}-rally-wax`} style={{ maskType: 'alpha' }}>
           <image
-            href="/portfolio/textures/wax-grain.png"
+            href="/portfolio/textures/wax-grain-alpha.png"
             width={width}
             height="820"
             preserveAspectRatio="none"

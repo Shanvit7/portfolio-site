@@ -14,7 +14,10 @@ assert.doesNotMatch(paperPage, /<canvas[\s>]/, 'No floating glyph canvas')
 assert.equal((paperPage.match(/<h1[\s>]/g) || []).length, 1, 'One main heading')
 assert.match(paperPage, /Front End engineer\./)
 assert.match(paperPage, /Product at heart\./)
-assert.match(paperPage, /From a blank canvas to products people use\./)
+assert.match(
+  paperPage,
+  /From a blank\s+canvas to production-ready experiences\./,
+)
 assert.match(paperPage, /Curious about how engineering shapes/)
 assert.match(paperPage, /70K\+ weekly/)
 assert.match(paperPage, /under 1s/)
@@ -37,13 +40,13 @@ assert.match(paperPage, /stillMark/, 'Original crayon texture retained')
 for (const part of ['greeting', 'first', 'surname', 'underline']) {
   assert.match(
     paperPage,
-    new RegExp(`id="intro-${part}-ink"`),
-    'Initial ink mask available in server HTML',
+    new RegExp(`data-ink-part="${part}"`),
+    'Ink reveal available in server HTML',
   )
 }
 assert.match(
   paperPage,
-  /<noscript><style>[^<]*animation:none;stroke-dashoffset:0/,
+  /<noscript><style>[^<]*animation:none/,
   'No-JS name starts fully drawn',
 )
 assert.match(
@@ -99,8 +102,8 @@ const tabotPreview = await fetch(new URL('/tabot-preview.webp', origin))
 assert.equal(tabotPreview.status, 200, 'Tabot preview asset is available')
 assert.equal(
   (paperPage.match(/<article[\s>]/g) || []).length,
-  12,
-  'Four beats each for IoTric, Mavonic and Zosma readable without JS',
+  13,
+  'All four IoTric/Mavonic beats and five Zosma beats readable without JS',
 )
 assert.match(paperPage, /qie-chatbot/, 'Real IoTric work included')
 assert.match(
@@ -156,11 +159,18 @@ assert.match(
 for (const [asset, type] of [
   ['paper.webp', 'image/webp'],
   ['crayon-stroke.webp', 'image/webp'],
-  ['wax-grain.png', 'image/png'],
+  ['wax-grain-alpha.png', 'image/png'],
 ]) {
   const response = await fetch(new URL(`/portfolio/textures/${asset}`, origin))
   assert.equal(response.status, 200, asset)
   assert.equal(response.headers.get('content-type'), type, asset)
+  if (asset === 'wax-grain-alpha.png') {
+    const png = new Uint8Array(await response.arrayBuffer())
+    assert.ok(
+      [4, 6].includes(png[25]),
+      'Grain PNG has a precomputed alpha channel',
+    )
+  }
 }
 assert.doesNotMatch(
   paperPage,

@@ -183,7 +183,7 @@
   margin: 0 0 40px;
 }
 
-.penaltyStill > svg {
+.penaltyStill > [data-football-view] {
   display: block;
   width: 100%;
   height: auto;
@@ -278,7 +278,6 @@
 
 .track[data-motion="true"] .rallyRunway {
   display: block;
-  height: 400svh;
 }
 
 /* Basketball keeps its vertical desktop story; phones reuse the horizontal rail. */
@@ -426,7 +425,7 @@
   }
 
   .rallyCopy > p:not(.company, .date) {
-    font-size: 1.125rem;
+    font-size: clamp(1rem, 5vw, 1.125rem);
     line-height: 1.45;
     margin-bottom: 14px;
   }
@@ -451,7 +450,7 @@
     padding-inline: 8px;
   }
 
-  .penaltyStill > svg {
+  .penaltyStill > [data-football-view] {
     aspect-ratio: 700 / 980;
   }
 
@@ -465,7 +464,7 @@
 }
 
 /* Default layout is compact and readable before hydration and without JavaScript. */
-@media (prefers-reduced-motion: reduce), (max-height: 550px),
+@media (prefers-reduced-motion: reduce), (max-height: 600px),
   (max-height: 650px) and (orientation: landscape) {
   .instructions p {
     display: none;
