@@ -220,6 +220,7 @@ const PaperIntro = () => {
         <figure className={styles.projectPreview}>
           <Image
             src="/tabot-preview.webp"
+            loading="eager"
             alt="Tabot browser extension showing a browsing session timeline"
             width={960}
             height={540}

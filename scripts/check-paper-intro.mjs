@@ -98,6 +98,12 @@ assert.ok(
 assert.match(paperPage, /70K\+ weekly users/)
 assert.match(paperPage, /github\.com\/Shanvit7\/tabot/)
 assert.match(paperPage, /shanvit7\.github\.io\/tabot/)
+const tabotImage = paperPage.match(/<img\b[^>]*tabot-preview[^>]*>/)?.[0] || ''
+assert.match(
+  tabotImage,
+  /loading="eager"/,
+  'Tabot preview avoids lazy LCP loading',
+)
 const tabotPreview = await fetch(new URL('/tabot-preview.webp', origin))
 assert.equal(tabotPreview.status, 200, 'Tabot preview asset is available')
 assert.equal(
@@ -160,11 +166,12 @@ for (const [asset, type] of [
   ['paper.webp', 'image/webp'],
   ['crayon-stroke.webp', 'image/webp'],
   ['wax-grain-alpha.png', 'image/png'],
+  ['wax-grain-paper.png', 'image/png'],
 ]) {
   const response = await fetch(new URL(`/portfolio/textures/${asset}`, origin))
   assert.equal(response.status, 200, asset)
   assert.equal(response.headers.get('content-type'), type, asset)
-  if (asset === 'wax-grain-alpha.png') {
+  if (asset.startsWith('wax-grain-')) {
     const png = new Uint8Array(await response.arrayBuffer())
     assert.ok(
       [4, 6].includes(png[25]),

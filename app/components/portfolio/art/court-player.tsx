@@ -4,8 +4,8 @@ import { useMotionValueEvent } from 'motion/react'
 import {
   type RefObject,
   useCallback,
-  useEffect,
   useId,
+  useLayoutEffect,
   useRef,
   useState,
 } from 'react'
@@ -75,7 +75,6 @@ const CourtComposition = ({
             height={height}
             screenWidth={screenWidth}
             showRallyBall={frame <= RALLY_END_FRAME}
-            missProgress={progress}
           />
         </div>
       )}
@@ -203,12 +202,12 @@ const CourtPlayer = ({
     pitchBridge: 0.62,
     penalty: 0.78,
   })
-  const [size, setSize] = useState({
-    width: 1440,
-    height: 900,
-    screenWidth: 1440,
-    stageLeft: 0,
-  })
+  const [size, setSize] = useState<{
+    width: number
+    height: number
+    screenWidth: number
+    stageLeft: number
+  } | null>(null)
   const scrollYProgress = useScrollProgress(target, 0, 1)
 
   const seek = useCallback((progress: number) => {
@@ -225,7 +224,7 @@ const CourtPlayer = ({
   }, [])
 
   useMotionValueEvent(scrollYProgress, 'change', seek)
-  useEffect(() => {
+  useLayoutEffect(() => {
     const track = target.current
     const handoff = bridge.current
     const nextChapter = rally.current
@@ -261,7 +260,7 @@ const CourtPlayer = ({
         stageLeft: stageRect.left / scale,
       }
       setSize((current) =>
-        current.width === next.width &&
+        current?.width === next.width &&
         current.height === next.height &&
         current.screenWidth === next.screenWidth &&
         current.stageLeft === next.stageLeft
@@ -280,7 +279,7 @@ const CourtPlayer = ({
     return () => observer.disconnect()
   }, [target, bridge, rally, pitchBridge, penalty, scrollYProgress, seek])
 
-  return <CourtComposition frame={frame} {...size} />
+  return size ? <CourtComposition frame={frame} {...size} /> : null
 }
 
 export default CourtPlayer

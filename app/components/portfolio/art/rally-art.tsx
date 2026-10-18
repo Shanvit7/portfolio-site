@@ -543,14 +543,6 @@ export const RallyArt = ({
       data-rally-frame={Math.round(pose.frame)}
     >
       <defs>
-        <mask id={`${id}-rally-wax`} style={{ maskType: 'alpha' }}>
-          <image
-            href="/portfolio/textures/wax-grain-alpha.png"
-            width={width}
-            height="820"
-            preserveAspectRatio="none"
-          />
-        </mask>
         <pattern
           id={`${id}-mesh`}
           width="13"
@@ -560,11 +552,7 @@ export const RallyArt = ({
           <path d="M0 0H13V11" fill="none" stroke="#e3e9f2" strokeWidth="1" />
         </pattern>
       </defs>
-      <g
-        mask={`url(#${id}-rally-wax)`}
-        strokeLinejoin="round"
-        strokeLinecap="round"
-      >
+      <g strokeLinejoin="round" strokeLinecap="round">
         <g
           fontFamily="var(--font-crayon), sans-serif"
           fontSize="38"
@@ -694,6 +682,14 @@ export const RallyArt = ({
           </g>
         )}
       </g>
+      {/* White paper grain gives the same finish without a per-frame full-scene mask. */}
+      <image
+        href="/portfolio/textures/wax-grain-paper.png"
+        width={width}
+        height="820"
+        preserveAspectRatio="none"
+        pointerEvents="none"
+      />
     </svg>
   )
 }
