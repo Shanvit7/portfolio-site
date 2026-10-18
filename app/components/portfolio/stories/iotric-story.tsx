@@ -102,7 +102,9 @@ export const IotricStory = () => {
               </h3>
               <p>
                 I joined IoTric as an intern while finishing undergrad. My
-                starting point: legacy React, class components, and Redux.
+                starting point was legacy React, class components, and Redux—so
+                I learned by tracing state through someone else’s code and
+                hunting down answers on Stack Overflow.
               </p>
               <p className={styles.aside}>
                 A real app is a very different teacher.
@@ -117,8 +119,16 @@ export const IotricStory = () => {
               </h3>
               <p>
                 I built interfaces, wired up APIs, and integrated Mirrorfly
-                chat. Learning meant tracing state through someone else’s code
-                and finding answers on Stack Overflow.
+                chat. For{' '}
+                <a
+                  href="https://www.thirdeyegen.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  ThirdEye Gen ↗
+                </a>
+                , I built interfaces for its AR/MR smart-glasses platform,
+                including shipping billing module and Stripe integration.
               </p>
               <p className={styles.aside}>
                 This was before ChatGPT became my debugging partner.

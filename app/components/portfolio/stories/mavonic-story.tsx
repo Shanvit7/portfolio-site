@@ -59,8 +59,9 @@ const beats = [
         id: 'propertyguru-performance',
         content: (
           <>
-            For PropertyGuru, I moved listing pages from request-time SSR to SSG
-            + ISR, bringing load time below one second.
+            PropertyGuru listings went from request-time rendering to SSG +
+            ISR—staying fresh without making visitors wait. Pages loaded in{' '}
+            <strong>under one second</strong>.
           </>
         ),
       },
@@ -76,6 +77,8 @@ const beats = [
           <>
             I built a FaceNet recognition service used across internal projects,
             then an async FastAPI + Agno + Groq vision bot for daily stand-ups.
+            Cursor IDE was in my corner for quick iterations; I still owned what
+            shipped.
           </>
         ),
       },
@@ -114,7 +117,7 @@ const beats = [
               Draftus ↗
             </a>{' '}
             from scratch: a mobile-first student–mentor platform with Next.js,
-            Supabase, and TanStack Query.
+            Supabase, Resend and TanStack Query.
           </>
         ),
       },

@@ -37,9 +37,10 @@ export const ZosmaStory = ({
               Now I take <span>the shot.</span>
             </h2>
             <p>
-              I joined as a Founding Engineer. I still build interfaces, but now
-              I also own performance, SEO, offline workflows, and AI product
-              surfaces.
+              As a Founding Engineer, I led frontend architecture through rapid
+              product pivots—building reusable Next.js patterns, shaping the
+              monorepo, and adding Grafana Faro and Umami observability. That
+              foundation helped us move fast without starting from scratch.
             </p>
           </div>
         </article>
@@ -78,6 +79,23 @@ export const ZosmaStory = ({
             <p>
               Its offline-first PWA queued edits, synced on reconnect, and
               scheduled hearing notifications.
+            </p>
+          </div>
+        </article>
+        <article className={styles.rallyBeat}>
+          <div className={styles.rallyCopy}>
+            <p className={styles.date}>Beyond the browser</p>
+            <h3>More ways to work.</h3>
+            <p>
+              I’m building financial interfaces and co-pilot experiences for
+              finance teams. I also shipped a React Native D2C app using gRPC
+              and a Tauri + Next.js desktop prototype that turns Tally data into
+              ledger summaries, P&amp;L statements, and management reports.
+            </p>
+            <p>
+              Interfaces are getting cheaper to build; bugs haven’t got the
+              memo. I use agent skills and automated code-quality checks to keep
+              quality in the loop—because fast is useful only when it holds up.
             </p>
           </div>
         </article>
