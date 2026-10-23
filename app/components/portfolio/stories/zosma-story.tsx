@@ -37,10 +37,12 @@ export const ZosmaStory = ({
               Now I take <span>the shot.</span>
             </h2>
             <p>
-              As a Founding Engineer, I led frontend architecture through rapid
-              product pivots—building reusable Next.js patterns, shaping the
-              monorepo, and adding Grafana Faro and Umami observability. That
-              foundation helped us move fast without starting from scratch.
+              As a Founding Engineer in a 5-person team, I led frontend
+              architecture through rapid product pivots—building reusable
+              Next.js patterns, setting up automated code-quality checks,
+              shaping the monorepo, and adding Grafana Faro and Umami
+              observability. That foundation helped us move fast without
+              starting from scratch.
             </p>
           </div>
         </article>
@@ -71,10 +73,12 @@ export const ZosmaStory = ({
             <p className={styles.date}>Then, handle what gets in the way</p>
             <h3>Systems that keep their footing.</h3>
             <p>
-              A Next.js + Fastify vendor CRM connected SAP shipment data. I also
-              built a legal platform using Next.js, Server Actions, and
-              PostgreSQL, with Kanban, role-based access, audit history, and PDF
-              report generation.
+              A Next.js + Fastify vendor CRM connected SAP shipment data.
+              Engineered an offline-first litigation PWA (Next.js, PostgreSQL,
+              Better Auth) with queued edits, reconnect sync and conflict
+              safeguards; built Kanban case tracking, RBAC, audit trails,
+              analytics, PDF reports and deadline alerts. Deployed on-prem with
+              PM2.
             </p>
             <p>
               Its offline-first PWA queued edits, synced on reconnect, and
