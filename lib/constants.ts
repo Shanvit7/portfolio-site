@@ -5,6 +5,10 @@ export const WEBSITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL || 'https://shanvit.vercel.app'
 ).replace(/\/+$/, '')
 
+export const UMAMI_WEBSITE_ID = process.env.NEXT_PUBLIC_UMAMI_WEBSITE_ID
+export const UMAMI_SCRIPT_URL =
+  process.env.NEXT_PUBLIC_UMAMI_SCRIPT_URL || 'https://cloud.umami.is/script.js'
+
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
     company: 'Zosma AI',

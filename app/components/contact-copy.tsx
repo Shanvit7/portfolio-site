@@ -4,12 +4,19 @@ import { Check, Copy } from 'lucide-react'
 import { useState } from 'react'
 import styles from '@/components/portfolio/stories/paper.module.css'
 
+declare global {
+  interface Window {
+    umami?: { track: (event: string) => void }
+  }
+}
+
 export const ContactCopy = ({ email }: { email: string }) => {
   const [status, setStatus] = useState<'idle' | 'copied' | 'failed'>('idle')
 
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(email)
+      window.umami?.track('email-copy')
       setStatus('copied')
     } catch {
       setStatus('failed')

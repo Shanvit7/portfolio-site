@@ -1,0 +1,54 @@
+{
+  "version": "1.1.0",
+  "skillHash": "sha256:aa895a65897cf166fb474dec51d7ee108ada63fd42e81b1b225054c4657b548c",
+  "scoredAt": "2026-10-01T12:41:25.017Z",
+  "backend": "ollama",
+  "model": "gpt-oss:20b-64k",
+  "quality": {
+    "score": 93,
+    "dimensions": {
+      "clarity": "PASS",
+      "completeness": "PASS",
+      "conciseness": "WEAK",
+      "actionability": "PASS",
+      "crossPlatform": "PASS",
+      "examples": "PASS"
+    },
+    "issues": [
+      {
+        "severity": "MEDIUM",
+        "category": "conciseness",
+        "detail": "The skill file contains excessive narrative and padding, reducing conciseness."
+      }
+    ]
+  },
+  "security": {
+    "verdict": "SAFE",
+    "issues": []
+  },
+  "impact": {
+    "multiplier": 5.88,
+    "baselineAvg": 17,
+    "treatmentAvg": 100,
+    "scenarios": [
+      {
+        "name": "self-host-umami-docker-compose",
+        "baseline": 50,
+        "treatment": 100,
+        "rationale": "Response A meets all rubric requirements, while Response B omits the APP_SECRET variable, the .env creation command for it, and the heartbeat curl test."
+      },
+      {
+        "name": "add-umami-tracking-nextjs",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric with a complete <script> tag inside <head>, while Response A is incomplete and does not provide the required snippet."
+      },
+      {
+        "name": "umami-api-weekly-report",
+        "baseline": 0,
+        "treatment": 100,
+        "rationale": "Response B fully satisfies the rubric, while Response A is a Python script and does not meet the Node.js requirement."
+      }
+    ]
+  }
+}

@@ -4,7 +4,7 @@ import { GITHUB_URL, LINKEDIN_URL, WEBSITE_URL } from '@/lib/constants'
 
 const title = 'Shanvit S Shetty — Frontend Engineer & Product Builder'
 const description =
-  'Frontend engineer with 4+ years building web products. Improved property listings serving 10K+ daily visitors from ~10s to under 1s, and helped grow organic traffic 65% in three months. Building at Zosma AI.'
+  'Frontend engineer with 4+ years taking products from idea to production. Shipped experiences for 70K+ weekly users, cut page loads from ~10s to under 1s, and contributed to 65% organic growth. Founding Engineer at Zosma AI.'
 
 const jsonLd = {
   '@context': 'https://schema.org',

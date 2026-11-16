@@ -22,7 +22,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 `NEXT_PUBLIC_SITE_URL` defaults to `https://shanvit.vercel.app` and supplies canonical metadata, JSON-LD, robots, and sitemap URLs. Set it to the production origin if the site domain changes.
 
-Other optional public profile links and contact details are listed in `.env.example`.
+Other optional public profile links and contact details are listed in `.env.example`. Set `NEXT_PUBLIC_UMAMI_WEBSITE_ID` to enable pageview and custom-event tracking; script URL defaults to Umami Cloud and can point to self-hosted Umami. Tracking is limited to the hostname in `NEXT_PUBLIC_SITE_URL`.
 
 ## Checks and production build
 

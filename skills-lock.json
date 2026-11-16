@@ -1,101 +1,108 @@
 {
-  "version": 1,
+  "version": 2,
   "skills": {
     "agent-browser": {
       "source": "vercel-labs/agent-browser",
       "sourceType": "github",
       "skillPath": "skills/agent-browser/SKILL.md",
-      "computedHash": "80161e6836b3b40f4e83730a290deb40ac14d877d38c97ad5f6d71be37ce74c3"
+      "computedHash": ""
     },
     "core-web-vitals": {
       "source": "addyosmani/web-quality-skills",
       "sourceType": "github",
       "skillPath": "skills/core-web-vitals/SKILL.md",
-      "computedHash": "601b2cbb920fb0ea9814a3f11232d7883e1eb0923865218502ab1d73e9fc5172"
+      "computedHash": "de50c203aa9dafa8dee9dd8c06782e3fc610704b83c1c408e4c5ee2337c4cd2a"
     },
     "impeccable": {
       "source": "pbakaus/impeccable",
       "sourceType": "github",
       "skillPath": ".agents/skills/impeccable/SKILL.md",
-      "computedHash": "9fc469b8e0ee85a7ba2070050997f8e7ebb4ad1d79be3b21770a33392c1e9b93"
+      "computedHash": ""
     },
     "ios-safari-gotchas": {
       "source": "radiantnode/ios-safari-gotchas-skill",
       "sourceType": "github",
       "skillPath": "skills/ios-safari-gotchas/SKILL.md",
-      "computedHash": "9a06c7ec238de8ad255e3a91b5f4c24dfdcb2febbb99fc4806466f7a5d6b531a"
+      "computedHash": "bd4e5f25be16c0e033ef5c8839ef5879a9b593d3bda155d07a023e7a3a23311b"
     },
     "nextjs-app-router-patterns": {
       "source": "wshobson/agents",
       "sourceType": "github",
       "skillPath": "plugins/frontend-mobile-development/skills/nextjs-app-router-patterns/SKILL.md",
-      "computedHash": "b4fea42eecf1f803155ef7fa133d5286ee8f2dbba3e616954e9e43c6f0ffc144"
+      "computedHash": "39b84480d3a62355fd1199173dc70b97efe1daf6dbfae560cc7b85e127934a98"
     },
     "nextjs-performance": {
       "source": "giuseppe-trisciuoglio/developer-kit",
       "sourceType": "github",
       "skillPath": "plugins/developer-kit-typescript/skills/nextjs-performance/SKILL.md",
-      "computedHash": "ea2ac97c0f3a5afe4d0196969840d383a30882b8e00a4da895e4ea6eaa32af09"
+      "computedHash": "3261608897a7f95c6b731d1f6d278693e70e58b98dd78f584bc1c28a0d142f78"
     },
     "nextjs-seo": {
       "source": "laguagu/claude-code-nextjs-skills",
       "sourceType": "github",
       "skillPath": "skills/nextjs-seo/SKILL.md",
-      "computedHash": "c5f266e9b07bd2a22f4eb44c536b15f4ab26ddb87a51519e60a1d15f23d5dd28"
+      "computedHash": "53de8a7f99fb06b050555bc4fd1fcf7e9e2f6704d1493d5b0ff393e720418753"
     },
     "remotion-best-practices": {
       "source": "remotion-dev/skills",
       "sourceType": "github",
       "skillPath": "skills/remotion-best-practices/SKILL.md",
-      "computedHash": "c2f1c22a68d1965d3c43b870b0632a074de82053df45bfb5fc58d77e9d907a2c"
+      "computedHash": "f52eeb3e245a736faeee6de2d5603e7422316e87e94906b7e715b6c3391f54dd"
     },
     "remotion-captions": {
       "source": "remotion-dev/skills",
       "sourceType": "github",
       "skillPath": "skills/remotion-captions/SKILL.md",
-      "computedHash": "b442a369e5f06c8e756c9e5bc15369efc7b466948e5e614da9e5fb1139cfc552"
+      "computedHash": "fdefbaf573b32be9508a79d3b4de913ca17f147712ff1c455383c25381602a0f"
     },
     "remotion-create": {
       "source": "remotion-dev/skills",
       "sourceType": "github",
       "skillPath": "skills/remotion-create/SKILL.md",
-      "computedHash": "72f37735bd577cb1f9d8cbc6385985b494578cdeb709fb7b32e39cb1ed8199b8"
+      "computedHash": "a51fd4d30cf5efed56ea7f354f9e36a7c0ef10a4b135671592bdfda8c6314c8c"
     },
     "remotion-render": {
       "source": "remotion-dev/skills",
       "sourceType": "github",
       "skillPath": "skills/remotion-render/SKILL.md",
-      "computedHash": "1220831c3630ec455ad37300fdb0f796d42cb121239a05516b68747e6701eafa"
+      "computedHash": "6051025311f77eb402b9e0364cea866cea2cdad58d3401df98d4bbcbe152e27b"
     },
     "seo-schema-jsonld": {
       "source": "hainrixz/claude-seo-ai",
       "sourceType": "github",
       "skillPath": "skills/seo-schema-jsonld/SKILL.md",
-      "computedHash": "157ed44804f4e894e1b3644782ff5ed236d71d74d46eb81f8fcc65806e246de4"
+      "computedHash": "57b847f2d02187f98e35a5c501a396bfb8c5dc01159c0b94458ba1a671707360"
     },
     "tailwind-css-patterns": {
       "source": "giuseppe-trisciuoglio/developer-kit",
       "sourceType": "github",
       "skillPath": "plugins/developer-kit-typescript/skills/tailwind-css-patterns/SKILL.md",
-      "computedHash": "6092620c3af955a46ea2b94ca8a40197ac8392e6bbdc8c7515659328b186c770"
+      "computedHash": "9f84955f461d236a7ec7adf52934ce8389406f2d28e63b7e25bd2d134d5e50d2"
     },
     "tailwindcss-advanced-layouts": {
       "source": "josiahsiegel/claude-plugin-marketplace",
       "sourceType": "github",
       "skillPath": "plugins/tailwindcss-master/skills/tailwindcss-advanced-layouts/SKILL.md",
-      "computedHash": "159d8a8f9eb20136492a9971633fd8658be1e34d5f8dc3bcf1afe7bbb4511bdf"
+      "computedHash": "6ba028067c497c60f6963d84e91613031a1d5ca2e3c935ddc00ff4d3e406dedf"
     },
     "ui-ux-pro-max": {
       "source": "nextlevelbuilder/ui-ux-pro-max-skill",
       "sourceType": "github",
       "skillPath": ".claude/skills/ui-ux-pro-max/SKILL.md",
-      "computedHash": "27b1e8c953e26f962e3314281601959b04787edf3fd7fccadce176ff844c688d"
+      "computedHash": ""
+    },
+    "umami": {
+      "source": "TerminalSkills/skills",
+      "commit": "42289059901710441bfa8081c08c3a9f36b93f9c",
+      "sourceType": "github",
+      "skillPath": "skills/umami/SKILL.md",
+      "computedHash": "f5d540486775af01ae9ca0e44304909dfde170a3665463f4f9232f084a0240c5"
     },
     "vercel-react-best-practices": {
       "source": "vercel-labs/agent-skills",
       "sourceType": "github",
       "skillPath": "skills/react-best-practices/SKILL.md",
-      "computedHash": "3219a1944e404ffc14d1d9d6aef6dd2e3855b81387ee0a044ccbfe14d34c2357"
+      "computedHash": ""
     }
   }
 }

@@ -1,5 +1,10 @@
 import type { Metadata, Viewport } from 'next'
-import { WEBSITE_URL } from '@/lib/constants'
+import Script from 'next/script'
+import {
+  UMAMI_SCRIPT_URL,
+  UMAMI_WEBSITE_ID,
+  WEBSITE_URL,
+} from '@/lib/constants'
 import './globals.css'
 
 export const viewport: Viewport = {
@@ -32,6 +37,16 @@ const RootLayout = ({
   children: React.ReactNode
 }>) => (
   <html lang="en" suppressHydrationWarning>
+    <head>
+      {UMAMI_WEBSITE_ID && (
+        <Script
+          defer
+          src={UMAMI_SCRIPT_URL}
+          data-website-id={UMAMI_WEBSITE_ID}
+          data-domains={new URL(WEBSITE_URL).hostname}
+        />
+      )}
+    </head>
     <body className="bg-white antialiased">{children}</body>
   </html>
 )

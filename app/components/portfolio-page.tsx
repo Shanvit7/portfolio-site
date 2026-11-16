@@ -50,12 +50,22 @@ const PaperIntro = () => {
           </span>
           <nav className={styles.nav} aria-label="Find Shanvit">
             {GITHUB_URL && (
-              <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer">
+              <a
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-umami-event="github-click"
+              >
                 GitHub <ArrowUpRight aria-hidden="true" size={18} />
               </a>
             )}
             {LINKEDIN_URL && (
-              <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer">
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-umami-event="linkedin-click"
+              >
                 Say hello on LinkedIn{' '}
                 <ArrowUpRight aria-hidden="true" size={18} />
               </a>
@@ -125,6 +135,7 @@ const PaperIntro = () => {
                   href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
+                  data-umami-event="resume-view"
                 >
                   <span>Read online</span>
                   <ArrowUpRight aria-hidden="true" size={17} />
@@ -133,6 +144,7 @@ const PaperIntro = () => {
                   className={styles.resumeLink}
                   href="/resume.pdf"
                   download="shanvit_shetty_resume.pdf"
+                  data-umami-event="resume-download"
                 >
                   <Download aria-hidden="true" size={17} />
                   <span>Download PDF</span>
@@ -169,7 +181,12 @@ const PaperIntro = () => {
         <ol className={styles.postList}>
           {BLOG_POSTS.map((post) => (
             <li key={post.uid}>
-              <a href={post.link} target="_blank" rel="noopener noreferrer">
+              <a
+                href={post.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                data-umami-event="writing-click"
+              >
                 <h3>{post.title}</h3>
                 <span>
                   Read on Substack <ArrowUpRight aria-hidden="true" size={20} />
