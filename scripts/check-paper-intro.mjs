@@ -98,14 +98,15 @@ assert.ok(
 assert.match(paperPage, /70K\+ weekly users/)
 assert.match(paperPage, /github\.com\/Shanvit7\/tabot/)
 assert.match(paperPage, /shanvit7\.github\.io\/tabot/)
-const tabotImage = paperPage.match(/<img\b[^>]*tabot-preview[^>]*>/)?.[0] || ''
+const tabotImage =
+  paperPage.match(/<img\b[^>]*tabot-chatgpt-search\.gif[^>]*>/)?.[0] || ''
 assert.match(
   tabotImage,
   /loading="eager"/,
   'Tabot preview avoids lazy LCP loading',
 )
-const tabotPreview = await fetch(new URL('/tabot-preview.webp', origin))
-assert.equal(tabotPreview.status, 200, 'Tabot preview asset is available')
+const tabotPreview = await fetch(new URL('/tabot-chatgpt-search.gif', origin))
+assert.equal(tabotPreview.status, 200, 'Tabot ChatGPT search demo is available')
 assert.equal(
   (paperPage.match(/<article[\s>]/g) || []).length,
   13,

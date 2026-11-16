@@ -189,13 +189,14 @@ const PaperIntro = () => {
           <p className={styles.projectLabel}>On the side. Still building.</p>
           <h2 id="tabot-title">Tabot</h2>
           <p>
-            I built an open-source, local-first Chrome extension and dashboard
-            that turns browser activity into session timelines, domain history,
-            navigation paths, and recurring-visit patterns.
+            Tabot turns your browser activity into context your AI assistant can
+            use to help you get work done.
           </p>
           <p>
-            Optional MCP/ChatGPT access answers questions over filtered results.
-            Raw browsing history stays on-device.
+            The beta lets you search retained pages and notes, review activity
+            and excerpts locally, and ask ChatGPT about supported activity or
+            saved notes. Your browsing activity stays on your device; only
+            requested results are shared with ChatGPT.
           </p>
           <p className={styles.projectStatus}>
             Still building it alongside my role at Zosma AI.
@@ -213,17 +214,18 @@ const PaperIntro = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Live demo <ArrowUpRight aria-hidden="true" size={18} />
+              Live <ArrowUpRight aria-hidden="true" size={18} />
             </a>
           </div>
         </div>
         <figure className={styles.projectPreview}>
           <Image
-            src="/tabot-preview.webp"
+            src="/tabot-chatgpt-search.gif"
+            unoptimized
             loading="eager"
-            alt="Tabot browser extension showing a browsing session timeline"
-            width={960}
-            height={540}
+            alt="ChatGPT searching Tabot browser activity"
+            width={1280}
+            height={800}
             sizes="(max-width: 800px) 100vw, 52vw"
           />
         </figure>
