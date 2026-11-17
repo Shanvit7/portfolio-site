@@ -216,6 +216,12 @@ const PaperIntro = () => {
           />
         </figure>
       </section>
+      <footer className="mx-auto max-w-360 px-[clamp(24px,7vw,112px)] py-5 pb-8 text-center text-[0.95rem] leading-[1.5] text-muted">
+        <p>
+          Privacy: This site uses Umami, a privacy-friendly, cookie-free
+          analytics tool, to understand how visitors use the site.
+        </p>
+      </footer>
     </main>
   )
 }
