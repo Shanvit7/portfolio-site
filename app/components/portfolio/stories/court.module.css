@@ -393,26 +393,6 @@
     display: block;
   }
 
-  .track[data-motion="true"] .basketballStory .beat {
-    flex: 0 0 100%;
-    min-width: 0;
-    max-width: none;
-    min-height: 0;
-    padding: 0 4px 24px;
-    justify-content: flex-start;
-  }
-
-  .track[data-motion="true"] .basketballStory .beat > p:not(.date) {
-    font-size: 1.0625rem;
-    line-height: 1.4;
-    margin-bottom: 12px;
-  }
-
-  .track[data-motion="true"] .basketballStory .date {
-    font-size: 1rem;
-    margin-bottom: 12px;
-  }
-
   .beat {
     max-width: 44ch;
     padding-block: 32px;
@@ -432,6 +412,26 @@
 
   .rallyCopy .company,
   .rallyCopy .date {
+    font-size: 1rem;
+    margin-bottom: 12px;
+  }
+
+  .track[data-motion="true"] .basketballStory .beat {
+    flex: 0 0 100%;
+    min-width: 0;
+    max-width: none;
+    min-height: 0;
+    padding: 0 4px 24px;
+    justify-content: flex-start;
+  }
+
+  .track[data-motion="true"] .basketballStory .beat > p:not(.date) {
+    font-size: 1.0625rem;
+    line-height: 1.4;
+    margin-bottom: 12px;
+  }
+
+  .track[data-motion="true"] .basketballStory .date {
     font-size: 1rem;
     margin-bottom: 12px;
   }
