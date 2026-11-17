@@ -1,7 +1,5 @@
 # Shanvit S Shetty | Portfolio
 
-Personal portfolio for Shanvit S Shetty, a software engineer building web products and exploring machine learning, LLMs, and agentic systems.
-
 ## Stack
 
 - Next.js App Router, React 19, TypeScript
