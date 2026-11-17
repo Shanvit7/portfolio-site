@@ -16,14 +16,12 @@
     "doctor:staged": "react-doctor --staged --blocking error"
   },
   "dependencies": {
-    "@remotion/player": "4.0.540",
     "@tailwindcss/typography": "^0.5.20",
     "lucide-react": "^1.67.0",
     "motion": "^14.9.0",
     "next": "16.4.6",
     "react": "^19.3.1",
-    "react-dom": "^19.3.1",
-    "remotion": "4.0.540"
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
     "@biomejs/biome": "2.6.4",

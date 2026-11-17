@@ -1,5 +1,4 @@
 const COURT_FRAMES = 481
-export const COURT_FPS = 60
 
 const between = (frame: number, start: number, end: number) =>
   Math.max(0, Math.min(1, (frame - start) / (end - start)))

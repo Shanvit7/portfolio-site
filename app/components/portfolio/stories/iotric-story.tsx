@@ -3,8 +3,10 @@
 import { useInView } from 'motion/react'
 import dynamic from 'next/dynamic'
 import { useEffect, useRef, useState } from 'react'
+import iotricLogo from '@/app/assets/company-logos/iotric.webp'
 import { CourtArt } from '@/components/portfolio/art/court-art'
 import styles from '@/components/portfolio/stories/court.module.css'
+import { CompanyWebsite } from './company-website'
 import { MavonicStory } from './mavonic-story'
 import { StoryRail } from './story-rail'
 import { ZosmaStory } from './zosma-story'
@@ -50,7 +52,14 @@ export const IotricStory = () => {
     <div className={styles.chapter}>
       <header className={styles.heading}>
         <div>
-          <p className={styles.company}>IoTric · July 2022 — October 2024</p>
+          <p className={styles.company}>
+            <CompanyWebsite
+              name="IoTric"
+              href="https://www.iotric.com"
+              logo={iotricLogo}
+            />{' '}
+            · July 2022 — October 2024
+          </p>
           <h2 id="iotric-title">Finding my feet.</h2>
           <p className={styles.subtitle}>
             How I got into frontend, one real problem at a time.
@@ -169,21 +178,21 @@ export const IotricStory = () => {
                 features.
               </p>
               <p>
-                I also published{' '}
+                I built a chatbot as an{' '}
                 <a
                   href="https://www.npmjs.com/package/qie-chatbot"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  qie-chatbot ↗
-                </a>
-                , which later grew into the company’s{' '}
+                  npm package ↗
+                </a>{' '}
+                for the{' '}
                 <a
-                  href="https://botric.ai"
+                  href="https://www.qie.digital/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  botric.ai ↗
+                  QIE blockchain ↗
                 </a>
                 .
               </p>

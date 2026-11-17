@@ -2,8 +2,9 @@ import { ArrowUpRight, Download } from 'lucide-react'
 import { Patrick_Hand } from 'next/font/google'
 import localFont from 'next/font/local'
 import Image from 'next/image'
-import { preload } from 'react-dom'
+import zosmaLogo from '@/app/assets/company-logos/zosma-ai.webp'
 import { ContactCopy } from '@/components/contact-copy'
+import { PhotoIntro } from '@/components/photo-intro'
 import { IotricStory } from '@/components/portfolio/stories/iotric-story'
 import styles from '@/components/portfolio/stories/paper.module.css'
 import { WritingStory } from '@/components/portfolio/stories/writing-story'
@@ -20,6 +21,7 @@ const crayon = localFont({
   weight: '400',
   variable: '--font-crayon',
   display: 'swap',
+  preload: false,
 })
 
 const handwriting = Patrick_Hand({
@@ -30,10 +32,6 @@ const handwriting = Patrick_Hand({
 })
 
 const PaperIntro = () => {
-  preload('/portfolio/textures/crayon-stroke.webp', {
-    as: 'image',
-    fetchPriority: 'high',
-  })
   const currentWork = WORK_EXPERIENCE[0]
 
   return (
@@ -45,9 +43,6 @@ const PaperIntro = () => {
       </a>
       <div className={styles.sheet}>
         <header className={styles.header}>
-          <span className={styles.wordmark} aria-hidden="true">
-            s.s<span aria-hidden="true">✳</span>
-          </span>
           <nav className={styles.nav} aria-label="Find Shanvit">
             {GITHUB_URL && (
               <a
@@ -74,40 +69,7 @@ const PaperIntro = () => {
         </header>
 
         <section id="intro" className={styles.intro} aria-label="Introduction">
-          <div className={styles.nameBlock}>
-            <noscript>
-              <style>{`.${styles.inkReveal}[data-ink-part]{animation:none}`}</style>
-            </noscript>
-            <p
-              className={`${styles.greeting} ${styles.inkReveal}`}
-              data-ink-part="greeting"
-            >
-              hey, I’m <span aria-hidden="true">↴</span>
-            </p>
-            <h1 className={styles.name}>
-              <span
-                className={`${styles.firstName} ${styles.inkReveal}`}
-                data-ink-part="first"
-              >
-                Shanvit
-              </span>
-              <span
-                className={`${styles.surname} ${styles.inkReveal}`}
-                data-ink-part="surname"
-              >
-                S Shetty<span className={styles.period}>.</span>
-              </span>
-            </h1>
-            <div className={styles.marks} aria-hidden="true">
-              <div
-                className={`${styles.stillMark} ${styles.inkReveal}`}
-                data-ink-part="underline"
-              />
-            </div>
-            <p className={styles.nameNote}>
-              Building smarter, simpler systems.
-            </p>
-          </div>
+          <PhotoIntro />
 
           <div className={styles.about}>
             <p className={styles.role}>
@@ -157,7 +119,7 @@ const PaperIntro = () => {
 
         <footer className={styles.pageNote}>
           <p className={styles.current}>
-            <span className={styles.currentMark} aria-hidden="true">
+            <span className="mr-2 text-4xl text-green" aria-hidden="true">
               ✳
             </span>
             Currently building at{' '}
@@ -166,6 +128,16 @@ const PaperIntro = () => {
               target="_blank"
               rel="noopener noreferrer"
             >
+              {currentWork.company === 'Zosma AI' && (
+                <Image
+                  src={zosmaLogo}
+                  alt=""
+                  aria-hidden="true"
+                  loading="lazy"
+                  unoptimized
+                  className="mx-1 inline-block size-6 object-contain align-middle"
+                />
+              )}
               {currentWork.company} <span aria-hidden="true">↗</span>
             </a>
           </p>
@@ -215,9 +187,6 @@ const PaperIntro = () => {
             saved notes. Your browsing activity stays on your device; only
             requested results are shared with ChatGPT.
           </p>
-          <p className={styles.projectStatus}>
-            Still building it alongside my role at Zosma AI.
-          </p>
           <div className={styles.projectLinks}>
             <a
               href="https://github.com/Shanvit7/tabot"
@@ -239,7 +208,7 @@ const PaperIntro = () => {
           <Image
             src="/tabot-chatgpt-search.gif"
             unoptimized
-            loading="eager"
+            loading="lazy"
             alt="ChatGPT searching Tabot browser activity"
             width={1280}
             height={800}

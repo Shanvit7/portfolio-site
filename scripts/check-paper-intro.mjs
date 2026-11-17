@@ -165,7 +165,6 @@ assert.match(
 )
 for (const [asset, type] of [
   ['paper.webp', 'image/webp'],
-  ['crayon-stroke.webp', 'image/webp'],
   ['wax-grain-alpha.png', 'image/png'],
   ['wax-grain-paper.png', 'image/png'],
 ]) {
@@ -180,11 +179,6 @@ for (const [asset, type] of [
     )
   }
 }
-assert.doesNotMatch(
-  paperPage,
-  /__remotion-player/,
-  'Player remains lazy, not SSR',
-)
 console.log(
   'Paper portfolio checks passed; /new has no route; no legacy shell.',
 )

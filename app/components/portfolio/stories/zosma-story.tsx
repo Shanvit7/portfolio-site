@@ -1,6 +1,8 @@
 import type { RefObject } from 'react'
+import zosmaLogo from '@/app/assets/company-logos/zosma-ai.webp'
 import { FootballArt } from '@/components/portfolio/art/football-art'
 import styles from '@/components/portfolio/stories/court.module.css'
+import { CompanyWebsite } from './company-website'
 import { StoryRail } from './story-rail'
 
 export const ZosmaStory = ({
@@ -31,7 +33,12 @@ export const ZosmaStory = ({
         <article className={styles.rallyBeat}>
           <div className={styles.rallyCopy}>
             <p className={styles.company}>
-              Zosma AI · September 2025 – Present
+              <CompanyWebsite
+                name="Zosma AI"
+                href="https://www.zosma.ai"
+                logo={zosmaLogo}
+              />{' '}
+              · September 2025 – Present
             </p>
             <h2 id="zosma-title">
               Now I take <span>the shot.</span>

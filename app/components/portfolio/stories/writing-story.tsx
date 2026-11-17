@@ -37,7 +37,6 @@ export const WritingStory = ({ children }: { children: ReactNode }) => {
       aria-labelledby="writing-title"
     >
       <header className={styles.writingHeading}>
-        <p>Off the court. Into the margins.</p>
         <h2 id="writing-title">Sometimes I write.</h2>
         <p>
           Notes from building, experimenting, and following a question a little

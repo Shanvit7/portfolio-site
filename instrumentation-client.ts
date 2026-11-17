@@ -1,3 +1,3 @@
-import { scan } from 'react-scan'
-
-scan({ enabled: process.env.NODE_ENV === 'development' })
+if (process.env.NODE_ENV === 'development') {
+  void import('react-scan').then(({ scan }) => scan({ enabled: true }))
+}

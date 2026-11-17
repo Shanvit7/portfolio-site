@@ -1,11 +1,13 @@
 import type { RefObject } from 'react'
+import mavonicLogo from '@/app/assets/company-logos/mavonic.webp'
 import { RallyArt } from '@/components/portfolio/art/rally-art'
 import styles from '@/components/portfolio/stories/court.module.css'
+import { CompanyWebsite } from './company-website'
 import { StoryRail } from './story-rail'
 
 const beats = [
   {
-    label: 'Mavonic · October 2024 – September 2025',
+    label: 'October 2024 – September 2025',
     company: true,
     title: (
       <>
@@ -146,7 +148,20 @@ export const MavonicStory = ({
       {beats.map(({ label, company, title, titleId, paragraphs }) => (
         <article className={styles.rallyBeat} key={label}>
           <div className={styles.rallyCopy}>
-            <p className={company ? styles.company : styles.date}>{label}</p>
+            <p className={company ? styles.company : styles.date}>
+              {company ? (
+                <>
+                  <CompanyWebsite
+                    name="Mavonic"
+                    href="https://www.mavonic.com"
+                    logo={mavonicLogo}
+                  />{' '}
+                  · {label}
+                </>
+              ) : (
+                label
+              )}
+            </p>
             {titleId ? <h2 id={titleId}>{title}</h2> : <h3>{title}</h3>}
             {paragraphs.map(({ id, content }) => (
               <p key={id}>{content}</p>
