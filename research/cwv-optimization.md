@@ -17,10 +17,10 @@ Concurrent texture cleanup moved assets to `/portfolio/textures/` and supplied l
 
 Three sequential runs per method, no simultaneous browser tests. Medians:
 
-| Lighthouse throttling method | Score | LCP | CLS | TBT |
-| --- | ---: | ---: | ---: | ---: |
-| `simulate` (default prediction) | 83 | 4.657s | 0 | 24ms |
-| `devtools` (applied network/CPU throttling) | 99 | 1.641s | 0.000314 | 24.3ms |
+| Lighthouse throttling method                | Score |    LCP |      CLS |    TBT |
+| ------------------------------------------- | ----: | -----: | -------: | -----: |
+| `simulate` (default prediction)             |    83 | 4.657s |        0 |   24ms |
+| `devtools` (applied network/CPU throttling) |    99 | 1.641s | 0.000314 | 24.3ms |
 
 Before the resource preload, applied-throttling run was 94 / 2.970s LCP. Final applied runs: 1.635, 1.641, 1.649s LCP, all score 99. Final simulated runs: 4.659, 4.657, 4.207s LCP, scores 83, 83, 86. Earlier simulated baseline was 84 / 4.588s (historical run: 80 / 5.196s); **no reliable simulated-score gain established**. Do not compare the old simulated 80 with the applied-throttling 99 as a before/after improvement.
 
