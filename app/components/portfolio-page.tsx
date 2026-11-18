@@ -2,6 +2,7 @@ import { ArrowUpRight, Download } from 'lucide-react'
 import { Patrick_Hand } from 'next/font/google'
 import localFont from 'next/font/local'
 import Image from 'next/image'
+import Link from 'next/link'
 import zosmaLogo from '@/app/assets/company-logos/zosma-ai.webp'
 import { ContactCopy } from '@/components/contact-copy'
 import { PhotoIntro } from '@/components/photo-intro'
@@ -92,7 +93,7 @@ const PaperIntro = () => {
                 ✳
               </span>
               <div className={styles.resumeChoices}>
-                <a
+                <Link
                   className={styles.resumeLink}
                   href="/resume.pdf"
                   target="_blank"
@@ -101,16 +102,16 @@ const PaperIntro = () => {
                 >
                   <span>Read online</span>
                   <ArrowUpRight aria-hidden="true" size={17} />
-                </a>
-                <a
+                </Link>
+                <Link
                   className={styles.resumeLink}
-                  href="/resume.pdf"
+                  href="/resume/download"
                   download="shanvit_shetty_resume.pdf"
                   data-umami-event="resume-download"
                 >
                   <Download aria-hidden="true" size={17} />
                   <span>Download PDF</span>
-                </a>
+                </Link>
               </div>
             </div>
             {EMAIL && <ContactCopy email={EMAIL} />}
