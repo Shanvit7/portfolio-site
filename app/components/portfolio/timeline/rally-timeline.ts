@@ -237,10 +237,12 @@ export const footballViewport = (height: number) => {
 }
 
 export const footballLayout = (width: number, height: number) => {
-  const viewWidth = width < 700 ? 700 : 1200
+  const baseViewWidth = width < 700 ? 700 : 1200
   const skyHeight = 160
   const viewHeight = 820 + skyHeight
-  const scale = Math.min(width / viewWidth, height / viewHeight)
+  const scale = Math.min(width / baseViewWidth, height / viewHeight)
+  // Expand the landscape viewBox instead of letting SVG's default meet shrink the scene.
+  const viewWidth = Math.max(baseViewWidth, width / scale)
   return {
     viewWidth,
     viewHeight,

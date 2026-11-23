@@ -123,7 +123,7 @@ export const courtAt = (frame: number) => {
     squash: ballY > 610 ? 0.84 : 1,
     shadow: 0.25 + 0.75 * Math.max(0, Math.min(1, ballY / 620)),
     net: Math.sin(between(f, 420, 450) * Math.PI) * 16,
-    arrival: between(f, 6, 24),
+    arrival: between(f, 40, 58),
     shot: between(f, 350, 420),
     follow: between(f, 350, 370),
     camera: 1 + body.effort * 0.09,

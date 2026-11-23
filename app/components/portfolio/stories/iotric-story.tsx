@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from 'react'
 import iotricLogo from '@/app/assets/company-logos/iotric.webp'
 import { CourtArt } from '@/components/portfolio/art/court-art'
 import styles from '@/components/portfolio/stories/court.module.css'
+import { courtAt } from '@/components/portfolio/timeline/court-timeline'
 import { CompanyWebsite } from './company-website'
 import { MavonicStory } from './mavonic-story'
 import { StoryRail } from './story-rail'
@@ -15,7 +16,7 @@ const CourtPlayer = dynamic(
   () => import('@/components/portfolio/art/court-player'),
   {
     ssr: false,
-    loading: () => <CourtArt />,
+    loading: () => <CourtArt pose={courtAt(0)} />,
   },
 )
 
@@ -84,7 +85,7 @@ export const IotricStory = () => {
                 penalty={penalty}
               />
             ) : (
-              <CourtArt />
+              <CourtArt pose={courtAt(motionAllowed ? 0 : 170)} />
             )}
           </div>
           <figcaption className={styles.caption}>
