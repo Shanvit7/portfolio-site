@@ -46,6 +46,12 @@ const RootLayout = ({
           data-domains={new URL(WEBSITE_URL).hostname}
         />
       )}
+      <Script
+        id="superflowToolbarScript"
+        data-sf-platform="other-manual"
+        async
+        src="https://cdn.velt.dev/lib/superflow.js?apiKey=a5mKbXZQSVOYJIZQvzI1&projectId=5111350828947669"
+      />
     </head>
     <body className="bg-white antialiased">{children}</body>
   </html>

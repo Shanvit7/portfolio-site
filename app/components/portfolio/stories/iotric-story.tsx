@@ -32,7 +32,7 @@ export const IotricStory = () => {
 
   useEffect(() => {
     const preference = window.matchMedia(
-      '(prefers-reduced-motion: reduce), (max-height: 600px), (max-height: 650px) and (orientation: landscape)',
+      '(prefers-reduced-motion: reduce), (max-height: 540px)',
     )
     const phone = window.matchMedia('(max-width: 700px)')
     const update = () => {
